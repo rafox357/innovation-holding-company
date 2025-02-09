@@ -1,6 +1,6 @@
-import type { Metadata } from "next"
 import { Poppins } from "next/font/google"
 import "./globals.css"
+
 import { Providers } from "@/components/providers"
 import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
@@ -8,13 +8,12 @@ import { ThemeProvider } from "@/components/theme-provider"
 
 const poppins = Poppins({ 
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  variable: "--font-poppins",
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
 })
 
-export const metadata: Metadata = {
-  title: "Hubverse - Empowering Entrepreneurs and Driving Innovation",
-  description: "Hubverse is a comprehensive ecosystem of services and solutions for entrepreneurs and businesses across multiple sectors.",
+export const metadata = {
+  title: "Hubverse - Innovation Holding Company",
+  description: "A pioneering holding company at the intersection of innovation and entrepreneurship.",
 }
 
 export default function RootLayout({
@@ -25,19 +24,23 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head />
-      <body className="min-h-screen bg-background font-sans antialiased">
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="dark"
-          enableSystem={false}
-          disableTransitionOnChange
-        >
-          <div className="cosmic-layout">
-            <div className="relative">
-              {children}
+      <body className={`min-h-screen bg-background font-sans antialiased ${poppins.className}`}>
+        <Providers>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="dark"
+            enableSystem={false}
+            disableTransitionOnChange
+          >
+            <div className="cosmic-layout">
+              <div className="relative flex min-h-screen flex-col">
+                <Navbar />
+                <main className="flex-1">{children}</main>
+                <Footer />
+              </div>
             </div>
-          </div>
-        </ThemeProvider>
+          </ThemeProvider>
+        </Providers>
       </body>
     </html>
   )
