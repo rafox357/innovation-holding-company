@@ -4,6 +4,7 @@ import "./globals.css"
 import { Providers } from "@/components/providers"
 import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
+import { ThemeProvider } from "@/components/theme-provider"
 
 const poppins = Poppins({ 
   subsets: ["latin"],
@@ -23,14 +24,20 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={poppins.className}>
-        <Providers>
-          <div className="relative flex min-h-screen flex-col bg-background font-sans antialiased">
-            <Navbar />
-            <main className="flex-1">{children}</main>
-            <Footer />
+      <head />
+      <body className="min-h-screen bg-background font-sans antialiased">
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          enableSystem={false}
+          disableTransitionOnChange
+        >
+          <div className="cosmic-layout">
+            <div className="relative">
+              {children}
+            </div>
           </div>
-        </Providers>
+        </ThemeProvider>
       </body>
     </html>
   )
