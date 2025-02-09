@@ -2,7 +2,8 @@
 
 import Link from "next/link"
 import { useTheme } from "next-themes"
-import { ArrowRight, Rocket, Globe, Lightbulb, Newspaper, Megaphone, BarChart, Users } from "lucide-react"
+import { ArrowRight, Globe, Lightbulb, Newspaper, Megaphone, BarChart, Users } from "lucide-react"
+import { InnovationHub } from "@/components/innovation-hub/innovation-hub"
 
 export default function Home() {
   const { theme, setTheme } = useTheme()
@@ -10,7 +11,7 @@ export default function Home() {
   return (
     <div className="container mx-auto px-4 py-16">
       {/* Hero Section */}
-      <section className="text-center mb-16">
+      <section className="py-20 text-center">
         <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 cosmic-title glow">
           Welcome to Hubverse
         </h1>
@@ -33,39 +34,33 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Services Grid */}
-      <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
-        {/* Innovation Hub */}
-        <div className="p-6 bg-card rounded-lg shadow-lg">
-          <Rocket className="h-12 w-12 mb-4 text-primary" />
-          <h3 className="text-xl font-semibold mb-2">Innovation Hub</h3>
-          <p className="text-muted-foreground">
-            Fostering breakthrough technologies and disruptive solutions.
-          </p>
-        </div>
+      {/* Innovation Hub Section */}
+      <InnovationHub />
 
+      {/* Services Grid */}
+      <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 py-16">
         {/* Global Network */}
-        <div className="p-6 bg-card rounded-lg shadow-lg">
-          <Globe className="h-12 w-12 mb-4 text-primary" />
-          <h3 className="text-xl font-semibold mb-2">Global Network</h3>
+        <div className="p-6 cosmic-card rounded-lg">
+          <Globe className="h-12 w-12 mb-4 cosmic-icon" />
+          <h3 className="text-xl font-semibold mb-2 cosmic-text">Global Network</h3>
           <p className="text-muted-foreground">
             Connecting entrepreneurs with opportunities worldwide.
           </p>
         </div>
 
         {/* Strategic Insights */}
-        <div className="p-6 bg-card rounded-lg shadow-lg">
-          <Lightbulb className="h-12 w-12 mb-4 text-primary" />
-          <h3 className="text-xl font-semibold mb-2">Strategic Insights</h3>
+        <div className="p-6 cosmic-card rounded-lg">
+          <Lightbulb className="h-12 w-12 mb-4 cosmic-icon" />
+          <h3 className="text-xl font-semibold mb-2 cosmic-text">Strategic Insights</h3>
           <p className="text-muted-foreground">
             Expert guidance for sustainable business growth.
           </p>
         </div>
 
         {/* Market Access */}
-        <div className="p-6 bg-card rounded-lg shadow-lg">
-          <BarChart className="h-12 w-12 mb-4 text-primary" />
-          <h3 className="text-xl font-semibold mb-2">Market Access</h3>
+        <div className="p-6 cosmic-card rounded-lg">
+          <BarChart className="h-12 w-12 mb-4 cosmic-icon" />
+          <h3 className="text-xl font-semibold mb-2 cosmic-text">Market Access</h3>
           <p className="text-muted-foreground">
             Opening doors to new markets and opportunities.
           </p>
@@ -73,12 +68,12 @@ export default function Home() {
       </section>
 
       {/* Latest News Section */}
-      <section className="mb-16">
+      <section className="py-16">
         <div className="flex justify-between items-center mb-8">
-          <h2 className="text-3xl font-bold">Latest News</h2>
+          <h2 className="text-3xl font-bold cosmic-title">Latest News</h2>
           <Link
             href="/news"
-            className="flex items-center text-primary hover:text-primary/80"
+            className="flex items-center cosmic-button px-4 py-2 rounded-lg"
           >
             View All News <ArrowRight className="ml-2 h-4 w-4" />
           </Link>
@@ -86,19 +81,19 @@ export default function Home() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {/* News Card 1 */}
-          <div className="bg-card rounded-lg shadow-lg overflow-hidden">
+          <div className="cosmic-card rounded-lg overflow-hidden">
             <div className="p-6">
               <div className="flex items-center mb-4">
-                <Newspaper className="h-5 w-5 mr-2 text-primary" />
+                <Newspaper className="h-5 w-5 mr-2 cosmic-icon" />
                 <span className="text-sm text-muted-foreground">Press Release</span>
               </div>
-              <h3 className="text-xl font-semibold mb-2">Hubverse Expands Global Reach</h3>
+              <h3 className="text-xl font-semibold mb-2 cosmic-text">Hubverse Expands Global Reach</h3>
               <p className="text-muted-foreground mb-4">
                 New partnerships extend our network to emerging markets in Asia and Africa.
               </p>
               <Link
                 href="/news/expansion"
-                className="text-primary hover:text-primary/80"
+                className="cosmic-button px-4 py-2 rounded-lg inline-block"
               >
                 Read More →
               </Link>
@@ -106,19 +101,19 @@ export default function Home() {
           </div>
 
           {/* News Card 2 */}
-          <div className="bg-card rounded-lg shadow-lg overflow-hidden">
+          <div className="cosmic-card rounded-lg overflow-hidden">
             <div className="p-6">
               <div className="flex items-center mb-4">
-                <Megaphone className="h-5 w-5 mr-2 text-primary" />
+                <Megaphone className="h-5 w-5 mr-2 cosmic-icon" />
                 <span className="text-sm text-muted-foreground">Announcement</span>
               </div>
-              <h3 className="text-xl font-semibold mb-2">Innovation Fund Launch</h3>
+              <h3 className="text-xl font-semibold mb-2 cosmic-text">Innovation Fund Launch</h3>
               <p className="text-muted-foreground mb-4">
                 $100M fund established to support early-stage technology startups.
               </p>
               <Link
                 href="/news/innovation-fund"
-                className="text-primary hover:text-primary/80"
+                className="cosmic-button px-4 py-2 rounded-lg inline-block"
               >
                 Read More →
               </Link>
@@ -126,19 +121,19 @@ export default function Home() {
           </div>
 
           {/* News Card 3 */}
-          <div className="bg-card rounded-lg shadow-lg overflow-hidden">
+          <div className="cosmic-card rounded-lg overflow-hidden">
             <div className="p-6">
               <div className="flex items-center mb-4">
-                <Users className="h-5 w-5 mr-2 text-primary" />
+                <Users className="h-5 w-5 mr-2 cosmic-icon" />
                 <span className="text-sm text-muted-foreground">Community</span>
               </div>
-              <h3 className="text-xl font-semibold mb-2">Entrepreneur Summit 2024</h3>
+              <h3 className="text-xl font-semibold mb-2 cosmic-text">Entrepreneur Summit 2024</h3>
               <p className="text-muted-foreground mb-4">
                 Annual gathering of innovators and industry leaders announced.
               </p>
               <Link
                 href="/news/summit-2024"
-                className="text-primary hover:text-primary/80"
+                className="cosmic-button px-4 py-2 rounded-lg inline-block"
               >
                 Read More →
               </Link>
@@ -148,16 +143,16 @@ export default function Home() {
       </section>
 
       {/* CTA Section */}
-      <section className="text-center mb-16">
-        <h2 className="text-3xl font-bold mb-4">Ready to Transform Your Vision?</h2>
+      <section className="text-center py-16">
+        <h2 className="text-3xl font-bold mb-4 cosmic-title">Ready to Transform Your Vision?</h2>
         <p className="text-xl text-muted-foreground mb-8">
           Join our ecosystem of innovation and entrepreneurship.
         </p>
         <Link
           href="/contact"
-          className="inline-flex items-center px-6 py-3 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90"
+          className="cosmic-button px-8 py-4 text-lg rounded-lg inline-flex items-center"
         >
-          Explore Our Business <ArrowRight className="ml-2 h-4 w-4" />
+          Explore Our Business <ArrowRight className="ml-2 h-5 w-5" />
         </Link>
       </section>
 
