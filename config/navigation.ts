@@ -13,6 +13,16 @@ export type NavigationSection = {
 export const navigationConfig = {
   mainNav: [
     {
+      title: "Home",
+      href: "/",
+      description: "Welcome to Hubverse",
+    },
+    {
+      title: "About",
+      href: "/about",
+      description: "Learn about our company",
+    },
+    {
       title: "Dashboard",
       href: "/dashboard",
       description: "Overview and analytics",
@@ -42,8 +52,62 @@ export const navigationConfig = {
       href: "/resources",
       description: "Knowledge base and support",
     },
+    {
+      title: "Contact",
+      href: "/contact",
+      description: "Get in touch",
+    },
   ],
   megaMenu: {
+    "/": [
+      {
+        title: "Featured",
+        items: [
+          {
+            title: "Innovation Hub",
+            href: "/innovation-hub",
+            description: "Our innovation ecosystem",
+          },
+          {
+            title: "Services",
+            href: "/services",
+            description: "What we offer",
+          },
+          {
+            title: "Latest News",
+            href: "/news/latest",
+            description: "Recent updates",
+          },
+          {
+            title: "Featured Companies",
+            href: "/business/subsidiaries",
+            description: "Our portfolio",
+          },
+        ],
+      },
+    ],
+    "/about": [
+      {
+        title: "Company",
+        items: [
+          {
+            title: "Overview",
+            href: "/about",
+            description: "About Hubverse",
+          },
+          {
+            title: "Contact",
+            href: "/contact",
+            description: "Get in touch",
+          },
+          {
+            title: "Legal & Compliance",
+            href: "/legal-and-compliance",
+            description: "Our commitments",
+          },
+        ],
+      },
+    ],
     "/dashboard": [
       {
         title: "Overview",
@@ -442,12 +506,20 @@ export const navigationConfig = {
             href: "/legal/cookie-policy",
           },
           {
+            title: "Compliance",
+            href: "/legal-and-compliance",
+          },
+          {
             title: "Sign In",
             href: "/auth/signin",
           },
           {
             title: "Sign Out",
             href: "/auth/signout",
+          },
+          {
+            title: "Verify Account",
+            href: "/auth/verify",
           },
         ],
       },
