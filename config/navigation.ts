@@ -586,35 +586,79 @@ export const navigationConfig = {
         ],
       },
       {
-        title: "Legal & Auth",
+        title: "Legal",
         items: [
           {
             title: "Terms of Service",
             href: "/legal/terms-of-service",
+            description: "User agreement",
           },
           {
             title: "Privacy Policy",
             href: "/legal/privacy-policy",
+            description: "Data handling practices",
           },
           {
             title: "Cookie Policy",
             href: "/legal/cookie-policy",
+            description: "Cookie usage",
           },
           {
             title: "Legal & Compliance",
-            href: "/legal-and-compliance",
+            href: "/legal/compliance",
+            description: "Regulatory compliance",
           },
+        ],
+      },
+    ],
+    "/auth": [
+      {
+        title: "Authentication",
+        items: [
           {
             title: "Sign In",
             href: "/auth/signin",
+            description: "Access your account",
           },
           {
-            title: "Sign Out",
-            href: "/auth/signout",
+            title: "Sign Up",
+            href: "/auth/signup",
+            description: "Create an account",
           },
           {
             title: "Verify Account",
             href: "/auth/verify",
+            description: "Verify your email",
+          },
+          {
+            title: "Reset Password",
+            href: "/auth/reset-password",
+            description: "Reset your password",
+          },
+        ],
+      },
+      {
+        title: "Account",
+        items: [
+          {
+            title: "Profile",
+            href: "/auth/profile",
+            description: "Manage your profile",
+          },
+          {
+            title: "Settings",
+            href: "/auth/settings",
+            description: "Account settings",
+          },
+          {
+            title: "Security",
+            href: "/auth/security",
+            description: "Security settings",
+          },
+          {
+            title: "Sign Out",
+            href: "/auth/signout",
+            description: "Log out",
           },
         ],
       },
