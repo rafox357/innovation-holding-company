@@ -76,102 +76,52 @@ export const navigationConfig = {
     ],
     "/observatory": [
       {
-        title: "Playground",
+        title: "Overview",
         items: [
           {
-            title: "Innovation Sandbox",
-            href: "/observatory/playground/sandbox",
-            description: "Safe testing environment",
+            title: "Project Analytics",
+            href: "/observatory/analytics",
+            description: "Project metrics and insights",
           },
           {
-            title: "Prototypes Gallery",
-            href: "/observatory/playground/prototypes",
-            description: "Early-stage innovations",
+            title: "Company Roadmaps",
+            href: "/observatory/roadmaps",
+            description: "Strategic direction and goals",
           },
           {
-            title: "Experiment Lab",
-            href: "/observatory/playground/lab",
-            description: "Run experiments",
+            title: "Project Overview",
+            href: "/observatory/projects",
+            description: "All current projects",
           },
           {
-            title: "AI Playground",
-            href: "/observatory/playground/ai",
-            description: "Test AI models",
+            title: "Resource Management",
+            href: "/observatory/resources",
+            description: "Track and manage resources",
           },
         ],
       },
       {
-        title: "The Forge",
+        title: "The Foundry",
         items: [
           {
-            title: "Project Forge",
-            href: "/observatory/forge/projects",
-            description: "Create new projects",
+            title: "Project Pipeline",
+            href: "/observatory/foundry/pipeline",
+            description: "Track project progress",
           },
           {
-            title: "Component Forge",
-            href: "/observatory/forge/components",
-            description: "Build components",
+            title: "Technology Stack",
+            href: "/observatory/foundry/tech-stack",
+            description: "AI, Cloud, and Data tools",
           },
           {
-            title: "Integration Forge",
-            href: "/observatory/forge/integrations",
-            description: "Create integrations",
+            title: "Funding & Incubation",
+            href: "/observatory/foundry/funding",
+            description: "Project funding resources",
           },
           {
-            title: "API Forge",
-            href: "/observatory/forge/apis",
-            description: "Design APIs",
-          },
-        ],
-      },
-      {
-        title: "Tools & Tech",
-        items: [
-          {
-            title: "AI Studio",
-            href: "/observatory/tools/ai-studio",
-            description: "AI development platform",
-          },
-          {
-            title: "Code Lab",
-            href: "/observatory/tools/code-lab",
-            description: "Advanced IDE",
-          },
-          {
-            title: "Design Studio",
-            href: "/observatory/tools/design-studio",
-            description: "UI/UX workspace",
-          },
-          {
-            title: "Data Workshop",
-            href: "/observatory/tools/data-workshop",
-            description: "Data analysis tools",
-          },
-        ],
-      },
-      {
-        title: "DevOps",
-        items: [
-          {
-            title: "Pipeline Builder",
-            href: "/observatory/devops/pipeline",
-            description: "Build CI/CD pipelines",
-          },
-          {
-            title: "Deployment Center",
-            href: "/observatory/devops/deploy",
-            description: "Manage deployments",
-          },
-          {
-            title: "Monitoring Hub",
-            href: "/observatory/devops/monitoring",
-            description: "System monitoring",
-          },
-          {
-            title: "Security Center",
-            href: "/observatory/devops/security",
-            description: "Security tools",
+            title: "Expertise & Mentorship",
+            href: "/observatory/foundry/mentorship",
+            description: "Expert guidance and support",
           },
         ],
       },
@@ -179,49 +129,99 @@ export const navigationConfig = {
         title: "Resources",
         items: [
           {
-            title: "Documentation",
-            href: "/observatory/docs",
-            description: "Guides and docs",
+            title: "AI & Machine Learning",
+            href: "/observatory/foundry/ai-platform",
+            description: "AI and ML development tools",
           },
           {
-            title: "Templates",
-            href: "/observatory/templates",
-            description: "Project templates",
+            title: "Cloud Infrastructure",
+            href: "/observatory/foundry/cloud",
+            description: "Scalable cloud services",
           },
           {
-            title: "Asset Library",
-            href: "/observatory/assets",
-            description: "Reusable assets",
+            title: "Data Analytics",
+            href: "/observatory/foundry/analytics",
+            description: "Data visualization and BI",
           },
           {
-            title: "Best Practices",
-            href: "/observatory/best-practices",
-            description: "Development guides",
+            title: "Development Tools",
+            href: "/observatory/foundry/tools",
+            description: "Software development resources",
           },
         ],
       },
       {
-        title: "Community",
+        title: "Projects",
         items: [
           {
-            title: "Innovation Network",
-            href: "/observatory/community/network",
-            description: "Connect with innovators",
+            title: "Smart Home Energy",
+            href: "/observatory/projects/smart-home",
+            description: "Energy management system",
           },
           {
-            title: "Forums",
-            href: "/observatory/community/forums",
-            description: "Discuss and share",
+            title: "AI Learning Platform",
+            href: "/observatory/projects/ai-learning",
+            description: "Personalized learning paths",
           },
           {
-            title: "Events",
-            href: "/observatory/community/events",
-            description: "Workshops & meetups",
+            title: "DeFi Platform",
+            href: "/observatory/projects/defi",
+            description: "Decentralized finance",
           },
           {
-            title: "Showcase",
-            href: "/observatory/community/showcase",
-            description: "Featured projects",
+            title: "Cloud Computing",
+            href: "/observatory/projects/cloud",
+            description: "Next-gen cloud platform",
+          },
+        ],
+      },
+      {
+        title: "Analytics",
+        items: [
+          {
+            title: "Project Categories",
+            href: "/observatory/analytics/categories",
+            description: "Distribution by category",
+          },
+          {
+            title: "Project Status",
+            href: "/observatory/analytics/status",
+            description: "Status distribution",
+          },
+          {
+            title: "Priority Levels",
+            href: "/observatory/analytics/priority",
+            description: "Priority distribution",
+          },
+          {
+            title: "Progress Tracking",
+            href: "/observatory/analytics/progress",
+            description: "Progress by category",
+          },
+        ],
+      },
+      {
+        title: "Management",
+        items: [
+          {
+            title: "Add Project",
+            href: "/observatory/projects/new",
+            description: "Create new project",
+          },
+          {
+            title: "Resource Allocation",
+            href: "/observatory/resources/allocate",
+            description: "Manage project resources",
+          },
+          {
+            title: "Team Management",
+            href: "/observatory/teams",
+            description: "Manage project teams",
+          },
+          {
+            title: "Project Settings",
+            href: "/observatory/settings",
+            description: "Configure project settings",
           },
         ],
       },
