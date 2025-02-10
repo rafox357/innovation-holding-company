@@ -19,7 +19,9 @@ interface MegaMenuProps {
   onMouseLeave: () => void
 }
 
-export function MegaMenu({ items, onMouseLeave }: MegaMenuProps) {
+export function MegaMenu({ items = [], onMouseLeave }: MegaMenuProps) {
+  if (!items?.length) return null
+
   return (
     <div
       className="absolute left-0 right-0 top-14 z-50 bg-background border-b"
@@ -31,7 +33,7 @@ export function MegaMenu({ items, onMouseLeave }: MegaMenuProps) {
             <div key={section.title}>
               <h3 className="font-medium mb-3">{section.title}</h3>
               <ul className="space-y-2">
-                {section.items.map((item) => (
+                {section.items?.map((item) => (
                   <li key={item.href}>
                     <Link
                       href={item.href}
