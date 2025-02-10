@@ -49,13 +49,13 @@ export default function BusinessModel() {
 
       <div className="grid gap-6 md:grid-cols-2">
         <KPIChart
-          title="Revenue Streams Distribution (%)"
+          title="Revenue Streams Distribution"
           data={revenueStreamData}
           type="bar"
           dataKey="value"
         />
         <KPIChart
-          title="Quarter-over-Quarter Growth (%)"
+          title="Growth Trajectory"
           data={growthData}
           type="line"
           dataKey="value"

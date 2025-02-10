@@ -1,59 +1,44 @@
-import { Article } from "@/types/news"
-import { useCallback, useState } from "react"
+'use client';
 
-interface NewsResponse {
-  articles: Article[]
-  pagination: {
-    total: number
-    totalPages: number
-    currentPage: number
-    limit: number
-  }
-}
+import { useState } from 'react';
+import { getNews } from '@/lib/news-api';
+import { useQuery } from '@tanstack/react-query';
 
-export function useNews() {
-  const [isLoading, setIsLoading] = useState(false)
-  const [error, setError] = useState<string | null>(null)
-  const [data, setData] = useState<NewsResponse | null>(null)
+export const useNews = (initialParams = {}) => {
+  const [params, setParams] = useState({
+    category: '',
+    query: '',
+    page: 1,
+    pageSize: 10,
+    ...initialParams,
+  });
 
-  const fetchNews = useCallback(async ({
-    category,
-    query,
-    page = 1,
-    limit = 9
-  }: {
-    category?: string
-    query?: string
-    page?: number
-    limit?: number
-  }) => {
-    setIsLoading(true)
-    setError(null)
+  const { data, isLoading, error } = useQuery({
+    queryKey: ['news', params],
+    queryFn: () => getNews(params),
+    staleTime: 1000 * 60 * 5, // Cache for 5 minutes
+  });
 
-    try {
-      const params = new URLSearchParams()
-      if (category && category !== "all") params.set("category", category)
-      if (query) params.set("query", query)
-      params.set("page", page.toString())
-      params.set("limit", limit.toString())
+  const setCategory = (category: string) => {
+    setParams(prev => ({ ...prev, category, page: 1 }));
+  };
 
-      const response = await fetch(`/api/news?${params.toString()}`)
-      if (!response.ok) throw new Error("Failed to fetch news")
-      
-      const data = await response.json()
-      setData(data)
-    } catch (err) {
-      setError(err instanceof Error ? err.message : "An error occurred")
-    } finally {
-      setIsLoading(false)
-    }
-  }, [])
+  const setSearch = (query: string) => {
+    setParams(prev => ({ ...prev, query, page: 1 }));
+  };
+
+  const setPage = (page: number) => {
+    setParams(prev => ({ ...prev, page }));
+  };
 
   return {
     news: data?.articles || [],
     pagination: data?.pagination,
     isLoading,
     error,
-    fetchNews
-  }
-}
+    setCategory,
+    setSearch,
+    setPage,
+    params,
+  };
+};

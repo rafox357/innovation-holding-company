@@ -2,7 +2,7 @@
 
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { NEWS_CATEGORIES } from "@/lib/news-api"
 import { useRouter, useSearchParams } from "next/navigation"
 import { useState } from "react"
 
@@ -46,21 +46,23 @@ export function NewsFilter(/*{ onSearch, onCategoryChange }: NewsFilterProps*/ )
         <Button type="submit">Search</Button>
       </form>
       
-      <Select
-        onValueChange={handleCategoryChange}
-        defaultValue={searchParams.get("category") || "all"}
-      >
-        <SelectTrigger className="w-[180px]">
-          <SelectValue placeholder="Select category" />
-        </SelectTrigger>
-        <SelectContent>
-          <SelectItem value="all">All Categories</SelectItem>
-          <SelectItem value="latest">Latest News</SelectItem>
-          <SelectItem value="announcement">Announcements</SelectItem>
-          <SelectItem value="insight">Industry Insights</SelectItem>
-          <SelectItem value="community">Community News</SelectItem>
-        </SelectContent>
-      </Select>
+      <div className="flex flex-wrap gap-2">
+        <Button
+          variant={searchParams.get("category") === "all" ? "default" : "outline"}
+          onClick={() => handleCategoryChange("all")}
+        >
+          All News
+        </Button>
+        {Object.entries(NEWS_CATEGORIES).map(([key, label]) => (
+          <Button
+            key={key}
+            variant={searchParams.get("category") === key ? "default" : "outline"}
+            onClick={() => handleCategoryChange(key)}
+          >
+            {label}
+          </Button>
+        ))}
+      </div>
     </div>
   )
 }

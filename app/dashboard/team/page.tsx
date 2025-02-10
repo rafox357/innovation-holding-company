@@ -140,7 +140,10 @@ export default function TeamDashboard() {
               <CardTitle>Team Growth</CardTitle>
             </CardHeader>
             <CardContent>
-              <KPIChart data={teamGrowthData} />
+              <KPIChart
+                title="Team Growth"
+                data={teamGrowthData}
+              />
             </CardContent>
           </Card>
 
@@ -149,7 +152,10 @@ export default function TeamDashboard() {
               <CardTitle>Team Productivity</CardTitle>
             </CardHeader>
             <CardContent>
-              <KPIChart data={productivityData} />
+              <KPIChart
+                title="Team Productivity"
+                data={productivityData}
+              />
             </CardContent>
           </Card>
         </div>
