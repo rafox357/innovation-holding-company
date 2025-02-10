@@ -9,8 +9,41 @@ const poppins = Poppins({
 })
 
 export const metadata = {
-  title: "Hubverse - Innovation Holding Company",
+  title: {
+    default: "Hubverse - Innovation Holding Company",
+    template: "%s | Hubverse"
+  },
   description: "A pioneering holding company at the intersection of innovation and entrepreneurship.",
+  keywords: [
+    "Innovation",
+    "Technology",
+    "Entrepreneurship",
+    "Business",
+    "Startups",
+    "Digital Transformation",
+    "Investment",
+    "Venture Capital",
+    "Tech Solutions",
+    "Business Growth"
+  ],
+  authors: [{ name: "Hubverse" }],
+  creator: "Hubverse",
+  publisher: "Hubverse",
+  robots: "index, follow",
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "https://hubverse.com",
+    title: "Hubverse - Innovation Holding Company",
+    description: "A pioneering holding company at the intersection of innovation and entrepreneurship.",
+    siteName: "Hubverse"
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Hubverse - Innovation Holding Company",
+    description: "A pioneering holding company at the intersection of innovation and entrepreneurship.",
+    creator: "@hubverse"
+  }
 }
 
 export default function RootLayout({
