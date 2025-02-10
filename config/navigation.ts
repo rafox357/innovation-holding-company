@@ -1,15 +1,3 @@
-export type NavigationItem = {
-  title: string
-  href?: string
-  description?: string
-  items?: NavigationItem[]
-}
-
-export type NavigationSection = {
-  title: string
-  items: NavigationItem[]
-}
-
 export const navigationConfig = {
   mainNav: [
     {
@@ -43,14 +31,9 @@ export const navigationConfig = {
       description: "Innovation programs and resources",
     },
     {
-      title: "Playground",
-      href: "/playground",
-      description: "Experiment and innovate",
-    },
-    {
-      title: "Foundry",
-      href: "/foundry",
-      description: "Build and create",
+      title: "Lab",
+      href: "/lab",
+      description: "Experiment, build and create",
     },
     {
       title: "News",
@@ -92,6 +75,108 @@ export const navigationConfig = {
             title: "Featured Companies",
             href: "/business/subsidiaries",
             description: "Our portfolio",
+          },
+        ],
+      },
+    ],
+    "/lab": [
+      {
+        title: "Experiment",
+        items: [
+          {
+            title: "Sandbox",
+            href: "/lab/sandbox",
+            description: "Safe testing environment",
+          },
+          {
+            title: "Prototypes",
+            href: "/lab/prototypes",
+            description: "Early-stage innovations",
+          },
+          {
+            title: "Research Labs",
+            href: "/lab/research",
+            description: "Research experiments",
+          },
+        ],
+      },
+      {
+        title: "Create",
+        items: [
+          {
+            title: "Projects",
+            href: "/lab/projects",
+            description: "Start a new project",
+          },
+          {
+            title: "Workspaces",
+            href: "/lab/workspaces",
+            description: "Collaborative environments",
+          },
+          {
+            title: "Templates",
+            href: "/lab/templates",
+            description: "Project templates",
+          },
+        ],
+      },
+      {
+        title: "Tools",
+        items: [
+          {
+            title: "AI Studio",
+            href: "/lab/ai-studio",
+            description: "AI development tools",
+          },
+          {
+            title: "Code Editor",
+            href: "/lab/code-editor",
+            description: "Online IDE",
+          },
+          {
+            title: "Design Tools",
+            href: "/lab/design-tools",
+            description: "UI/UX tools",
+          },
+        ],
+      },
+      {
+        title: "Build",
+        items: [
+          {
+            title: "Components",
+            href: "/lab/components",
+            description: "Reusable building blocks",
+          },
+          {
+            title: "Integrations",
+            href: "/lab/integrations",
+            description: "Third-party services",
+          },
+          {
+            title: "APIs",
+            href: "/lab/apis",
+            description: "API endpoints",
+          },
+        ],
+      },
+      {
+        title: "Deploy",
+        items: [
+          {
+            title: "Environments",
+            href: "/lab/environments",
+            description: "Deployment targets",
+          },
+          {
+            title: "Pipelines",
+            href: "/lab/pipelines",
+            description: "CI/CD workflows",
+          },
+          {
+            title: "Monitoring",
+            href: "/lab/monitoring",
+            description: "System health",
           },
         ],
       },
@@ -453,130 +538,6 @@ export const navigationConfig = {
         ],
       },
     ],
-    "/playground": [
-      {
-        title: "Experiment",
-        items: [
-          {
-            title: "Sandbox",
-            href: "/playground/sandbox",
-            description: "Safe testing environment",
-          },
-          {
-            title: "Prototypes",
-            href: "/playground/prototypes",
-            description: "Early-stage innovations",
-          },
-          {
-            title: "Labs",
-            href: "/playground/labs",
-            description: "Research experiments",
-          },
-        ],
-      },
-      {
-        title: "Tools",
-        items: [
-          {
-            title: "AI Studio",
-            href: "/playground/ai-studio",
-            description: "AI development tools",
-          },
-          {
-            title: "Code Editor",
-            href: "/playground/code-editor",
-            description: "Online IDE",
-          },
-          {
-            title: "Design Tools",
-            href: "/playground/design-tools",
-            description: "UI/UX tools",
-          },
-        ],
-      },
-      {
-        title: "Resources",
-        items: [
-          {
-            title: "Documentation",
-            href: "/playground/docs",
-            description: "API and guides",
-          },
-          {
-            title: "Examples",
-            href: "/playground/examples",
-            description: "Sample projects",
-          },
-          {
-            title: "Templates",
-            href: "/playground/templates",
-            description: "Starter kits",
-          },
-        ],
-      },
-    ],
-    "/foundry": [
-      {
-        title: "Create",
-        items: [
-          {
-            title: "Projects",
-            href: "/foundry/projects",
-            description: "Start a new project",
-          },
-          {
-            title: "Workspaces",
-            href: "/foundry/workspaces",
-            description: "Collaborative environments",
-          },
-          {
-            title: "Templates",
-            href: "/foundry/templates",
-            description: "Project templates",
-          },
-        ],
-      },
-      {
-        title: "Build",
-        items: [
-          {
-            title: "Components",
-            href: "/foundry/components",
-            description: "Reusable building blocks",
-          },
-          {
-            title: "Integrations",
-            href: "/foundry/integrations",
-            description: "Third-party services",
-          },
-          {
-            title: "APIs",
-            href: "/foundry/apis",
-            description: "API endpoints",
-          },
-        ],
-      },
-      {
-        title: "Deploy",
-        items: [
-          {
-            title: "Environments",
-            href: "/foundry/environments",
-            description: "Deployment targets",
-          },
-          {
-            title: "Pipelines",
-            href: "/foundry/pipelines",
-            description: "CI/CD workflows",
-          },
-          {
-            title: "Monitoring",
-            href: "/foundry/monitoring",
-            description: "System health",
-          },
-        ],
-      },
-    ],
     "/resources": [
       {
         title: "Knowledge Base",
@@ -778,6 +739,111 @@ export const mainNavigation: NavigationSection[] = [
           { title: "Help Center", href: "/support/help" },
           { title: "Community Forum", href: "/support/community" },
           { title: "Developer Resources", href: "/support/developers" },
+        ],
+      },
+    ],
+  },
+  {
+    title: "Lab",
+    items: [
+      {
+        title: "Experiment",
+        items: [
+          {
+            title: "Sandbox",
+            href: "/lab/sandbox",
+            description: "Safe testing environment",
+          },
+          {
+            title: "Prototypes",
+            href: "/lab/prototypes",
+            description: "Early-stage innovations",
+          },
+          {
+            title: "Research Labs",
+            href: "/lab/research",
+            description: "Research experiments",
+          },
+        ],
+      },
+      {
+        title: "Create",
+        items: [
+          {
+            title: "Projects",
+            href: "/lab/projects",
+            description: "Start a new project",
+          },
+          {
+            title: "Workspaces",
+            href: "/lab/workspaces",
+            description: "Collaborative environments",
+          },
+          {
+            title: "Templates",
+            href: "/lab/templates",
+            description: "Project templates",
+          },
+        ],
+      },
+      {
+        title: "Tools",
+        items: [
+          {
+            title: "AI Studio",
+            href: "/lab/ai-studio",
+            description: "AI development tools",
+          },
+          {
+            title: "Code Editor",
+            href: "/lab/code-editor",
+            description: "Online IDE",
+          },
+          {
+            title: "Design Tools",
+            href: "/lab/design-tools",
+            description: "UI/UX tools",
+          },
+        ],
+      },
+      {
+        title: "Build",
+        items: [
+          {
+            title: "Components",
+            href: "/lab/components",
+            description: "Reusable building blocks",
+          },
+          {
+            title: "Integrations",
+            href: "/lab/integrations",
+            description: "Third-party services",
+          },
+          {
+            title: "APIs",
+            href: "/lab/apis",
+            description: "API endpoints",
+          },
+        ],
+      },
+      {
+        title: "Deploy",
+        items: [
+          {
+            title: "Environments",
+            href: "/lab/environments",
+            description: "Deployment targets",
+          },
+          {
+            title: "Pipelines",
+            href: "/lab/pipelines",
+            description: "CI/CD workflows",
+          },
+          {
+            title: "Monitoring",
+            href: "/lab/monitoring",
+            description: "System health",
+          },
         ],
       },
     ],
