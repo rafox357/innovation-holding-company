@@ -45,11 +45,6 @@ export const navigationConfig = {
       href: "/resources",
       description: "Knowledge base and support",
     },
-    {
-      title: "Contact",
-      href: "/contact",
-      description: "Get in touch",
-    },
   ],
   megaMenu: {
     "/": [
@@ -239,11 +234,6 @@ export const navigationConfig = {
             title: "Overview",
             href: "/about",
             description: "About Hubverse",
-          },
-          {
-            title: "Contact",
-            href: "/contact",
-            description: "Get in touch",
           },
           {
             title: "Legal & Compliance",
