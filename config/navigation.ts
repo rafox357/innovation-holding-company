@@ -43,6 +43,16 @@ export const navigationConfig = {
       description: "Innovation programs and resources",
     },
     {
+      title: "Playground",
+      href: "/playground",
+      description: "Experiment and innovate",
+    },
+    {
+      title: "Foundry",
+      href: "/foundry",
+      description: "Build and create",
+    },
+    {
       title: "News",
       href: "/news",
       description: "Latest updates and insights",
@@ -443,6 +453,130 @@ export const navigationConfig = {
         ],
       },
     ],
+    "/playground": [
+      {
+        title: "Experiment",
+        items: [
+          {
+            title: "Sandbox",
+            href: "/playground/sandbox",
+            description: "Safe testing environment",
+          },
+          {
+            title: "Prototypes",
+            href: "/playground/prototypes",
+            description: "Early-stage innovations",
+          },
+          {
+            title: "Labs",
+            href: "/playground/labs",
+            description: "Research experiments",
+          },
+        ],
+      },
+      {
+        title: "Tools",
+        items: [
+          {
+            title: "AI Studio",
+            href: "/playground/ai-studio",
+            description: "AI development tools",
+          },
+          {
+            title: "Code Editor",
+            href: "/playground/code-editor",
+            description: "Online IDE",
+          },
+          {
+            title: "Design Tools",
+            href: "/playground/design-tools",
+            description: "UI/UX tools",
+          },
+        ],
+      },
+      {
+        title: "Resources",
+        items: [
+          {
+            title: "Documentation",
+            href: "/playground/docs",
+            description: "API and guides",
+          },
+          {
+            title: "Examples",
+            href: "/playground/examples",
+            description: "Sample projects",
+          },
+          {
+            title: "Templates",
+            href: "/playground/templates",
+            description: "Starter kits",
+          },
+        ],
+      },
+    ],
+    "/foundry": [
+      {
+        title: "Create",
+        items: [
+          {
+            title: "Projects",
+            href: "/foundry/projects",
+            description: "Start a new project",
+          },
+          {
+            title: "Workspaces",
+            href: "/foundry/workspaces",
+            description: "Collaborative environments",
+          },
+          {
+            title: "Templates",
+            href: "/foundry/templates",
+            description: "Project templates",
+          },
+        ],
+      },
+      {
+        title: "Build",
+        items: [
+          {
+            title: "Components",
+            href: "/foundry/components",
+            description: "Reusable building blocks",
+          },
+          {
+            title: "Integrations",
+            href: "/foundry/integrations",
+            description: "Third-party services",
+          },
+          {
+            title: "APIs",
+            href: "/foundry/apis",
+            description: "API endpoints",
+          },
+        ],
+      },
+      {
+        title: "Deploy",
+        items: [
+          {
+            title: "Environments",
+            href: "/foundry/environments",
+            description: "Deployment targets",
+          },
+          {
+            title: "Pipelines",
+            href: "/foundry/pipelines",
+            description: "CI/CD workflows",
+          },
+          {
+            title: "Monitoring",
+            href: "/foundry/monitoring",
+            description: "System health",
+          },
+        ],
+      },
+    ],
     "/resources": [
       {
         title: "Knowledge Base",
@@ -506,7 +640,7 @@ export const navigationConfig = {
             href: "/legal/cookie-policy",
           },
           {
-            title: "Compliance",
+            title: "Legal & Compliance",
             href: "/legal-and-compliance",
           },
           {
