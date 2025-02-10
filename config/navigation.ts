@@ -31,9 +31,9 @@ export const navigationConfig = {
       description: "Innovation programs and resources",
     },
     {
-      title: "Lab",
-      href: "/lab",
-      description: "Experiment, build and create",
+      title: "The Observatory",
+      href: "/observatory",
+      description: "Experiment, build and innovate",
     },
     {
       title: "News",
@@ -79,24 +79,29 @@ export const navigationConfig = {
         ],
       },
     ],
-    "/lab": [
+    "/observatory": [
       {
         title: "Experiment",
         items: [
           {
-            title: "Sandbox",
-            href: "/lab/sandbox",
+            title: "Innovation Sandbox",
+            href: "/observatory/sandbox",
             description: "Safe testing environment",
           },
           {
-            title: "Prototypes",
-            href: "/lab/prototypes",
+            title: "Prototypes Gallery",
+            href: "/observatory/prototypes",
             description: "Early-stage innovations",
           },
           {
             title: "Research Labs",
-            href: "/lab/research",
+            href: "/observatory/research",
             description: "Research experiments",
+          },
+          {
+            title: "Innovation Challenges",
+            href: "/observatory/challenges",
+            description: "Solve real-world problems",
           },
         ],
       },
@@ -104,39 +109,49 @@ export const navigationConfig = {
         title: "Create",
         items: [
           {
-            title: "Projects",
-            href: "/lab/projects",
-            description: "Start a new project",
+            title: "Project Hub",
+            href: "/observatory/projects",
+            description: "Start and manage projects",
           },
           {
-            title: "Workspaces",
-            href: "/lab/workspaces",
-            description: "Collaborative environments",
+            title: "Collaborative Spaces",
+            href: "/observatory/spaces",
+            description: "Team workspaces",
           },
           {
-            title: "Templates",
-            href: "/lab/templates",
+            title: "Innovation Templates",
+            href: "/observatory/templates",
             description: "Project templates",
+          },
+          {
+            title: "Resource Center",
+            href: "/observatory/resources",
+            description: "Tools and assets",
           },
         ],
       },
       {
-        title: "Tools",
+        title: "Tools & Tech",
         items: [
           {
             title: "AI Studio",
-            href: "/lab/ai-studio",
-            description: "AI development tools",
+            href: "/observatory/ai-studio",
+            description: "AI development platform",
           },
           {
-            title: "Code Editor",
-            href: "/lab/code-editor",
-            description: "Online IDE",
+            title: "Code Lab",
+            href: "/observatory/code-lab",
+            description: "Advanced IDE",
           },
           {
-            title: "Design Tools",
-            href: "/lab/design-tools",
-            description: "UI/UX tools",
+            title: "Design Studio",
+            href: "/observatory/design-studio",
+            description: "UI/UX workspace",
+          },
+          {
+            title: "Data Workshop",
+            href: "/observatory/data-workshop",
+            description: "Data analysis tools",
           },
         ],
       },
@@ -144,39 +159,74 @@ export const navigationConfig = {
         title: "Build",
         items: [
           {
-            title: "Components",
-            href: "/lab/components",
-            description: "Reusable building blocks",
+            title: "Component Library",
+            href: "/observatory/components",
+            description: "Reusable components",
           },
           {
-            title: "Integrations",
-            href: "/lab/integrations",
-            description: "Third-party services",
+            title: "Integration Hub",
+            href: "/observatory/integrations",
+            description: "Connect services",
           },
           {
-            title: "APIs",
-            href: "/lab/apis",
-            description: "API endpoints",
+            title: "API Gateway",
+            href: "/observatory/api-gateway",
+            description: "API management",
+          },
+          {
+            title: "DevOps Center",
+            href: "/observatory/devops",
+            description: "Development operations",
           },
         ],
       },
       {
-        title: "Deploy",
+        title: "Launch",
         items: [
           {
-            title: "Environments",
-            href: "/lab/environments",
-            description: "Deployment targets",
+            title: "Deployment Center",
+            href: "/observatory/deploy",
+            description: "Deploy projects",
           },
           {
-            title: "Pipelines",
-            href: "/lab/pipelines",
-            description: "CI/CD workflows",
+            title: "CI/CD Pipeline",
+            href: "/observatory/pipeline",
+            description: "Automation workflows",
           },
           {
-            title: "Monitoring",
-            href: "/lab/monitoring",
-            description: "System health",
+            title: "Performance Lab",
+            href: "/observatory/performance",
+            description: "Optimization tools",
+          },
+          {
+            title: "Security Suite",
+            href: "/observatory/security",
+            description: "Security testing",
+          },
+        ],
+      },
+      {
+        title: "Community",
+        items: [
+          {
+            title: "Innovation Network",
+            href: "/observatory/network",
+            description: "Connect with innovators",
+          },
+          {
+            title: "Knowledge Exchange",
+            href: "/observatory/exchange",
+            description: "Share insights",
+          },
+          {
+            title: "Events & Workshops",
+            href: "/observatory/events",
+            description: "Learn and collaborate",
+          },
+          {
+            title: "Success Stories",
+            href: "/observatory/stories",
+            description: "Project showcases",
           },
         ],
       },
@@ -605,7 +655,7 @@ export const navigationConfig = {
           },
           {
             title: "Legal & Compliance",
-            href: "/legal/compliance",
+            href: "/legal-and-compliance",
             description: "Regulatory compliance",
           },
         ],
@@ -788,25 +838,30 @@ export const mainNavigation: NavigationSection[] = [
     ],
   },
   {
-    title: "Lab",
+    title: "The Observatory",
     items: [
       {
         title: "Experiment",
         items: [
           {
-            title: "Sandbox",
-            href: "/lab/sandbox",
+            title: "Innovation Sandbox",
+            href: "/observatory/sandbox",
             description: "Safe testing environment",
           },
           {
-            title: "Prototypes",
-            href: "/lab/prototypes",
+            title: "Prototypes Gallery",
+            href: "/observatory/prototypes",
             description: "Early-stage innovations",
           },
           {
             title: "Research Labs",
-            href: "/lab/research",
+            href: "/observatory/research",
             description: "Research experiments",
+          },
+          {
+            title: "Innovation Challenges",
+            href: "/observatory/challenges",
+            description: "Solve real-world problems",
           },
         ],
       },
@@ -814,39 +869,49 @@ export const mainNavigation: NavigationSection[] = [
         title: "Create",
         items: [
           {
-            title: "Projects",
-            href: "/lab/projects",
-            description: "Start a new project",
+            title: "Project Hub",
+            href: "/observatory/projects",
+            description: "Start and manage projects",
           },
           {
-            title: "Workspaces",
-            href: "/lab/workspaces",
-            description: "Collaborative environments",
+            title: "Collaborative Spaces",
+            href: "/observatory/spaces",
+            description: "Team workspaces",
           },
           {
-            title: "Templates",
-            href: "/lab/templates",
+            title: "Innovation Templates",
+            href: "/observatory/templates",
             description: "Project templates",
+          },
+          {
+            title: "Resource Center",
+            href: "/observatory/resources",
+            description: "Tools and assets",
           },
         ],
       },
       {
-        title: "Tools",
+        title: "Tools & Tech",
         items: [
           {
             title: "AI Studio",
-            href: "/lab/ai-studio",
-            description: "AI development tools",
+            href: "/observatory/ai-studio",
+            description: "AI development platform",
           },
           {
-            title: "Code Editor",
-            href: "/lab/code-editor",
-            description: "Online IDE",
+            title: "Code Lab",
+            href: "/observatory/code-lab",
+            description: "Advanced IDE",
           },
           {
-            title: "Design Tools",
-            href: "/lab/design-tools",
-            description: "UI/UX tools",
+            title: "Design Studio",
+            href: "/observatory/design-studio",
+            description: "UI/UX workspace",
+          },
+          {
+            title: "Data Workshop",
+            href: "/observatory/data-workshop",
+            description: "Data analysis tools",
           },
         ],
       },
@@ -854,39 +919,74 @@ export const mainNavigation: NavigationSection[] = [
         title: "Build",
         items: [
           {
-            title: "Components",
-            href: "/lab/components",
-            description: "Reusable building blocks",
+            title: "Component Library",
+            href: "/observatory/components",
+            description: "Reusable components",
           },
           {
-            title: "Integrations",
-            href: "/lab/integrations",
-            description: "Third-party services",
+            title: "Integration Hub",
+            href: "/observatory/integrations",
+            description: "Connect services",
           },
           {
-            title: "APIs",
-            href: "/lab/apis",
-            description: "API endpoints",
+            title: "API Gateway",
+            href: "/observatory/api-gateway",
+            description: "API management",
+          },
+          {
+            title: "DevOps Center",
+            href: "/observatory/devops",
+            description: "Development operations",
           },
         ],
       },
       {
-        title: "Deploy",
+        title: "Launch",
         items: [
           {
-            title: "Environments",
-            href: "/lab/environments",
-            description: "Deployment targets",
+            title: "Deployment Center",
+            href: "/observatory/deploy",
+            description: "Deploy projects",
           },
           {
-            title: "Pipelines",
-            href: "/lab/pipelines",
-            description: "CI/CD workflows",
+            title: "CI/CD Pipeline",
+            href: "/observatory/pipeline",
+            description: "Automation workflows",
           },
           {
-            title: "Monitoring",
-            href: "/lab/monitoring",
-            description: "System health",
+            title: "Performance Lab",
+            href: "/observatory/performance",
+            description: "Optimization tools",
+          },
+          {
+            title: "Security Suite",
+            href: "/observatory/security",
+            description: "Security testing",
+          },
+        ],
+      },
+      {
+        title: "Community",
+        items: [
+          {
+            title: "Innovation Network",
+            href: "/observatory/network",
+            description: "Connect with innovators",
+          },
+          {
+            title: "Knowledge Exchange",
+            href: "/observatory/exchange",
+            description: "Share insights",
+          },
+          {
+            title: "Events & Workshops",
+            href: "/observatory/events",
+            description: "Learn and collaborate",
+          },
+          {
+            title: "Success Stories",
+            href: "/observatory/stories",
+            description: "Project showcases",
           },
         ],
       },
