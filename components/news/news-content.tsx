@@ -1,5 +1,6 @@
 "use client"
 
+import { Suspense, memo } from "react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
@@ -7,84 +8,107 @@ import { useNews } from "@/hooks/use-news"
 import { NewsFilter } from "@/components/news/news-filter"
 import { NewsPagination } from "@/components/news/news-pagination"
 import { useSearchParams, useRouter } from "next/navigation"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { format } from "date-fns"
 import { Clock, AlertTriangle } from "lucide-react"
 import readingTime from "reading-time"
 import { Skeleton } from "@/components/ui/skeleton"
+import { Article } from "@/types/news"
 
-interface Article {
-  id: string
-  title: string
-  description: string
-  date: string
-  author: { name: string; role: string } | string
-  content: string
-}
-
-const NewsCardSkeleton = () => (
+const NewsCardSkeleton = memo(() => (
   <Card>
     <CardHeader>
-      <Skeleton className="h-4 w-3/4 mb-2" />
-      <Skeleton className="h-3 w-1/2" />
+      <Skeleton className="h-8 w-3/4" />
+      <Skeleton className="h-4 w-1/2" />
     </CardHeader>
     <CardContent>
-      <Skeleton className="h-20 w-full mb-4" />
-      <div className="flex justify-between items-center">
-        <Skeleton className="h-3 w-24" />
-        <Skeleton className="h-3 w-24" />
+      <Skeleton className="h-20 w-full" />
+      <div className="mt-4 flex items-center space-x-4">
+        <Skeleton className="h-4 w-24" />
+        <Skeleton className="h-4 w-24" />
       </div>
     </CardContent>
   </Card>
-)
+))
+NewsCardSkeleton.displayName = "NewsCardSkeleton"
 
-export function NewsContent() {
-  const router = useRouter()
+const NewsCard = memo(({ article }: { article: Article }) => {
+  const stats = readingTime(article.content)
+  
+  return (
+    <Card>
+      <CardHeader>
+        <CardTitle>
+          <Link href={`/news/article/${article.id}`} className="hover:underline">
+            {article.title}
+          </Link>
+        </CardTitle>
+        <CardDescription>{format(new Date(article.date), "MMMM d, yyyy")}</CardDescription>
+      </CardHeader>
+      <CardContent>
+        <p className="text-sm text-muted-foreground line-clamp-3">{article.description}</p>
+        <div className="mt-4 flex items-center space-x-4 text-sm text-muted-foreground">
+          <div className="flex items-center">
+            <Clock className="mr-1 h-4 w-4" />
+            {stats.text}
+          </div>
+          <div>{article.category}</div>
+        </div>
+      </CardContent>
+    </Card>
+  )
+})
+NewsCard.displayName = "NewsCard"
+
+const NewsList = memo(({ articles }: { articles: Article[] }) => (
+  <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+    {articles.map((article) => (
+      <NewsCard key={article.id} article={article} />
+    ))}
+  </div>
+))
+NewsList.displayName = "NewsList"
+
+interface NewsContentProps {
+  currentCategory: string
+  currentQuery: string
+  onSearch: (query: string) => void
+  onCategoryChange: (category: string) => void
+}
+
+export function NewsContent({
+  currentCategory,
+  currentQuery,
+  onSearch,
+  onCategoryChange,
+}: NewsContentProps) {
+  const { data, isLoading, error, fetchNews } = useNews()
   const searchParams = useSearchParams()
-  const { news, pagination, isLoading, error, fetchNews } = useNews()
-
-  const currentCategory = searchParams.get("category") || "all"
-  const currentQuery = searchParams.get("query") || ""
-  const currentPage = parseInt(searchParams.get("page") || "1")
+  const router = useRouter()
+  const page = parseInt(searchParams.get("page") || "1")
 
   useEffect(() => {
     fetchNews({
-      category: currentCategory === "all" ? undefined : currentCategory,
+      category: currentCategory,
       query: currentQuery,
-      page: currentPage,
+      page,
     })
-  }, [fetchNews, currentCategory, currentQuery, currentPage])
+  }, [fetchNews, currentCategory, currentQuery, page])
 
-  const handleSearch = (query: string) => {
-    const params = new URLSearchParams(searchParams.toString())
-    if (query) params.set("query", query)
-    else params.delete("query")
-    params.set("page", "1")
-    router.push(`/news?${params.toString()}`)
-  }
-
-  const handleCategoryChange = (category: string) => {
-    const params = new URLSearchParams(searchParams.toString())
-    if (category !== "all") params.set("category", category)
-    else params.delete("category")
-    params.set("page", "1")
-    router.push(`/news?${params.toString()}`)
+  const handlePageChange = (newPage: number) => {
+    router.push(`/news?page=${newPage}${currentCategory ? `&category=${currentCategory}` : ""}${currentQuery ? `&q=${currentQuery}` : ""}`)
   }
 
   if (error) {
     return (
       <div className="flex items-center justify-center p-8">
-        <Card className="w-full max-w-2xl">
-          <CardHeader>
-            <div className="flex items-center space-x-2">
-              <AlertTriangle className="h-5 w-5 text-destructive" />
-              <CardTitle>Error Loading News</CardTitle>
-            </div>
-          </CardHeader>
-          <CardContent>
-            <p>{typeof error === 'string' ? error : 'An error occurred while loading the news.'}</p>
-          </CardContent>
-        </Card>
+        <div className="text-center">
+          <AlertTriangle className="mx-auto h-8 w-8 text-yellow-500" />
+          <p className="mt-2 text-sm text-muted-foreground">Failed to load news articles</p>
+          <Button onClick={() => fetchNews({ category: currentCategory, query: currentQuery, page })} className="mt-4">
+            Try Again
+          </Button>
+        </div>
       </div>
     )
   }
@@ -94,51 +118,23 @@ export function NewsContent() {
       <NewsFilter
         currentCategory={currentCategory}
         currentQuery={currentQuery}
-        onSearch={handleSearch}
-        onCategoryChange={handleCategoryChange}
+        onSearch={onSearch}
+        onCategoryChange={onCategoryChange}
       />
-
-      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-        {isLoading ? (
-          Array(6).fill(0).map((_, i) => <NewsCardSkeleton key={i} />)
-        ) : (
-          news?.map((article: Article) => (
-            <Card key={article.id}>
-              <CardHeader>
-                <Link href={`/news/article/${article.id}`}>
-                  <CardTitle className="hover:text-primary transition-colors">
-                    {article.title}
-                  </CardTitle>
-                </Link>
-                <CardDescription>{article.description}</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="flex justify-between items-center text-sm text-muted-foreground">
-                  <div className="flex items-center space-x-1">
-                    <Clock className="h-4 w-4" />
-                    <span>{readingTime(article.content).text}</span>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <span>{format(new Date(article.date), 'MMM d, yyyy')}</span>
-                    <span>•</span>
-                    <span>{typeof article.author === 'string' ? article.author : article.author.name}</span>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          ))
-        )}
-      </div>
-
-      {!isLoading && pagination && (
+      <Suspense fallback={
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {Array.from({ length: 6 }).map((_, i) => (
+            <NewsCardSkeleton key={i} />
+          ))}
+        </div>
+      }>
+        {data?.articles && <NewsList articles={data.articles} />}
+      </Suspense>
+      {data?.pagination && (
         <NewsPagination
-          currentPage={currentPage}
-          totalPages={pagination.totalPages}
-          onPageChange={(page) => {
-            const params = new URLSearchParams(searchParams.toString())
-            params.set("page", page.toString())
-            router.push(`/news?${params.toString()}`)
-          }}
+          currentPage={page}
+          totalPages={data.pagination.totalPages}
+          onPageChange={handlePageChange}
         />
       )}
     </div>

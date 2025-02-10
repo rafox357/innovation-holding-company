@@ -5,6 +5,7 @@ import { Providers } from "@/components/providers"
 import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
 import { ThemeProvider } from "@/components/theme-provider"
+import { registerServiceWorker } from "./sw"
 
 const poppins = Poppins({ 
   subsets: ["latin"],
@@ -21,6 +22,10 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
+  useEffect(() => {
+    registerServiceWorker()
+  }, [])
+
   return (
     <html lang="en" suppressHydrationWarning>
       <head />

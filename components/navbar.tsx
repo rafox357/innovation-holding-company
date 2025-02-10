@@ -1,173 +1,101 @@
 "use client"
 
-import { useState } from "react"
+import { memo, useCallback, useEffect, useState } from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { motion, AnimatePresence } from "framer-motion"
-import { Button } from "@/components/ui/button"
-import { Menu, X, ChevronDown } from "lucide-react"
-import { 
-  NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  NavigationMenuTrigger,
-  navigationMenuTriggerStyle,
-} from "@/components/ui/navigation-menu"
-import { Logo } from "@/components/ui/logo"
-import { NotificationCenter } from "@/components/notification-center"
-import { QuickAccessMenu } from "@/components/quick-access-menu"
-import { ThemeToggle } from "@/components/theme-toggle"
-import { UserMenu } from "@/components/user-menu"
-import { mainRoutes } from "@/config/routes"
 import { cn } from "@/lib/utils"
+import { Button } from "@/components/ui/button"
+import { ModeToggle } from "@/components/mode-toggle"
+import { UserNav } from "@/components/user-nav"
+import { MegaMenu } from "@/components/mega-menu"
+import { mainNavigation } from "@/config/navigation"
+import { Menu } from "lucide-react"
 
-const ListItem = ({ className, title, children, href, ...props }: any) => {
+const NavLink = memo(({ href, children }: { href: string; children: React.ReactNode }) => {
+  const pathname = usePathname()
+  const isActive = pathname === href
+
   return (
-    <li>
-      <NavigationMenuLink asChild>
-        <Link
-          href={href}
-          className={cn(
-            "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
-            className
-          )}
-          {...props}
-        >
-          <div className="text-sm font-medium leading-none">{title}</div>
-          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-            {children}
-          </p>
-        </Link>
-      </NavigationMenuLink>
-    </li>
+    <Link
+      href={href}
+      className={cn(
+        "text-sm font-medium transition-colors hover:text-primary",
+        isActive ? "text-primary" : "text-muted-foreground"
+      )}
+    >
+      {children}
+    </Link>
   )
-}
+})
+NavLink.displayName = "NavLink"
 
 export function Navbar() {
-  const [isOpen, setIsOpen] = useState(false)
-  const pathname = usePathname()
+  const [isScrolled, setIsScrolled] = useState(false)
+  const [isMegaMenuOpen, setIsMegaMenuOpen] = useState(false)
+
+  const handleScroll = useCallback(() => {
+    const scrolled = window.scrollY > 10
+    if (scrolled !== isScrolled) {
+      setIsScrolled(scrolled)
+    }
+  }, [isScrolled])
+
+  useEffect(() => {
+    const opts = { passive: true }
+    window.addEventListener("scroll", handleScroll, opts)
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [handleScroll])
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <nav className="container flex h-14 items-center">
-        <Link href="/" className="mr-6">
-          <Logo className="h-6 w-auto" />
-        </Link>
-
-        <div className="hidden md:flex md:flex-1">
-          <NavigationMenu>
-            <NavigationMenuList>
-              {mainRoutes.map((category) => (
-                <NavigationMenuItem key={category.category}>
-                  <NavigationMenuTrigger>{category.category}</NavigationMenuTrigger>
-                  <NavigationMenuContent>
-                    <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
-                      {category.items.map((item) => (
-                        <ListItem
-                          key={item.href}
-                          title={item.name}
-                          href={item.href}
-                        >
-                          {item.description}
-                          {item.children && (
-                            <ul className="mt-2 space-y-1">
-                              {item.children.map((child) => (
-                                <li key={child.href}>
-                                  <Link
-                                    href={child.href}
-                                    className="text-sm text-muted-foreground hover:text-primary"
-                                  >
-                                    {child.name}
-                                  </Link>
-                                </li>
-                              ))}
-                            </ul>
-                          )}
-                        </ListItem>
-                      ))}
-                    </ul>
-                  </NavigationMenuContent>
-                </NavigationMenuItem>
-              ))}
-            </NavigationMenuList>
-          </NavigationMenu>
+    <header
+      className={cn(
+        "sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60",
+        isScrolled && "shadow-sm"
+      )}
+    >
+      <div className="container flex h-14 items-center">
+        <Button
+          variant="ghost"
+          className="mr-2 px-0 text-base hover:bg-transparent focus-visible:bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0 lg:hidden"
+          onClick={() => setIsMegaMenuOpen(true)}
+        >
+          <Menu className="h-6 w-6" />
+          <span className="sr-only">Toggle menu</span>
+        </Button>
+        <div className="mr-4 hidden lg:flex">
+          <Link href="/" className="mr-6 flex items-center space-x-2">
+            <span className="hidden font-bold sm:inline-block">Hubverse</span>
+          </Link>
+          <nav className="flex items-center space-x-6 text-sm font-medium">
+            <NavLink href="/news">News</NavLink>
+            <NavLink href="/business">Business</NavLink>
+            <NavLink href="/innovation-hub">Innovation Hub</NavLink>
+            <NavLink href="/resources">Resources</NavLink>
+          </nav>
         </div>
-
-        <div className="flex flex-1 items-center justify-end space-x-4">
-          <div className="hidden md:flex md:items-center md:space-x-4">
-            <QuickAccessMenu />
-            <NotificationCenter />
-            <ThemeToggle />
-            <UserMenu />
+        <div className="flex flex-1 items-center justify-between space-x-2 lg:justify-end">
+          <div className="w-full flex-1 lg:w-auto lg:flex-none">
+            <Button
+              variant="ghost"
+              className="w-full justify-start text-sm font-normal lg:hidden"
+              onClick={() => setIsMegaMenuOpen(true)}
+            >
+              Search documentation...
+            </Button>
           </div>
-
-          <Button
-            variant="ghost"
-            className="md:hidden"
-            onClick={() => setIsOpen(!isOpen)}
-            aria-label="Toggle menu"
-          >
-            {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-          </Button>
-        </div>
-      </nav>
-
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            className="fixed inset-x-0 top-14 z-50 h-[calc(100vh-3.5rem)] overflow-y-auto bg-background md:hidden"
-          >
-            <nav className="container py-4">
-              {mainRoutes.map((category) => (
-                <div key={category.category} className="mb-4">
-                  <h2 className="mb-2 text-lg font-semibold">{category.category}</h2>
-                  <ul className="space-y-2">
-                    {category.items.map((item) => (
-                      <li key={item.href}>
-                        <Link
-                          href={item.href}
-                          className={cn(
-                            "block rounded-lg px-4 py-2 text-sm",
-                            pathname === item.href
-                              ? "bg-accent text-accent-foreground"
-                              : "hover:bg-accent hover:text-accent-foreground"
-                          )}
-                        >
-                          {item.name}
-                        </Link>
-                        {item.children && (
-                          <ul className="ml-4 mt-1 space-y-1">
-                            {item.children.map((child) => (
-                              <li key={child.href}>
-                                <Link
-                                  href={child.href}
-                                  className={cn(
-                                    "block rounded-lg px-4 py-2 text-sm",
-                                    pathname === child.href
-                                      ? "text-primary"
-                                      : "text-muted-foreground hover:text-primary"
-                                  )}
-                                >
-                                  {child.name}
-                                </Link>
-                              </li>
-                            ))}
-                          </ul>
-                        )}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
+          <div className="flex items-center space-x-2">
+            <nav className="flex items-center space-x-2">
+              <ModeToggle />
+              <UserNav />
             </nav>
-          </motion.div>
-        )}
-      </AnimatePresence>
+          </div>
+        </div>
+        <MegaMenu
+          sections={mainNavigation}
+          isOpen={isMegaMenuOpen}
+          onClose={() => setIsMegaMenuOpen(false)}
+        />
+      </div>
     </header>
   )
 }
