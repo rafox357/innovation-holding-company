@@ -102,28 +102,8 @@ export const navigationConfig = {
       },
       {
         title: "The Foundry",
-        items: [
-          {
-            title: "Project Pipeline",
-            href: "/observatory/foundry/pipeline",
-            description: "Track project progress",
-          },
-          {
-            title: "Technology Stack",
-            href: "/observatory/foundry/tech-stack",
-            description: "AI, Cloud, and Data tools",
-          },
-          {
-            title: "Funding & Incubation",
-            href: "/observatory/foundry/funding",
-            description: "Project funding resources",
-          },
-          {
-            title: "Expertise & Mentorship",
-            href: "/observatory/foundry/mentorship",
-            description: "Expert guidance and support",
-          },
-        ],
+        href: "/observatory/foundry",
+        description: "Explore our innovation engine and project pipeline",
       },
       {
         title: "Resources",
@@ -225,7 +205,7 @@ export const navigationConfig = {
           },
         ],
       },
-    ],
+    },
     "/about": [
       {
         title: "Company",
@@ -829,158 +809,39 @@ export const mainNavigation: NavigationSection[] = [
   },
   {
     title: "The Observatory",
+    href: "/observatory",
     items: [
       {
-        title: "Experiment",
-        items: [
-          {
-            title: "Innovation Sandbox",
-            href: "/observatory/sandbox",
-            description: "Safe testing environment",
-          },
-          {
-            title: "Prototypes Gallery",
-            href: "/observatory/prototypes",
-            description: "Early-stage innovations",
-          },
-          {
-            title: "Research Labs",
-            href: "/observatory/research",
-            description: "Research experiments",
-          },
-          {
-            title: "Innovation Challenges",
-            href: "/observatory/challenges",
-            description: "Solve real-world problems",
-          },
-        ],
+        title: "Overview",
+        href: "/observatory",
+        description: "View the latest insights and data from our innovation ecosystem"
       },
       {
-        title: "Create",
-        items: [
-          {
-            title: "Project Hub",
-            href: "/observatory/projects",
-            description: "Start and manage projects",
-          },
-          {
-            title: "Collaborative Spaces",
-            href: "/observatory/spaces",
-            description: "Team workspaces",
-          },
-          {
-            title: "Innovation Templates",
-            href: "/observatory/templates",
-            description: "Project templates",
-          },
-          {
-            title: "Resource Center",
-            href: "/observatory/resources",
-            description: "Tools and assets",
-          },
-        ],
+        title: "The Foundry",
+        href: "/observatory/foundry",
+        description: "Explore our innovation engine and project pipeline"
       },
       {
-        title: "Tools & Tech",
-        items: [
-          {
-            title: "AI Studio",
-            href: "/observatory/ai-studio",
-            description: "AI development platform",
-          },
-          {
-            title: "Code Lab",
-            href: "/observatory/code-lab",
-            description: "Advanced IDE",
-          },
-          {
-            title: "Design Studio",
-            href: "/observatory/design-studio",
-            description: "UI/UX workspace",
-          },
-          {
-            title: "Data Workshop",
-            href: "/observatory/data-workshop",
-            description: "Data analysis tools",
-          },
-        ],
+        title: "Resources",
+        href: "/observatory/resources",
+        description: "Access tools, documentation, and learning materials"
       },
       {
-        title: "Build",
-        items: [
-          {
-            title: "Component Library",
-            href: "/observatory/components",
-            description: "Reusable components",
-          },
-          {
-            title: "Integration Hub",
-            href: "/observatory/integrations",
-            description: "Connect services",
-          },
-          {
-            title: "API Gateway",
-            href: "/observatory/api-gateway",
-            description: "API management",
-          },
-          {
-            title: "DevOps Center",
-            href: "/observatory/devops",
-            description: "Development operations",
-          },
-        ],
+        title: "Projects",
+        href: "/observatory/projects",
+        description: "Browse and track ongoing projects"
       },
       {
-        title: "Launch",
-        items: [
-          {
-            title: "Deployment Center",
-            href: "/observatory/deploy",
-            description: "Deploy projects",
-          },
-          {
-            title: "CI/CD Pipeline",
-            href: "/observatory/pipeline",
-            description: "Automation workflows",
-          },
-          {
-            title: "Performance Lab",
-            href: "/observatory/performance",
-            description: "Optimization tools",
-          },
-          {
-            title: "Security Suite",
-            href: "/observatory/security",
-            description: "Security testing",
-          },
-        ],
+        title: "Analytics",
+        href: "/observatory/analytics",
+        description: "Monitor performance metrics and trends"
       },
       {
-        title: "Community",
-        items: [
-          {
-            title: "Innovation Network",
-            href: "/observatory/network",
-            description: "Connect with innovators",
-          },
-          {
-            title: "Knowledge Exchange",
-            href: "/observatory/exchange",
-            description: "Share insights",
-          },
-          {
-            title: "Events & Workshops",
-            href: "/observatory/events",
-            description: "Learn and collaborate",
-          },
-          {
-            title: "Success Stories",
-            href: "/observatory/stories",
-            description: "Project showcases",
-          },
-        ],
-      },
-    ],
+        title: "Management",
+        href: "/observatory/management",
+        description: "Manage teams, resources, and project settings"
+      }
+    ]
   },
 ]
 

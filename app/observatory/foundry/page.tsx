@@ -159,21 +159,161 @@ export default function FoundryPage() {
       </Card>
 
       {/* Main Content Tabs */}
-      <Tabs defaultValue="overview" className="space-y-4">
-        <TabsList>
-          <TabsTrigger value="overview">Overview</TabsTrigger>
-          <TabsTrigger value="roadmap">Roadmap</TabsTrigger>
-          <TabsTrigger value="launchpad">Launchpad</TabsTrigger>
-          <TabsTrigger value="pipeline">Pipeline</TabsTrigger>
-        </TabsList>
+      <div className="space-y-4">
+        {/* Project Overview */}
+        <Card>
+          <CardHeader>
+            <CardTitle>Project Overview</CardTitle>
+          </CardHeader>
+          <CardContent className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+            <ProjectCard
+              title="Smart Home Energy Management System"
+              description="AI-powered system for optimizing home energy consumption"
+              progress={75}
+              status="In Development"
+              priority="High"
+              category="Technology"
+            />
+            <ProjectCard
+              title="AI-Powered Personalized Learning Platform"
+              description="Adaptive learning platform using AI to personalize learning paths"
+              progress={25}
+              status="Planning"
+              priority="High"
+              category="Education"
+            />
+            <ProjectCard
+              title="Decentralized Finance (DeFi) Platform"
+              description="Secure and transparent DeFi platform built on blockchain technology"
+              progress={60}
+              status="In Development"
+              priority="Medium"
+              category="Finance"
+            />
+          </CardContent>
+        </Card>
 
-        <TabsContent value="overview" className="space-y-4">
-          {/* Project Overview */}
+        {/* Company Roadmaps */}
+        <Card>
+          <CardHeader>
+            <CardTitle>Company Roadmaps</CardTitle>
+            <p className="text-muted-foreground">
+              Strategic direction and long-term goals for Hubverse companies
+            </p>
+          </CardHeader>
+          <CardContent className="space-y-8">
+            {/* Anexo Roadmap */}
+            <div className="space-y-4">
+              <div className="flex items-center justify-between">
+                <h3 className="text-lg font-semibold">Anexo</h3>
+              </div>
+              {/* Q2 2024 */}
+              <div className="space-y-4">
+                <div className="flex items-center justify-between">
+                  <h4 className="font-medium">Q2 2024</h4>
+                </div>
+                <ul className="space-y-2 list-disc list-inside text-sm">
+                  <li>Launch of 5 new specialized professional development courses</li>
+                  <li>Integration of AI-powered assessment tools</li>
+                </ul>
+                <div className="space-y-2">
+                  <Progress value={100} className="bg-yellow-500/20" />
+                </div>
+              </div>
+              {/* Q3 2024 */}
+              <div className="space-y-4">
+                <div className="flex items-center justify-between">
+                  <h4 className="font-medium">Q3 2024</h4>
+                </div>
+                <ul className="space-y-2 list-disc list-inside text-sm">
+                  <li>Rollout of personalized learning paths</li>
+                  <li>Begin partnerships with 3 major tech companies</li>
+                </ul>
+                <div className="space-y-2">
+                  <Progress value={80} className="bg-yellow-500/20" />
+                </div>
+              </div>
+              {/* Q4 2024 */}
+              <div className="space-y-4">
+                <div className="flex items-center justify-between">
+                  <h4 className="font-medium">Q4 2024</h4>
+                </div>
+                <ul className="space-y-2 list-disc list-inside text-sm">
+                  <li>Launch of AI-powered language learning module</li>
+                  <li>Expand platform accessibility features</li>
+                </ul>
+                <div className="space-y-2">
+                  <Progress value={60} className="bg-yellow-500/20" />
+                </div>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Launchpad Resources */}
+        <Card>
+          <CardHeader>
+            <CardTitle>Launchpad: Resources and Tools</CardTitle>
+            <p className="text-muted-foreground">
+              Empowering innovation with powerful resources
+            </p>
+          </CardHeader>
+          <CardContent>
+            <div className="grid gap-4 md:grid-cols-3">
+              <ResourceCard
+                title="AI & Machine Learning Platform"
+                provider="Elementalis"
+                description="Comprehensive suite of AI and ML tools"
+              />
+              <ResourceCard
+                title="Cloud Infrastructure"
+                provider="Elementalis"
+                description="Scalable and secure cloud services"
+              />
+              <ResourceCard
+                title="Data Analytics Suite"
+                provider="Elementalis"
+                description="Powerful tools for data visualization and BI"
+              />
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Pipeline Grid */}
+        <div className="grid gap-4 md:grid-cols-4">
+          {/* Ideation */}
           <Card>
             <CardHeader>
-              <CardTitle>Project Overview</CardTitle>
+              <CardTitle className="text-lg">Ideation</CardTitle>
             </CardHeader>
-            <CardContent className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+            <CardContent>
+              <ProjectCard
+                title="Sustainable Agriculture Monitoring System"
+                description="IoT-based system for monitoring and optimizing agricultural practices"
+                progress={10}
+                status="Planning"
+                priority="Low"
+                category="Agriculture"
+              />
+            </CardContent>
+          </Card>
+
+          {/* Prototyping */}
+          <Card>
+            <CardHeader>
+              <CardTitle className="text-lg">Prototyping</CardTitle>
+            </CardHeader>
+            <CardContent>
+              {/* Empty for now */}
+            </CardContent>
+          </Card>
+
+          {/* Development */}
+          <Card>
+            <CardHeader>
+              <CardTitle className="text-lg">Development</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4">
               <ProjectCard
                 title="Smart Home Energy Management System"
                 description="AI-powered system for optimizing home energy consumption"
@@ -181,14 +321,6 @@ export default function FoundryPage() {
                 status="In Development"
                 priority="High"
                 category="Technology"
-              />
-              <ProjectCard
-                title="AI-Powered Personalized Learning Platform"
-                description="Adaptive learning platform using AI to personalize learning paths"
-                progress={25}
-                status="Planning"
-                priority="High"
-                category="Education"
               />
               <ProjectCard
                 title="Decentralized Finance (DeFi) Platform"
@@ -200,34 +332,25 @@ export default function FoundryPage() {
               />
             </CardContent>
           </Card>
-        </TabsContent>
 
-        <TabsContent value="launchpad" className="space-y-4">
-          {/* Launchpad Resources */}
+          {/* Testing */}
           <Card>
             <CardHeader>
-              <CardTitle>Launchpad: Resources and Tools</CardTitle>
+              <CardTitle className="text-lg">Testing</CardTitle>
             </CardHeader>
-            <CardContent className="grid gap-4 md:grid-cols-3">
-              <ResourceCard
-                title="AI & Machine Learning Platform"
-                description="Comprehensive suite of AI and ML tools"
-                provider="Elementalis"
-              />
-              <ResourceCard
-                title="Cloud Infrastructure"
-                description="Scalable and secure cloud services"
-                provider="Elementalis"
-              />
-              <ResourceCard
-                title="Data Analytics Suite"
-                description="Powerful tools for data visualization and BI"
-                provider="Elementalis"
+            <CardContent>
+              <ProjectCard
+                title="Next-Generation Cloud Computing Platform"
+                description="Scalable and secure cloud platform for enterprise applications"
+                progress={80}
+                status="Testing"
+                priority="High"
+                category="Technology"
               />
             </CardContent>
           </Card>
-        </TabsContent>
-      </Tabs>
+        </div>
+      </div>
     </div>
   )
 }
