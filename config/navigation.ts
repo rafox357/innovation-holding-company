@@ -10,6 +10,178 @@ export type NavigationSection = {
   items: NavigationItem[]
 }
 
+export const navigationConfig = {
+  mainNav: [
+    {
+      title: "News",
+      href: "/news",
+      description: "Stay updated with the latest news and insights",
+    },
+    {
+      title: "Business",
+      href: "/business",
+      description: "Explore our business ventures and investments",
+    },
+    {
+      title: "Innovation Hub",
+      href: "/innovation-hub",
+      description: "Discover our innovation ecosystem",
+    },
+    {
+      title: "Resources",
+      href: "/resources",
+      description: "Access tools and resources",
+    },
+  ],
+  megaMenu: {
+    "/news": [
+      {
+        title: "Latest News",
+        items: [
+          {
+            title: "Press Releases",
+            href: "/news/press-releases",
+            description: "Official announcements and updates",
+          },
+          {
+            title: "Blog",
+            href: "/news/blog",
+            description: "Insights and thought leadership",
+          },
+          {
+            title: "Media Coverage",
+            href: "/news/media",
+            description: "News coverage and mentions",
+          },
+        ],
+      },
+      {
+        title: "Categories",
+        items: [
+          {
+            title: "Technology",
+            href: "/news/technology",
+          },
+          {
+            title: "Business",
+            href: "/news/business",
+          },
+          {
+            title: "Innovation",
+            href: "/news/innovation",
+          },
+          {
+            title: "Startups",
+            href: "/news/startups",
+          },
+        ],
+      },
+    ],
+    "/business": [
+      {
+        title: "Portfolio",
+        items: [
+          {
+            title: "Elementalis",
+            href: "/business/subsidiaries/elementalis",
+            description: "AI and Machine Learning Solutions",
+          },
+          {
+            title: "eStore District",
+            href: "/business/subsidiaries/estore-district",
+            description: "E-commerce Platform",
+          },
+        ],
+      },
+      {
+        title: "Services",
+        items: [
+          {
+            title: "Consulting",
+            href: "/business/services/consulting",
+          },
+          {
+            title: "Investment",
+            href: "/business/services/investment",
+          },
+          {
+            title: "Technology Solutions",
+            href: "/business/services/technology",
+          },
+        ],
+      },
+    ],
+    "/innovation-hub": [
+      {
+        title: "Programs",
+        items: [
+          {
+            title: "Accelerator",
+            href: "/innovation-hub/accelerator",
+            description: "Startup acceleration program",
+          },
+          {
+            title: "Incubator",
+            href: "/innovation-hub/incubator",
+            description: "Early-stage venture support",
+          },
+        ],
+      },
+      {
+        title: "Research",
+        items: [
+          {
+            title: "Labs",
+            href: "/innovation-hub/labs",
+          },
+          {
+            title: "Publications",
+            href: "/innovation-hub/publications",
+          },
+          {
+            title: "Patents",
+            href: "/innovation-hub/patents",
+          },
+        ],
+      },
+    ],
+    "/resources": [
+      {
+        title: "Tools",
+        items: [
+          {
+            title: "Documentation",
+            href: "/resources/docs",
+            description: "Technical guides and API docs",
+          },
+          {
+            title: "Downloads",
+            href: "/resources/downloads",
+            description: "Software and tools",
+          },
+        ],
+      },
+      {
+        title: "Support",
+        items: [
+          {
+            title: "Help Center",
+            href: "/resources/help",
+          },
+          {
+            title: "Community",
+            href: "/resources/community",
+          },
+          {
+            title: "Contact",
+            href: "/resources/contact",
+          },
+        ],
+      },
+    ],
+  },
+}
+
 export const mainNavigation: NavigationSection[] = [
   {
     title: "Innovation Hub",
