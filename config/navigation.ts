@@ -23,6 +23,11 @@ export const navigationConfig = {
       description: "Our subsidiaries and operations",
     },
     {
+      title: "Blueprint Platform",
+      href: "/blueprint-platform",
+      description: "Our innovative platform solution",
+    },
+    {
       title: "Innovation Hub",
       href: "/innovation-hub",
       description: "Innovation programs and resources",
@@ -63,6 +68,11 @@ export const navigationConfig = {
             href: "/dashboard/team",
             description: "Team performance and organization",
           },
+          {
+            title: "Projects",
+            href: "/dashboard/projects",
+            description: "Project management",
+          },
         ],
       },
       {
@@ -83,6 +93,89 @@ export const navigationConfig = {
           {
             title: "Competition",
             href: "/analytics/competition",
+          },
+        ],
+      },
+      {
+        title: "Admin",
+        items: [
+          {
+            title: "Project Management",
+            href: "/admin/projects",
+            description: "Admin project controls",
+          },
+          {
+            title: "User Management",
+            href: "/admin/users",
+            description: "Manage user access",
+          },
+        ],
+      },
+    ],
+    "/blueprint-platform": [
+      {
+        title: "Platform",
+        items: [
+          {
+            title: "Overview",
+            href: "/blueprint-platform/overview",
+            description: "Platform introduction",
+          },
+          {
+            title: "Benefits",
+            href: "/blueprint-platform/benefits",
+            description: "Value proposition",
+          },
+          {
+            title: "Implementation",
+            href: "/blueprint-platform/implementation",
+            description: "Getting started",
+          },
+        ],
+      },
+      {
+        title: "Technical",
+        items: [
+          {
+            title: "Components",
+            href: "/blueprint-platform/components",
+            description: "Platform building blocks",
+          },
+          {
+            title: "Technology Stack",
+            href: "/blueprint-platform/technology-stack",
+            description: "Technical architecture",
+          },
+          {
+            title: "Interactions",
+            href: "/blueprint-platform/interactions",
+            description: "System interactions",
+          },
+          {
+            title: "Process",
+            href: "/blueprint-platform/process",
+            description: "Implementation process",
+          },
+        ],
+      },
+      {
+        title: "Resources",
+        items: [
+          {
+            title: "Case Studies",
+            href: "/blueprint-platform/case-studies",
+          },
+          {
+            title: "FAQ",
+            href: "/blueprint-platform/faq",
+          },
+          {
+            title: "Resources",
+            href: "/blueprint-platform/resources",
+          },
+          {
+            title: "Revenue Model",
+            href: "/blueprint-platform/revenue-model",
           },
         ],
       },
@@ -147,6 +240,11 @@ export const navigationConfig = {
           {
             title: "Fundraising",
             href: "/fundraising",
+          },
+          {
+            title: "Lab Research",
+            href: "/lab-research",
+            description: "R&D initiatives",
           },
         ],
       },
@@ -329,7 +427,7 @@ export const navigationConfig = {
         ],
       },
       {
-        title: "Legal",
+        title: "Legal & Auth",
         items: [
           {
             title: "Terms of Service",
@@ -344,8 +442,12 @@ export const navigationConfig = {
             href: "/legal/cookie-policy",
           },
           {
-            title: "Compliance",
-            href: "/legal-and-compliance",
+            title: "Sign In",
+            href: "/auth/signin",
+          },
+          {
+            title: "Sign Out",
+            href: "/auth/signout",
           },
         ],
       },
