@@ -13,73 +13,83 @@ export type NavigationSection = {
 export const navigationConfig = {
   mainNav: [
     {
-      title: "News",
-      href: "/news",
-      description: "Stay updated with the latest news and insights",
+      title: "Dashboard",
+      href: "/dashboard",
+      description: "Overview and analytics",
     },
     {
       title: "Business",
       href: "/business",
-      description: "Explore our business ventures and investments",
+      description: "Our subsidiaries and operations",
     },
     {
       title: "Innovation Hub",
       href: "/innovation-hub",
-      description: "Discover our innovation ecosystem",
+      description: "Innovation programs and resources",
+    },
+    {
+      title: "News",
+      href: "/news",
+      description: "Latest updates and insights",
     },
     {
       title: "Resources",
       href: "/resources",
-      description: "Access tools and resources",
+      description: "Knowledge base and support",
     },
   ],
   megaMenu: {
-    "/news": [
+    "/dashboard": [
       {
-        title: "Latest News",
+        title: "Overview",
         items: [
           {
-            title: "Press Releases",
-            href: "/news/press-releases",
-            description: "Official announcements and updates",
+            title: "Business Metrics",
+            href: "/dashboard/business",
+            description: "Key business performance indicators",
           },
           {
-            title: "Blog",
-            href: "/news/blog",
-            description: "Insights and thought leadership",
+            title: "Financial Data",
+            href: "/dashboard/financial",
+            description: "Financial metrics and analysis",
           },
           {
-            title: "Media Coverage",
-            href: "/news/media",
-            description: "News coverage and mentions",
+            title: "Market Analysis",
+            href: "/dashboard/market",
+            description: "Market trends and insights",
+          },
+          {
+            title: "Team Management",
+            href: "/dashboard/team",
+            description: "Team performance and organization",
           },
         ],
       },
       {
-        title: "Categories",
+        title: "Analytics",
         items: [
           {
-            title: "Technology",
-            href: "/news/technology",
+            title: "Performance Metrics",
+            href: "/analytics/performance",
           },
           {
-            title: "Business",
-            href: "/news/business",
+            title: "Market Analysis",
+            href: "/analytics/market",
           },
           {
-            title: "Innovation",
-            href: "/news/innovation",
+            title: "Growth Trends",
+            href: "/analytics/trends",
           },
           {
-            title: "Startups",
-            href: "/news/startups",
+            title: "Competition",
+            href: "/analytics/competition",
           },
         ],
       },
     ],
     "/business": [
       {
-        title: "Portfolio",
+        title: "Subsidiaries",
         items: [
           {
             title: "Elementalis",
@@ -91,22 +101,73 @@ export const navigationConfig = {
             href: "/business/subsidiaries/estore-district",
             description: "E-commerce Platform",
           },
+          {
+            title: "Fundex",
+            href: "/business/subsidiaries/fundex",
+            description: "Financial Technology",
+          },
+          {
+            title: "Thryvus",
+            href: "/business/subsidiaries/thryvus",
+            description: "Digital Transformation",
+          },
+          {
+            title: "Anexo",
+            href: "/business/subsidiaries/anexo",
+            description: "Data Analytics",
+          },
+          {
+            title: "Cosmo-Compass",
+            href: "/business/subsidiaries/cosmo-compass",
+            description: "Navigation Solutions",
+          },
+          {
+            title: "Exonet",
+            href: "/business/subsidiaries/exonet",
+            description: "Network Infrastructure",
+          },
+          {
+            title: "Ponce",
+            href: "/business/subsidiaries/ponce",
+            description: "Digital Marketing",
+          },
         ],
       },
       {
-        title: "Services",
+        title: "Planning",
         items: [
           {
-            title: "Consulting",
-            href: "/business/services/consulting",
+            title: "Business Plan",
+            href: "/business-plan",
           },
           {
-            title: "Investment",
-            href: "/business/services/investment",
+            title: "Future Projects",
+            href: "/future-projects",
           },
           {
-            title: "Technology Solutions",
-            href: "/business/services/technology",
+            title: "Fundraising",
+            href: "/fundraising",
+          },
+        ],
+      },
+      {
+        title: "Investor Relations",
+        items: [
+          {
+            title: "Financial Reports",
+            href: "/investor-relations/reports",
+          },
+          {
+            title: "Presentations",
+            href: "/investor-relations/presentations",
+          },
+          {
+            title: "Stock Information",
+            href: "/investor-relations/stock",
+          },
+          {
+            title: "Corporate Governance",
+            href: "/investor-relations/governance",
           },
         ],
       },
@@ -116,48 +177,133 @@ export const navigationConfig = {
         title: "Programs",
         items: [
           {
-            title: "Accelerator",
-            href: "/innovation-hub/accelerator",
-            description: "Startup acceleration program",
+            title: "Startup Incubator",
+            href: "/innovation-hub/programs/incubator",
+            description: "Early-stage venture support",
           },
           {
-            title: "Incubator",
-            href: "/innovation-hub/incubator",
-            description: "Early-stage venture support",
+            title: "Research Lab",
+            href: "/innovation-hub/programs/research-lab",
+            description: "R&D initiatives",
+          },
+          {
+            title: "Tech Accelerator",
+            href: "/innovation-hub/programs/accelerator",
+            description: "Scale-up program",
+          },
+          {
+            title: "Innovation Workshops",
+            href: "/innovation-hub/programs/workshops",
+            description: "Hands-on learning",
           },
         ],
       },
       {
-        title: "Research",
+        title: "Resources",
         items: [
           {
-            title: "Labs",
-            href: "/innovation-hub/labs",
+            title: "Innovation Toolkit",
+            href: "/innovation-hub/resources/toolkit",
           },
           {
-            title: "Publications",
-            href: "/innovation-hub/publications",
+            title: "Best Practices",
+            href: "/innovation-hub/resources/best-practices",
           },
           {
-            title: "Patents",
-            href: "/innovation-hub/patents",
+            title: "Case Studies",
+            href: "/innovation-hub/resources/case-studies",
+          },
+          {
+            title: "Innovation Blog",
+            href: "/innovation-hub/resources/blog",
+          },
+        ],
+      },
+      {
+        title: "Partnerships",
+        items: [
+          {
+            title: "Corporate Partners",
+            href: "/innovation-hub/partnerships/corporate",
+          },
+          {
+            title: "Academic Partners",
+            href: "/innovation-hub/partnerships/academic",
+          },
+          {
+            title: "Startup Network",
+            href: "/innovation-hub/partnerships/startup-network",
+          },
+        ],
+      },
+    ],
+    "/news": [
+      {
+        title: "Latest News",
+        items: [
+          {
+            title: "Company News",
+            href: "/news/company",
+            description: "Updates from Hubverse",
+          },
+          {
+            title: "Industry Insights",
+            href: "/news/industry",
+            description: "Market trends and analysis",
+          },
+          {
+            title: "Press Releases",
+            href: "/news/press",
+            description: "Official announcements",
+          },
+          {
+            title: "Blog",
+            href: "/news/blog",
+            description: "Thought leadership",
+          },
+        ],
+      },
+      {
+        title: "Categories",
+        items: [
+          {
+            title: "Announcements",
+            href: "/news/announcements",
+          },
+          {
+            title: "Community",
+            href: "/news/community",
+          },
+          {
+            title: "Latest",
+            href: "/news/latest",
           },
         ],
       },
     ],
     "/resources": [
       {
-        title: "Tools",
+        title: "Knowledge Base",
         items: [
           {
             title: "Documentation",
-            href: "/resources/docs",
-            description: "Technical guides and API docs",
+            href: "/resources/knowledge-base/docs",
+            description: "Technical guides",
           },
           {
-            title: "Downloads",
-            href: "/resources/downloads",
-            description: "Software and tools",
+            title: "Tutorials",
+            href: "/resources/knowledge-base/tutorials",
+            description: "Step-by-step guides",
+          },
+          {
+            title: "FAQs",
+            href: "/resources/knowledge-base/faqs",
+            description: "Common questions",
+          },
+          {
+            title: "Best Practices",
+            href: "/resources/knowledge-base/best-practices",
+            description: "Recommended approaches",
           },
         ],
       },
@@ -165,16 +311,41 @@ export const navigationConfig = {
         title: "Support",
         items: [
           {
+            title: "Contact Support",
+            href: "/support/contact",
+          },
+          {
             title: "Help Center",
-            href: "/resources/help",
+            href: "/support/help",
           },
           {
-            title: "Community",
-            href: "/resources/community",
+            title: "Community Forum",
+            href: "/support/community",
           },
           {
-            title: "Contact",
-            href: "/resources/contact",
+            title: "Developer Resources",
+            href: "/support/developers",
+          },
+        ],
+      },
+      {
+        title: "Legal",
+        items: [
+          {
+            title: "Terms of Service",
+            href: "/legal/terms-of-service",
+          },
+          {
+            title: "Privacy Policy",
+            href: "/legal/privacy-policy",
+          },
+          {
+            title: "Cookie Policy",
+            href: "/legal/cookie-policy",
+          },
+          {
+            title: "Compliance",
+            href: "/legal-and-compliance",
           },
         ],
       },
