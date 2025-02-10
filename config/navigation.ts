@@ -205,7 +205,7 @@ export const navigationConfig = {
           },
         ],
       },
-    },
+    ],
     "/about": [
       {
         title: "Company",
@@ -843,6 +843,31 @@ export const mainNavigation: NavigationSection[] = [
       }
     ]
   },
+  {
+    title: "About",
+    items: [
+      {
+        title: "Company",
+        href: "/about",
+        description: "Learn about our mission and values"
+      },
+      {
+        title: "Team",
+        href: "/about/team",
+        description: "Meet our leadership and experts"
+      },
+      {
+        title: "Careers",
+        href: "/about/careers",
+        description: "Join our innovative team"
+      },
+      {
+        title: "Contact",
+        href: "/contact",
+        description: "Get in touch with us"
+      }
+    ]
+  }
 ]
 
 export const dashboardNavigation: NavigationItem[] = [
