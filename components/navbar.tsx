@@ -28,6 +28,14 @@ export function Navbar() {
               <Link href="/contact">Contact</Link>
             </Button>
             <ModeToggle />
+            <div className="border-l pl-2">
+              <Button variant="ghost" size="sm" className="px-2" asChild>
+                <Link href="/auth/signin">Sign In</Link>
+              </Button>
+              <Button variant="default" size="sm" className="ml-2" asChild>
+                <Link href="/auth/signup">Sign Up</Link>
+              </Button>
+            </div>
             <UserNav />
           </nav>
         </div>
