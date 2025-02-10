@@ -150,7 +150,11 @@ export default function ElementalisPage() {
             <CardTitle>Research Investment Growth</CardTitle>
           </CardHeader>
           <CardContent>
-            <KPIChart data={performanceData} type="line" />
+            <KPIChart 
+              data={performanceData} 
+              type="line" 
+              title="Performance Over Time"
+            />
           </CardContent>
         </Card>
 
