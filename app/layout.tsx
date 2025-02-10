@@ -1,5 +1,3 @@
-"use server"
-
 import { Poppins } from "next/font/google"
 import { ClientLayout } from "@/components/client-layout"
 import "./globals.css"
