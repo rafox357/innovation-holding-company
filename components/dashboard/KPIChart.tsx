@@ -8,6 +8,7 @@ import { NameType, ValueType } from 'recharts/types/component/DefaultTooltipCont
 type DataItem = { name: string; value: number };
 
 interface KPIChartProps {
+  title: string;
   data: ReadonlyArray<DataItem> | Array<DataItem>;
   type?: 'line' | 'bar';
 }
@@ -28,7 +29,7 @@ const CustomTooltip = memo(({ active, payload, label }: TooltipProps<ValueType, 
 CustomTooltip.displayName = 'CustomTooltip';
 
 // Memoize the entire chart component
-export const KPIChart = memo(function KPIChart({ data, type = 'line' }: KPIChartProps) {
+export const KPIChart = memo(function KPIChart({ title, data, type = 'line' }: KPIChartProps) {
   const ChartComponent = type === 'line' ? LineChart : BarChart;
   const DataComponent = type === 'line' ? Line : Bar;
 
@@ -38,6 +39,7 @@ export const KPIChart = memo(function KPIChart({ data, type = 'line' }: KPIChart
       role="img"
       aria-label={`${type === 'line' ? 'Line' : 'Bar'} chart showing KPI`}
     >
+      <h3 className="text-lg font-semibold mb-4">{title}</h3>
       <ResponsiveContainer width="100%" height="100%">
         <ChartComponent data={[...data]}>
           <defs>
