@@ -6,11 +6,6 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 
-export const metadata: Metadata = {
-  title: "Innovation Resources | Hubverse",
-  description: "Access our comprehensive innovation resources and tools.",
-};
-
 const breadcrumbItems = [
   { title: "Innovation Hub", href: "/innovation-hub" },
   { title: "Resources", href: "/innovation-hub/resources" },

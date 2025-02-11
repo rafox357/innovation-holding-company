@@ -1,3 +1,5 @@
+"use client";
+
 import { Metadata } from "next";
 import { useState } from "react";
 import { ResearchProjectCard } from "@/components/innovation-hub/research-project-card";
@@ -12,11 +14,6 @@ import {
 } from "@/components/ui/select";
 import { Search } from "lucide-react";
 import type { ResearchProject } from "@/types/innovation-hub";
-
-export const metadata: Metadata = {
-  title: "Research Projects | The Foundry | Hubverse",
-  description: "Explore our ongoing research and development projects",
-};
 
 // Mock data - replace with API call
 const projects: ResearchProject[] = [

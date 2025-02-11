@@ -1,3 +1,5 @@
+"use client";
+
 import type { Metadata } from "next"
 import Link from "next/link"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
@@ -7,11 +9,6 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Select } from "@/components/ui/select"
 import { Briefcase, MapPin, Clock, DollarSign, Search } from "lucide-react"
-
-export const metadata: Metadata = {
-  title: "Careers at Hubverse",
-  description: "Join our team and help shape the future of innovation",
-}
 
 const jobOpenings = [
   {

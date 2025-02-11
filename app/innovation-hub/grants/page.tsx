@@ -16,11 +16,6 @@ import { Card } from "@/components/ui/card";
 import { Search } from "lucide-react";
 import { fetchGrants } from "@/lib/data-fetcher";
 
-export const metadata: Metadata = {
-  title: "Grants & Funding | Innovation Hub | Hubverse",
-  description: "Explore available grants and funding opportunities.",
-};
-
 // Add type definitions
 type GrantStatus = "open" | "awarded" | "closed" | "in_review";
 type GrantType = "research" | "innovation" | "collaboration" | "equipment";

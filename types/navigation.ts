@@ -1,8 +1,9 @@
 export interface NavLink {
   title: string;
-  href: string;
+  href?: string;
   description?: string;
   badge?: string;
+  disabled?: boolean;
 }
 
 export interface NavColumn {

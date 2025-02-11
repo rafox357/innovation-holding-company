@@ -7,11 +7,6 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Input } from "@/components/ui/input";
 import { Search } from "lucide-react";
 
-export const metadata: Metadata = {
-  title: "Events | Innovation Hub | Hubverse",
-  description: "Discover upcoming innovation events and conferences.",
-};
-
 // Mock data - replace with API call
 const events = [
   {

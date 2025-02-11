@@ -1,7 +1,4 @@
-"use client";
-
 import { notFound } from "next/navigation";
-import { Metadata } from "next";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -99,16 +96,6 @@ const program = {
     },
   ],
 };
-
-export async function generateMetadata({
-  params,
-}: ProgramPageProps): Promise<Metadata> {
-  // In a real app, fetch program data here
-  return {
-    title: `${program.title} | Programs | Hubverse`,
-    description: program.description,
-  };
-}
 
 export default function ProgramPage({ params }: ProgramPageProps) {
   // In a real app, fetch program data here

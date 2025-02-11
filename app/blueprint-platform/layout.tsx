@@ -21,6 +21,22 @@ export const metadata: Metadata = {
   description: "Explore the Blueprint Platform and its features.",
 }
 
+export const implementationMetadata: Metadata = {
+  title: "Implementation | Blueprint Platform",
+  description: "Strategies and methodologies for effective project implementation",
+  openGraph: {
+    title: "Implementation | Blueprint Platform",
+    description: "Strategies and methodologies for effective project implementation",
+    type: "website",
+    siteName: "Hubverse",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Implementation | Blueprint Platform",
+    description: "Strategies and methodologies for effective project implementation",
+  },
+}
+
 export default function BlueprintLayout({
   children,
 }: {

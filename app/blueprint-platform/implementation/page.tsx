@@ -1,14 +1,11 @@
+"use client";
+
 import type { Metadata } from "next"
 import { BlueprintLayout } from "@/components/blueprint-layout"
 import { AccordionList } from "@/components/accordion-list"
 import { Button } from "@/components/ui/button"
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card"
 import { CheckCircle, ArrowRight } from "lucide-react"
-
-export const metadata: Metadata = {
-  title: "Implementation | Blueprint Platform",
-  description: "Learn how to implement the Blueprint Platform in your organization.",
-}
 
 const implementationSteps = [
   {

@@ -1,13 +1,10 @@
+"use client";
+
 import type { Metadata } from "next"
 import { BlueprintLayout } from "@/components/blueprint-layout"
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { ArrowRight, FileText, Video, Book, Presentation } from "lucide-react"
-
-export const metadata: Metadata = {
-  title: "Resources | Blueprint Platform",
-  description: "Access guides, tutorials, and documentation for the Blueprint Platform.",
-}
 
 const resources = [
   {

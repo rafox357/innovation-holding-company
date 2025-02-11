@@ -1,5 +1,10 @@
 'use client';
 
+import { getServerSession } from "next-auth/next"
+import { redirect } from "next/navigation"
+import { authOptions } from "@/auth.config"
+import DashboardClient from "./dashboard-client"
+
 import { Suspense } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
@@ -270,7 +275,13 @@ const ProjectsSection = () => {
   );
 };
 
-export default function DashboardPage() {
+export default async function DashboardPage() {
+  const session = await getServerSession(authOptions)
+
+  if (!session) {
+    return redirect("/auth/signin")
+  }
+
   return (
     <div className="container mx-auto px-4 py-8">
       <Breadcrumb items={[{ label: "Dashboard", href: "/dashboard" }]} />
@@ -328,6 +339,9 @@ export default function DashboardPage() {
           </TabsContent>
         </Tabs>
       </ErrorBoundary>
+      <p>Welcome, {session.user?.email}!</p>
+      <p>Your role: {session.user?.role}</p>
+      <DashboardClient session={session} />
     </div>
   );
 }

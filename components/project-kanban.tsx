@@ -1,4 +1,4 @@
-import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd"
+import { DragDropContext, Droppable, Draggable, DropResult } from "react-beautiful-dnd"
 import type { Project } from "@/types/project"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
@@ -8,7 +8,7 @@ import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 interface ProjectKanbanProps {
   projects: Project[]
   stages: string[]
-  onDragEnd: (result: any) => void
+  onDragEnd: (result: DropResult) => void
 }
 
 export function ProjectKanban({ projects, stages, onDragEnd }: ProjectKanbanProps) {
@@ -46,8 +46,8 @@ export function ProjectKanban({ projects, stages, onDragEnd }: ProjectKanbanProp
                                       project.priority === "High"
                                         ? "destructive"
                                         : project.priority === "Medium"
-                                          ? "default"
-                                          : "secondary"
+                                        ? "secondary"
+                                        : "default"
                                     }
                                   >
                                     {project.priority}
@@ -76,4 +76,3 @@ export function ProjectKanban({ projects, stages, onDragEnd }: ProjectKanbanProp
     </DragDropContext>
   )
 }
-
