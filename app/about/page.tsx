@@ -4,24 +4,8 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 
 export const metadata: Metadata = {
-  title: "About Hubverse",
-  description: "Learn about Hubverse, our mission, values, and team",
-}
-
-export const teamMetadata: Metadata = {
-  title: "Our Team | About Us",
-  description: "Meet the innovative minds behind our organization",
-  openGraph: {
-    title: "Our Team | About Us",
-    description: "Meet the innovative minds behind our organization",
-    type: "website",
-    siteName: "Hubverse",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Our Team | About Us",
-    description: "Meet the innovative minds behind our organization",
-  },
+  title: 'About Us | Innovative Holding Company',
+  description: 'Learn about our mission, vision, and commitment to innovation.',
 }
 
 const teamMembers = [

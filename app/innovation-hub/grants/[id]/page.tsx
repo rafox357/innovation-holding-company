@@ -1,7 +1,6 @@
 "use client";
 
 import { notFound } from "next/navigation";
-import { Metadata } from "next";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -25,25 +24,7 @@ interface GrantPageProps {
   };
 }
 
-export async function generateMetadata({
-  params,
-}: GrantPageProps): Promise<Metadata> {
-  const grant = await fetchGrantById(params.id);
-
-  if (!grant) {
-    return {
-      title: "Grant Not Found",
-      description: "The requested grant could not be found.",
-    };
-  }
-
-  return {
-    title: `${grant.title} | Innovation Grants`,
-    description: grant.description,
-  };
-}
-
-export default async function GrantPage({ params }: GrantPageProps) {
+export default async function GrantDetailClient({ params }: GrantPageProps) {
   const grant = await fetchGrantById(params.id);
 
   if (!grant) {

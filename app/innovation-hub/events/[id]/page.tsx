@@ -1,18 +1,11 @@
 "use client";
 
 import { notFound } from "next/navigation";
-import { Metadata } from "next";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Calendar, MapPin, Users, ExternalLink } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-
-interface EventPageProps {
-  params: {
-    id: string;
-  };
-}
 
 // Mock data - replace with API call
 const event = {
@@ -59,17 +52,13 @@ const event = {
   registrationUrl: "/register/event-1",
 };
 
-export async function generateMetadata({
-  params,
-}: EventPageProps): Promise<Metadata> {
-  // In a real app, fetch event data here
-  return {
-    title: `${event.title} | Innovation Hub | Hubverse`,
-    description: event.description,
+interface EventPageProps {
+  params: {
+    id: string;
   };
 }
 
-export default function EventPage({ params }: EventPageProps) {
+export default function EventDetailClient({ params }: EventPageProps) {
   // In a real app, fetch event data here
   if (params.id !== event.id) {
     notFound();

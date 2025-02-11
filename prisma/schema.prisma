@@ -8,8 +8,6 @@ generator client {
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
-  // For Cloudflare, we'll use their D1 database
-  directUrl = env("DIRECT_URL")
 }
 
 enum UserRole {
