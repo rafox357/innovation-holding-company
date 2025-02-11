@@ -1,79 +1,91 @@
 "use client"
 
-import { Card } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
 import Image from "next/image"
 import Link from "next/link"
+import { Card, CardContent } from "@/components/ui/card"
 
 const companies = [
   {
-    name: "Fundex",
-    logo: "/companies/fundex.svg",
-    description: "Revolutionizing financial technology solutions",
-    status: "Active",
-    link: "/companies/fundex",
+    name: "Elementalis",
+    description: "Sustainable Energy Solutions",
+    logo: "/logos/elementalis.svg",
+    href: "/business/subsidiaries/elementalis"
   },
   {
-    name: "Elementalis",
-    logo: "/companies/elementalis.svg",
-    description: "Sustainable energy and environmental solutions",
-    status: "Active",
-    link: "/companies/elementalis",
+    name: "Fundex",
+    description: "Financial Technology Innovation",
+    logo: "/logos/fundex.svg",
+    href: "/business/subsidiaries/fundex"
   },
   {
     name: "Thryvus",
-    logo: "/companies/thryvus.svg",
-    description: "Digital health and wellness platform",
-    status: "Active",
-    link: "/companies/thryvus",
+    description: "Digital Health Platform",
+    logo: "/logos/thryvus.svg",
+    href: "/business/subsidiaries/thryvus"
   },
   {
     name: "Anexo",
-    logo: "/companies/anexo.svg",
-    description: "Next-generation data analytics",
-    status: "Active",
-    link: "/companies/anexo",
+    description: "Supply Chain Optimization",
+    logo: "/logos/anexo.svg",
+    href: "/business/subsidiaries/anexo"
   },
   {
-    name: "Estore",
-    logo: "/companies/estore.svg",
-    description: "E-commerce solutions and logistics",
-    status: "Active",
-    link: "/companies/estore",
+    name: "E-Store District",
+    description: "E-commerce Solutions",
+    logo: "/logos/estore.svg",
+    href: "/business/subsidiaries/estore-district"
   },
   {
     name: "Exonet",
-    logo: "/companies/exonet.svg",
-    description: "Advanced networking and cybersecurity",
-    status: "Active",
-    link: "/companies/exonet",
+    description: "Cloud Infrastructure",
+    logo: "/logos/exonet.svg",
+    href: "/business/subsidiaries/exonet"
   },
+  {
+    name: "Cosmo-Compass",
+    description: "Navigation Solutions",
+    logo: "/logos/cosmo-compass.svg",
+    href: "/business/subsidiaries/cosmo-compass"
+  },
+  {
+    name: "Ponce",
+    description: "Digital Marketing",
+    logo: "/logos/ponce.svg",
+    href: "/business/subsidiaries/ponce"
+  }
 ]
 
 export function FeaturedCompanies() {
   return (
-    <section className="py-20">
-      <h2 className="text-3xl font-bold mb-12 text-center cosmic-title">Our Companies</h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {companies.map((company) => (
-          <Link key={company.name} href={company.link}>
-            <Card className="p-6 cosmic-card hover:scale-105 transition-transform duration-300">
-              <div className="flex items-center justify-between mb-4">
-                <div className="relative h-12 w-12">
-                  <Image
-                    src={company.logo}
-                    alt={company.name}
-                    fill
-                    className="object-contain"
-                  />
-                </div>
-                <Badge variant="secondary">{company.status}</Badge>
-              </div>
-              <h3 className="text-xl font-semibold mb-2">{company.name}</h3>
-              <p className="text-muted-foreground">{company.description}</p>
-            </Card>
-          </Link>
-        ))}
+    <section className="py-16">
+      <div className="container">
+        <h2 className="text-3xl font-bold text-center mb-12">Our Companies</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {companies.map((company) => (
+            <Link key={company.name} href={company.href}>
+              <Card className="h-full hover:shadow-lg transition-shadow">
+                <CardContent className="p-6">
+                  <div className="flex items-center space-x-4">
+                    <div className="relative w-12 h-12">
+                      <Image
+                        src={company.logo}
+                        alt={`${company.name} logo`}
+                        fill
+                        className="object-contain"
+                      />
+                    </div>
+                    <div>
+                      <h3 className="font-semibold">{company.name}</h3>
+                      <p className="text-sm text-muted-foreground">
+                        {company.description}
+                      </p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </Link>
+          ))}
+        </div>
       </div>
     </section>
   )

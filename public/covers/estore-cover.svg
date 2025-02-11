@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1920" height="1080" viewBox="0 0 1920 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="estore-bg" x1="0" y1="0" x2="1920" y2="1080" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#10B981"/>
+      <stop offset="100%" stop-color="#3B82F6"/>
+    </linearGradient>
+    <pattern id="squares" width="60" height="60" patternUnits="userSpaceOnUse">
+      <rect width="30" height="30" fill="white" opacity="0.1"/>
+    </pattern>
+  </defs>
+  <rect width="1920" height="1080" fill="url(#estore-bg)"/>
+  <rect width="1920" height="1080" fill="url(#squares)"/>
+  <g opacity="0.2">
+    <rect x="760" y="340" width="400" height="400" rx="20" stroke="white" stroke-width="2" fill="none"/>
+    <rect x="810" y="390" width="300" height="300" rx="15" stroke="white" stroke-width="2" fill="none"/>
+    <rect x="860" y="440" width="200" height="200" rx="10" stroke="white" stroke-width="2" fill="none"/>
+  </g>
+</svg>

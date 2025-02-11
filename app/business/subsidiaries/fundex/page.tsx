@@ -281,7 +281,11 @@ export default function FundexPage() {
               <CardTitle className="text-xl text-blue-400">Performance Growth</CardTitle>
             </CardHeader>
             <CardContent>
-              <KPIChart data={yearlyData} type="line" />
+              <KPIChart
+                title="Investment Performance"
+                data={yearlyData}
+                type="line"
+              />
             </CardContent>
           </Card>
 
@@ -290,7 +294,11 @@ export default function FundexPage() {
               <CardTitle className="text-xl text-blue-400">User Adoption</CardTitle>
             </CardHeader>
             <CardContent>
-              <KPIChart data={quarterlyData} type="bar" />
+              <KPIChart
+                title="Portfolio Distribution"
+                data={quarterlyData}
+                type="bar"
+              />
             </CardContent>
           </Card>
         </Suspense>

@@ -2,57 +2,40 @@
 
 import Link from "next/link"
 import { cn } from "@/lib/utils"
-
-interface MegaMenuItem {
-  title: string
-  href: string
-  description?: string
-}
-
-interface MegaMenuSection {
-  title: string
-  items: MegaMenuItem[]
-}
+import { NavigationItem } from "@/types"
 
 interface MegaMenuProps {
-  items: MegaMenuSection[]
+  items: NavigationItem[]
   onMouseLeave: () => void
 }
 
-export function MegaMenu({ items = [], onMouseLeave }: MegaMenuProps) {
+export function MegaMenu({ items, onMouseLeave }: MegaMenuProps) {
   if (!items?.length) return null
 
   return (
     <div
-      className="absolute left-0 right-0 top-14 z-50 bg-background border-b"
+      className="absolute left-0 top-full w-full bg-background border-b shadow-lg"
       onMouseLeave={onMouseLeave}
     >
       <div className="container py-6">
-        <div className="grid grid-cols-4 gap-6">
-          {items.map((section) => (
-            <div key={section.title}>
-              <h3 className="font-medium mb-3">{section.title}</h3>
-              <ul className="space-y-2">
-                {section.items?.map((item) => (
-                  <li key={item.href}>
-                    <Link
-                      href={item.href}
-                      className={cn(
-                        "block text-sm text-muted-foreground",
-                        "hover:text-primary transition-colors"
-                      )}
-                    >
-                      {item.title}
-                      {item.description && (
-                        <span className="block text-xs text-muted-foreground">
-                          {item.description}
-                        </span>
-                      )}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {items.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href || "#"}
+              className="group block space-y-2 p-4 hover:bg-muted/50 rounded-lg transition-colors"
+            >
+              <div>
+                <h3 className="font-semibold group-hover:text-primary transition-colors">
+                  {item.title}
+                </h3>
+                {item.description && (
+                  <p className="text-sm text-muted-foreground line-clamp-2">
+                    {item.description}
+                  </p>
+                )}
+              </div>
+            </Link>
           ))}
         </div>
       </div>

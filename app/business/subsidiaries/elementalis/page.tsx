@@ -151,9 +151,9 @@ export default function ElementalisPage() {
           </CardHeader>
           <CardContent>
             <KPIChart 
+              title="Monthly Revenue"
               data={performanceData} 
               type="line" 
-              title="Performance Over Time"
             />
           </CardContent>
         </Card>
@@ -163,7 +163,11 @@ export default function ElementalisPage() {
             <CardTitle>Breakthroughs per Quarter</CardTitle>
           </CardHeader>
           <CardContent>
-            <KPIChart data={researchData} type="bar" />
+            <KPIChart 
+              title="Monthly Revenue"
+              data={researchData} 
+              type="bar" 
+            />
           </CardContent>
         </Card>
       </div>
