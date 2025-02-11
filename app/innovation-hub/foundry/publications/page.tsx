@@ -1,11 +1,8 @@
-import { Metadata } from "next";
-export const metadata: Metadata = {
-  title: "Publications | The Foundry | Hubverse",
-  description: "Research and development publications and papers",
-};
+"use client";
 
+import { Metadata } from "next";
 import { useState } from "react";
-import { PublicationCard } from "@/components/innovation-hub/publication-card";
+import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
   Select,
@@ -14,8 +11,10 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Badge } from "@/components/ui/badge";
 import { Search } from "lucide-react";
+
+import { PublicationCard } from "@/components/innovation-hub/publication-card";
+import { Badge } from "@/components/ui/badge";
 
 // Mock data - replace with API call
 type PublicationType = "paper" | "article" | "report" | "thesis";
