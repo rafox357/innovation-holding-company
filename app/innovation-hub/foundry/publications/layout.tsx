@@ -4,3 +4,11 @@ export const metadata: Metadata = {
   title: "Publications | The Foundry | Hubverse",
   description: "Research and development publications and papers",
 };
+
+export default function PublicationsLayout({ 
+  children 
+}: { 
+  children: React.ReactNode 
+}) {
+  return <>{children}</>;
+}
