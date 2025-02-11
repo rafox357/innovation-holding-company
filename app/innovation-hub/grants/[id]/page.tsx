@@ -17,6 +17,7 @@ import {
   XCircle,
   ExternalLink,
 } from "lucide-react";
+import { fetchGrantById } from "@/lib/data-fetcher";
 
 interface GrantPageProps {
   params: {
@@ -24,263 +25,130 @@ interface GrantPageProps {
   };
 }
 
-// Mock data - replace with API call
-const grant = {
-  id: "grant-1",
-  title: "AI Innovation Research Grant",
-  description:
-    "Supporting groundbreaking research in artificial intelligence and machine learning.",
-  amount: 250000,
-  currency: "USD",
-  status: "open" as const,
-  type: "research" as const,
-  funder: {
-    name: "Tech Innovation Foundation",
-    description: "Leading foundation supporting technological advancement",
-    website: "https://example.com",
-    logo: "/logos/tif.png",
-  },
-  deadline: "2025-06-30",
-  startDate: "2025-07-01",
-  endDate: "2026-06-30",
-  eligibility: [
-    "PhD holders in Computer Science or related fields",
-    "Minimum 5 years research experience",
-    "Track record of AI publications",
-  ],
-  requirements: [
-    "Detailed research proposal",
-    "CV and publications list",
-    "Budget breakdown",
-    "Timeline and milestones",
-  ],
-  tags: ["AI", "Machine Learning", "Research"],
-  applicationProcess: [
-    {
-      step: 1,
-      title: "Initial Application",
-      description: "Submit research proposal and CV",
-      deadline: "2025-05-01",
-    },
-    {
-      step: 2,
-      title: "Review Process",
-      description: "Applications reviewed by expert panel",
-      deadline: "2025-06-01",
-    },
-    {
-      step: 3,
-      title: "Final Selection",
-      description: "Selected candidates notified",
-      deadline: "2025-06-30",
-    },
-  ],
-  faqs: [
-    {
-      question: "Can international researchers apply?",
-      answer: "Yes, this grant is open to researchers worldwide.",
-    },
-    {
-      question: "Is partial funding available?",
-      answer: "No, this grant is only available as a complete package.",
-    },
-  ],
-};
-
 export async function generateMetadata({
   params,
 }: GrantPageProps): Promise<Metadata> {
-  // In a real app, fetch grant data here
+  const grant = await fetchGrantById(params.id);
+
+  if (!grant) {
+    return {
+      title: "Grant Not Found",
+      description: "The requested grant could not be found.",
+    };
+  }
+
   return {
-    title: `${grant.title} | Grants | Hubverse`,
+    title: `${grant.title} | Innovation Grants`,
     description: grant.description,
   };
 }
 
-export default function GrantPage({ params }: GrantPageProps) {
-  // In a real app, fetch grant data here
-  if (params.id !== grant.id) {
+export default async function GrantPage({ params }: GrantPageProps) {
+  const grant = await fetchGrantById(params.id);
+
+  if (!grant) {
     notFound();
   }
 
-  const statusColors = {
-    open: "bg-green-100 text-green-800",
-    closed: "bg-gray-100 text-gray-800",
-    awarded: "bg-blue-100 text-blue-800",
-    in_review: "bg-yellow-100 text-yellow-800",
-  };
-
-  const formatCurrency = (amount: number, currency: string) => {
-    return new Intl.NumberFormat("en-US", {
-      style: "currency",
-      currency: currency,
-      minimumFractionDigits: 0,
-      maximumFractionDigits: 0,
-    }).format(amount);
-  };
-
   return (
     <div className="container mx-auto px-4 py-8">
-      <Link
-        href="/innovation-hub/grants"
-        className="text-sm text-muted-foreground hover:text-primary mb-4 inline-block"
-      >
-        ← Back to Grants
-      </Link>
-
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        <div className="lg:col-span-2">
-          <div className="flex items-start justify-between mb-6">
+      <div className="grid md:grid-cols-3 gap-8">
+        <div className="md:col-span-2 space-y-6">
+          <div className="flex justify-between items-start">
             <div>
-              <h1 className="text-4xl font-bold mb-2">{grant.title}</h1>
-              <span
-                className={`inline-block px-3 py-1 rounded-full text-sm font-medium capitalize ${
-                  statusColors[grant.status]
-                }`}
-              >
-                {grant.status.replace("_", " ")}
-              </span>
+              <h1 className="text-3xl font-bold mb-2">{grant.title}</h1>
+              <div className="flex items-center space-x-2">
+                <Badge variant={grant.status === "open" ? "default" : "secondary"}>
+                  {grant.status}
+                </Badge>
+                <Badge variant="outline">{grant.type}</Badge>
+              </div>
             </div>
             <div className="text-right">
-              <div className="text-2xl font-bold">
-                {formatCurrency(grant.amount, grant.currency)}
+              <div className="text-2xl font-bold text-primary">
+                {new Intl.NumberFormat('en-US', { 
+                  style: 'currency', 
+                  currency: grant.currency 
+                }).format(grant.amount)}
               </div>
-              <div className="text-sm text-muted-foreground">Grant Amount</div>
             </div>
           </div>
 
-          <div className="prose dark:prose-invert max-w-none mb-8">
-            <p>{grant.description}</p>
-          </div>
+          <Card className="p-6">
+            <p className="text-muted-foreground">{grant.description}</p>
+          </Card>
 
-          <Tabs defaultValue="overview" className="mb-8">
-            <TabsList>
-              <TabsTrigger value="overview">Overview</TabsTrigger>
-              <TabsTrigger value="process">Process</TabsTrigger>
-              <TabsTrigger value="faq">FAQ</TabsTrigger>
+          <Tabs defaultValue="details" className="w-full">
+            <TabsList className="grid w-full grid-cols-3">
+              <TabsTrigger value="details">Details</TabsTrigger>
+              <TabsTrigger value="eligibility">Eligibility</TabsTrigger>
+              <TabsTrigger value="funder">Funder</TabsTrigger>
             </TabsList>
-
-            <TabsContent value="overview" className="space-y-6">
-              <Card className="p-6">
-                <h3 className="text-lg font-semibold mb-4">Eligibility</h3>
-                <ul className="space-y-2">
-                  {grant.eligibility.map((item, index) => (
-                    <li key={index} className="flex items-start">
-                      <CheckCircle className="w-5 h-5 text-green-500 mr-2 flex-shrink-0 mt-0.5" />
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </Card>
-
-              <Card className="p-6">
-                <h3 className="text-lg font-semibold mb-4">Requirements</h3>
-                <ul className="space-y-2">
-                  {grant.requirements.map((item, index) => (
-                    <li key={index} className="flex items-start">
-                      <FileText className="w-5 h-5 text-primary mr-2 flex-shrink-0 mt-0.5" />
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </Card>
-            </TabsContent>
-
-            <TabsContent value="process" className="space-y-6">
-              <div className="relative">
-                <div className="absolute left-4 top-0 bottom-0 w-0.5 bg-border" />
-                <div className="space-y-6">
-                  {grant.applicationProcess.map((step) => (
-                    <div key={step.step} className="relative pl-10">
-                      <div className="absolute left-0 w-8 h-8 rounded-full bg-primary flex items-center justify-center">
-                        <span className="text-sm font-medium text-primary-foreground">
-                          {step.step}
-                        </span>
-                      </div>
-                      <Card className="p-4">
-                        <h4 className="font-semibold">{step.title}</h4>
-                        <p className="text-sm text-muted-foreground mb-2">
-                          {step.description}
-                        </p>
-                        <div className="text-sm">
-                          <Clock className="w-4 h-4 inline mr-1" />
-                          Deadline:{" "}
-                          {new Date(step.deadline).toLocaleDateString()}
-                        </div>
-                      </Card>
-                    </div>
-                  ))}
+            <TabsContent value="details" className="space-y-4">
+              <div className="grid md:grid-cols-2 gap-4">
+                <div className="flex items-center space-x-2">
+                  <Calendar className="h-5 w-5 text-muted-foreground" />
+                  <span>Start Date: {grant.startDate || 'TBA'}</span>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <Clock className="h-5 w-5 text-muted-foreground" />
+                  <span>Deadline: {grant.deadline || 'Open'}</span>
                 </div>
               </div>
             </TabsContent>
-
-            <TabsContent value="faq" className="space-y-4">
-              {grant.faqs.map((faq, index) => (
-                <Card key={index} className="p-4">
-                  <h4 className="font-semibold mb-2">{faq.question}</h4>
-                  <p className="text-sm text-muted-foreground">
-                    {faq.answer}
-                  </p>
-                </Card>
-              ))}
+            <TabsContent value="eligibility" className="space-y-4">
+              <h3 className="text-xl font-semibold">Eligibility Criteria</h3>
+              <ul className="list-disc pl-5 space-y-2">
+                {grant.eligibility.map((criterion, index) => (
+                  <li key={index}>{criterion}</li>
+                ))}
+              </ul>
+            </TabsContent>
+            <TabsContent value="funder" className="space-y-4">
+              <div className="flex items-center space-x-4">
+                <Building className="h-8 w-8 text-muted-foreground" />
+                <div>
+                  <h3 className="text-xl font-semibold">{grant.funder.name}</h3>
+                  {grant.funder.website && (
+                    <Link 
+                      href={grant.funder.website} 
+                      target="_blank" 
+                      className="text-primary hover:underline flex items-center"
+                    >
+                      Visit Website <ExternalLink className="ml-2 h-4 w-4" />
+                    </Link>
+                  )}
+                </div>
+              </div>
             </TabsContent>
           </Tabs>
         </div>
 
         <div className="space-y-6">
           <Card className="p-6">
-            <h2 className="text-xl font-semibold mb-4">Important Dates</h2>
-            <div className="space-y-4">
-              <div className="flex items-center text-sm">
-                <Clock className="w-4 h-4 mr-2" />
-                <div>
-                  <div className="font-medium">Application Deadline</div>
-                  <div className="text-muted-foreground">
-                    {new Date(grant.deadline).toLocaleDateString()}
-                  </div>
-                </div>
-              </div>
-              <div className="flex items-center text-sm">
-                <Calendar className="w-4 h-4 mr-2" />
-                <div>
-                  <div className="font-medium">Project Duration</div>
-                  <div className="text-muted-foreground">
-                    {new Date(grant.startDate).toLocaleDateString()} -{" "}
-                    {new Date(grant.endDate).toLocaleDateString()}
-                  </div>
-                </div>
-              </div>
+            <div className="flex justify-between items-center mb-4">
+              <h3 className="font-semibold">Application Status</h3>
+              {grant.status === "open" ? (
+                <CheckCircle className="h-6 w-6 text-green-500" />
+              ) : (
+                <XCircle className="h-6 w-6 text-red-500" />
+              )}
             </div>
+            <Button className="w-full" disabled={grant.status !== "open"}>
+              {grant.status === "open" ? "Apply Now" : "Applications Closed"}
+            </Button>
           </Card>
 
           <Card className="p-6">
-            <h2 className="text-xl font-semibold mb-4">About the Funder</h2>
-            <div className="space-y-4">
-              <div className="flex items-center text-sm">
-                <Building className="w-4 h-4 mr-2" />
-                <span className="font-medium">{grant.funder.name}</span>
-              </div>
-              <p className="text-sm text-muted-foreground">
-                {grant.funder.description}
-              </p>
-              {grant.funder.website && (
-                <Button variant="outline" className="w-full" asChild>
-                  <Link
-                    href={grant.funder.website}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Visit Website
-                    <ExternalLink className="w-4 h-4 ml-2" />
-                  </Link>
-                </Button>
-              )}
+            <h3 className="font-semibold mb-4">Tags</h3>
+            <div className="flex flex-wrap gap-2">
+              {grant.tags.map((tag) => (
+                <Badge key={tag} variant="secondary">
+                  {tag}
+                </Badge>
+              ))}
             </div>
           </Card>
-
-          <Button className="w-full" size="lg">
-            Apply Now
-          </Button>
         </div>
       </div>
     </div>

@@ -1,5 +1,6 @@
 "use client";
 
+import { Project, Publication } from "@/lib/data-fetcher";
 import { FoundryOverview } from "@/components/innovation-hub/foundry-overview";
 import { ProjectList } from "@/components/innovation-hub/project-list";
 import { TeamList } from "@/components/innovation-hub/team-list";
@@ -8,10 +9,18 @@ import { ResearchMetrics } from "@/components/innovation-hub/research-metrics";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { CalendarDays, FileText, Flask, Users } from "lucide-react";
+import { CalendarDays, FileText, Users, FlaskConical } from "lucide-react";
 import { QuickActions } from "@/components/innovation-hub/quick-actions";
 
-export function FoundryContent() {
+interface FoundryContentProps {
+  projects: Project[];  
+  publications: Publication[];
+}
+
+export function FoundryContent({ projects, publications }: FoundryContentProps) {
+  const activeProjects = projects.filter(p => p.status === 'active');
+  const completedProjects = projects.filter(p => p.status === 'completed');
+
   return (
     <div className="space-y-8">
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
@@ -20,12 +29,12 @@ export function FoundryContent() {
             <CardTitle className="text-sm font-medium">
               Active Projects
             </CardTitle>
-            <Flask className="h-4 w-4 text-muted-foreground" />
+            <FlaskConical className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">18</div>
+            <div className="text-2xl font-bold">{activeProjects.length}</div>
             <p className="text-xs text-muted-foreground">
-              +2 since last month
+              {completedProjects.length} completed
             </p>
           </CardContent>
         </Card>
@@ -37,9 +46,11 @@ export function FoundryContent() {
             <Users className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">45</div>
+            <div className="text-2xl font-bold">
+              {projects.flatMap(p => p.team).length}
+            </div>
             <p className="text-xs text-muted-foreground">
-              +5 researchers this quarter
+              Across all projects
             </p>
           </CardContent>
         </Card>
@@ -51,9 +62,9 @@ export function FoundryContent() {
             <FileText className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">24</div>
+            <div className="text-2xl font-bold">{publications.length}</div>
             <p className="text-xs text-muted-foreground">
-              12 pending review
+              Latest research outputs
             </p>
           </CardContent>
         </Card>
@@ -85,13 +96,13 @@ export function FoundryContent() {
           <FoundryOverview />
         </TabsContent>
         <TabsContent value="projects" className="space-y-4">
-          <ProjectList />
+          <ProjectList projects={projects} />
         </TabsContent>
         <TabsContent value="team" className="space-y-4">
           <TeamList />
         </TabsContent>
         <TabsContent value="publications" className="space-y-4">
-          <PublicationList />
+          <PublicationList publications={publications} />
         </TabsContent>
         <TabsContent value="metrics" className="space-y-4">
           <ResearchMetrics />

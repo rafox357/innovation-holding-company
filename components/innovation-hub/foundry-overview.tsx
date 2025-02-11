@@ -6,7 +6,6 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
   ChartContainer,
-  ChartTooltip,
   ChartTooltipContent,
   ChartLegend,
   ChartLegendContent,
@@ -157,9 +156,7 @@ export function FoundryOverview() {
                     innerRadius={60}
                     outerRadius={80}
                   />
-                  <ChartTooltip>
-                    <ChartTooltipContent />
-                  </ChartTooltip>
+                  <ChartTooltipContent />
                   <ChartLegend>
                     <ChartLegendContent />
                   </ChartLegend>
@@ -185,9 +182,7 @@ export function FoundryOverview() {
                 <Line type="monotone" dataKey="Q2" />
                 <Line type="monotone" dataKey="Q3" />
                 <Line type="monotone" dataKey="Q4" />
-                <ChartTooltip>
-                  <ChartTooltipContent />
-                </ChartTooltip>
+                <ChartTooltipContent />
                 <ChartLegend>
                   <ChartLegendContent />
                 </ChartLegend>
