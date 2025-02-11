@@ -154,7 +154,11 @@ export default function ProjectsDashboard() {
               <CardTitle>Project Progress Trend</CardTitle>
             </CardHeader>
             <CardContent>
-              <KPIChart data={projectProgressData} type="line" />
+              <KPIChart
+                title="Project Progress Trend"
+                data={projectProgressData}
+                type="line"
+              />
             </CardContent>
           </Card>
 
@@ -163,7 +167,11 @@ export default function ProjectsDashboard() {
               <CardTitle>Completion Rate by Quarter</CardTitle>
             </CardHeader>
             <CardContent>
-              <KPIChart data={completionRateData} type="bar" />
+              <KPIChart
+                title="Completion Rate by Quarter"
+                data={completionRateData}
+                type="bar"
+              />
             </CardContent>
           </Card>
         </div>

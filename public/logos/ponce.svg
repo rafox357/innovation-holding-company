@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="60" height="60" rx="12" fill="url(#ponce-gradient)" />
+  <path d="M20 20h20v10h-20z" fill="white" opacity="0.9"/>
+  <path d="M25 35h15M25 40h10" stroke="white" stroke-width="2" stroke-linecap="round"/>
+  <circle cx="45" cy="25" r="5" fill="white" opacity="0.6"/>
+  <defs>
+    <linearGradient id="ponce-gradient" x1="0" y1="0" x2="60" y2="60" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#F43F5E"/>
+      <stop offset="100%" stop-color="#8B5CF6"/>
+    </linearGradient>
+  </defs>
+</svg>

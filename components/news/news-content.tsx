@@ -22,16 +22,6 @@ export function NewsContent() {
     query: searchQuery,
   })
 
-  const handleSearch = (query: string) => {
-    setSearchQuery(query)
-    setSearch(query)
-  }
-
-  const handleCategoryChange = (newCategory: string) => {
-    setCategory(newCategory)
-    updateCategory(newCategory)
-  }
-
   if (error) {
     return (
       <div className="flex items-center justify-center p-8">
@@ -42,21 +32,24 @@ export function NewsContent() {
 
   return (
     <div className="space-y-8">
-      <NewsFilter
-        searchQuery={searchQuery}
-        category={category}
-        onSearch={handleSearch}
-        onCategoryChange={handleCategoryChange}
-      />
-      
       {isLoading ? (
-        <LoadingState text="Loading news..." />
+        <LoadingState />
+      ) : error ? (
+        <div className="text-center text-red-500">{error}</div>
       ) : (
-        <NewsList
-          news={news}
-          pagination={pagination}
-          onPageChange={setPage}
-        />
+        <>
+          <NewsFilter
+            searchQuery={searchQuery}
+            category={category}
+            onSearch={setSearch}
+            onCategoryChange={updateCategory}
+          />
+          <NewsList
+            news={news}
+            pagination={pagination}
+            onPageChange={setPage}
+          />
+        </>
       )}
     </div>
   )

@@ -3,108 +3,94 @@
 import * as React from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-
-import { cn } from "@/lib/utils"
+import { Menu } from "lucide-react"
+import { MegaMenu } from "./navigation/mega-menu"
+import { navigationTabs } from "@/config/navigation"
 import { Button } from "@/components/ui/button"
-import {
-  NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  NavigationMenuTrigger,
-  navigationMenuTriggerStyle,
-} from "@/components/ui/navigation-menu"
-import { UserNav } from "@/components/user-nav"
-import { navigationConfig } from "@/config/navigation"
-import { ModeToggle } from "@/components/mode-toggle"
-import { Logo } from "@/components/logo"
+import { Search } from "lucide-react"
+import { Input } from "@/components/ui/input"
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
+import { ThemeToggle } from "@/components/theme-toggle"
 
-export function Navbar() {
+function MobileNav() {
   const pathname = usePathname()
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container flex h-14 items-center">
-        <Logo />
-        <NavigationMenu className="mx-6">
-          <NavigationMenuList>
-            {navigationConfig.mainNav.map((item) => (
-              <NavigationMenuItem key={item.href}>
-                {navigationConfig.megaMenu[item.href] ? (
-                  <>
-                    <NavigationMenuTrigger
-                      className={cn(
-                        "h-9",
-                        pathname?.startsWith(item.href)
-                          ? "bg-accent text-accent-foreground"
-                          : ""
-                      )}
-                    >
-                      {item.title}
-                    </NavigationMenuTrigger>
-                    <NavigationMenuContent>
-                      <ul className="grid w-[800px] gap-3 p-4 md:grid-cols-3">
-                        {navigationConfig.megaMenu[item.href].map((section) => (
-                          <li key={section.title} className="row-span-3">
-                            <h3 className="mb-2 text-sm font-medium leading-none">
-                              {section.title}
-                            </h3>
-                            <ul className="space-y-2">
-                              {section.items.map((subItem) => (
-                                <li key={subItem.href}>
-                                  <NavigationMenuLink asChild>
-                                    <Link
-                                      href={subItem.href}
-                                      className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
-                                    >
-                                      <div className="text-sm font-medium leading-none">
-                                        {subItem.title}
-                                      </div>
-                                      <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-                                        {subItem.description}
-                                      </p>
-                                    </Link>
-                                  </NavigationMenuLink>
-                                </li>
-                              ))}
-                            </ul>
-                          </li>
-                        ))}
-                      </ul>
-                    </NavigationMenuContent>
-                  </>
-                ) : (
-                  <Link href={item.href} legacyBehavior passHref>
-                    <NavigationMenuLink
-                      className={cn(
-                        navigationMenuTriggerStyle(),
-                        "h-9",
-                        pathname === item.href
-                          ? "bg-accent text-accent-foreground"
-                          : ""
-                      )}
-                    >
-                      {item.title}
-                    </NavigationMenuLink>
+    <div className="flex flex-col space-y-4 p-4">
+      {navigationTabs.map((tab) => (
+        <div key={tab.title} className="space-y-3">
+          <h4 className="font-medium">{tab.title}</h4>
+          <div className="space-y-2">
+            {tab.columns.map((column) => (
+              <div key={column.title} className="pl-2 space-y-2">
+                <h5 className="text-sm text-muted-foreground">{column.title}</h5>
+                {column.items.map((item) => (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    className={`block text-sm ${
+                      pathname === item.href
+                        ? "text-primary"
+                        : "text-foreground/70 hover:text-primary"
+                    }`}
+                  >
+                    {item.title}
                   </Link>
-                )}
-              </NavigationMenuItem>
+                ))}
+              </div>
             ))}
-          </NavigationMenuList>
-        </NavigationMenu>
-        <div className="ml-auto flex items-center space-x-4">
-          <Button variant="ghost" size="sm" asChild>
-            <Link href="/contact">Contact</Link>
-          </Button>
-          <Button variant="ghost" size="sm" asChild>
-            <Link href="/auth/signin">Sign In</Link>
-          </Button>
-          <Button size="sm" asChild>
-            <Link href="/auth/signup">Sign Up</Link>
-          </Button>
-          <ModeToggle />
-          <UserNav />
+          </div>
+        </div>
+      ))}
+    </div>
+  )
+}
+
+export function Navbar() {
+  return (
+    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+      <div className="container flex h-16 items-center px-4">
+        <Sheet>
+          <SheetTrigger asChild>
+            <Button variant="ghost" className="mr-6 px-0 text-base hover:bg-transparent focus-visible:bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0 md:hidden">
+              <Menu className="h-6 w-6" />
+              <span className="sr-only">Toggle menu</span>
+            </Button>
+          </SheetTrigger>
+          <SheetContent side="left" className="pr-0">
+            <MobileNav />
+          </SheetContent>
+        </Sheet>
+
+        <Link href="/" className="mr-6 flex items-center space-x-2">
+          <span className="hidden font-bold sm:inline-block">Hubverse</span>
+        </Link>
+
+        <div className="flex flex-1 items-center justify-between space-x-4">
+          <nav className="hidden md:flex items-center space-x-2">
+            <MegaMenu tabs={navigationTabs} />
+          </nav>
+
+          <div className="flex items-center space-x-4">
+            <div className="w-full max-w-sm items-center space-x-2 hidden lg:flex">
+              <Search className="h-4 w-4 text-muted-foreground absolute ml-2" />
+              <Input
+                type="search"
+                placeholder="Search..."
+                className="pl-8"
+              />
+            </div>
+
+            <div className="flex items-center space-x-4">
+              <ThemeToggle />
+              <Button variant="ghost" asChild>
+                <Link href="/auth/signin">Sign In</Link>
+              </Button>
+              <Button asChild>
+                <Link href="/auth/signup">Sign Up</Link>
+              </Button>
+            </div>
+          </div>
         </div>
       </div>
     </header>

@@ -1,23 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <circle cx="256" cy="256" r="240" fill="none" stroke="currentColor" stroke-width="2" opacity="0.1"/>
-  <g>
-    <!-- Left circle -->
-    <path d="M246 256 A110 110 0 1 1 246 256 A110 110 0 1 1 246 256" 
-          fill="none" 
-          stroke="currentColor" 
-          stroke-width="40"
-          stroke-dasharray="40,23"
-          transform="rotate(-30 246 256)"
-          class="text-gray-400"/>
-    
-    <!-- Right circle -->
-    <path d="M266 256 A110 110 0 1 1 266 256 A110 110 0 1 1 266 256" 
-          fill="none" 
-          stroke="currentColor" 
-          stroke-width="40"
-          stroke-dasharray="40,23"
-          transform="rotate(30 266 256)"
-          class="text-blue-400"/>
-  </g>
+<svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="60" height="60" rx="12" fill="url(#gradient)" />
+  <path d="M20 15H40V25L30 35L20 25V15Z" fill="white" />
+  <path d="M25 30L30 35L35 30V45H25V30Z" fill="white" />
+  <defs>
+    <linearGradient id="gradient" x1="0" y1="0" x2="60" y2="60" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#3B82F6" />
+      <stop offset="100%" stop-color="#8B5CF6" />
+    </linearGradient>
+  </defs>
 </svg>

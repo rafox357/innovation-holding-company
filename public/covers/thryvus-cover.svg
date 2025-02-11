@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1920" height="1080" viewBox="0 0 1920 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="thryvus-bg" x1="0" y1="0" x2="1920" y2="1080" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#F59E0B"/>
+      <stop offset="100%" stop-color="#EF4444"/>
+    </linearGradient>
+    <pattern id="hexagons" width="100" height="100" patternUnits="userSpaceOnUse">
+      <path d="M50 0 L87.5 25 L87.5 75 L50 100 L12.5 75 L12.5 25 Z" fill="none" stroke="white" stroke-width="1" opacity="0.1"/>
+    </pattern>
+  </defs>
+  <rect width="1920" height="1080" fill="url(#thryvus-bg)"/>
+  <rect width="1920" height="1080" fill="url(#hexagons)"/>
+  <g opacity="0.2">
+    <path d="M960 200 L1160 540 L960 880 L760 540 Z" stroke="white" stroke-width="2" fill="none"/>
+    <path d="M960 300 L1100 540 L960 780 L820 540 Z" stroke="white" stroke-width="2" fill="none"/>
+    <path d="M960 400 L1040 540 L960 680 L880 540 Z" stroke="white" stroke-width="2" fill="none"/>
+  </g>
+</svg>

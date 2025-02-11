@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="60" height="60" rx="12" fill="url(#fundex-gradient)" />
+  <path d="M20 40V20L30 15L40 20V40L30 45L20 40Z" fill="white" fill-opacity="0.9"/>
+  <path d="M30 25V35M25 30H35" stroke="#6366F1" stroke-width="3" stroke-linecap="round"/>
+  <defs>
+    <linearGradient id="fundex-gradient" x1="0" y1="0" x2="60" y2="60" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#6366F1"/>
+      <stop offset="100%" stop-color="#EC4899"/>
+    </linearGradient>
+  </defs>
+</svg>

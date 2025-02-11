@@ -36,7 +36,7 @@ export const mainRoutes: RouteCategory[] = [
         description: "Explore our innovation programs and initiatives",
         children: [
           { name: "Startup Incubator", href: "/innovation-hub/programs/incubator" },
-          { name: "Research Lab", href: "/innovation-hub/programs/research-lab" },
+          { name: "The Foundry", href: "/innovation-hub/programs/foundry" },
           { name: "Tech Accelerator", href: "/innovation-hub/programs/accelerator" },
           { name: "Innovation Workshops", href: "/innovation-hub/programs/workshops" },
         ]

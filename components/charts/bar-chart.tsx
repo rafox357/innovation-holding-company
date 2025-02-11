@@ -40,12 +40,13 @@ export function BarChart({ data }: BarChartProps) {
           modifiers: [["darker", 1.6]],
         }}
         animate={true}
-        motionStiffness={90}
-        motionDamping={15}
+        motionConfig="gentle"
         theme={{
           background: "transparent",
-          textColor: "#94a3b8",
-          fontSize: 11,
+          text: {
+            fill: "#94a3b8",
+            fontSize: 11,
+          },
           axis: {
             domain: {
               line: {

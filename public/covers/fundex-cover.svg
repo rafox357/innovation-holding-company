@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1920" height="1080" viewBox="0 0 1920 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="fundex-bg" x1="0" y1="0" x2="1920" y2="1080" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#6366F1"/>
+      <stop offset="100%" stop-color="#EC4899"/>
+    </linearGradient>
+    <pattern id="dots" width="30" height="30" patternUnits="userSpaceOnUse">
+      <circle cx="15" cy="15" r="1" fill="white" opacity="0.2"/>
+    </pattern>
+  </defs>
+  <rect width="1920" height="1080" fill="url(#fundex-bg)"/>
+  <rect width="1920" height="1080" fill="url(#dots)"/>
+  <g opacity="0.1">
+    <path d="M0 400 Q 960 600 1920 400" stroke="white" stroke-width="4" fill="none"/>
+    <path d="M0 500 Q 960 700 1920 500" stroke="white" stroke-width="4" fill="none"/>
+    <path d="M0 600 Q 960 800 1920 600" stroke="white" stroke-width="4" fill="none"/>
+  </g>
+</svg>

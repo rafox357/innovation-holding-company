@@ -10,6 +10,8 @@ import { useSearchParams } from "next/navigation"
 import { NewsPagination } from "./news-pagination"
 import { useEffect, useState } from "react"
 import { Article } from "@/types/news"
+import { Badge } from "@/components/ui/badge"
+import { Button } from "@/components/ui/button"
 
 interface NewsResponse {
   articles: Article[]
@@ -19,6 +21,29 @@ interface NewsResponse {
     currentPage: number
     limit: number
   }
+}
+
+interface NewsArticle {
+  id: string
+  title: string
+  description: string
+  content: string
+  date: string
+  category: string
+  author: string
+  image: string
+  url: string
+}
+
+interface NewsListProps {
+  news: NewsArticle[]
+  pagination?: {
+    total: number
+    totalPages: number
+    currentPage: number
+    limit: number
+  }
+  onPageChange: (page: number) => void
 }
 
 const NewsCardSkeleton = () => (
@@ -37,10 +62,8 @@ const NewsCardSkeleton = () => (
   </Card>
 );
 
-export function NewsList() {
+export function NewsList({ news, pagination, onPageChange }: NewsListProps) {
   const searchParams = useSearchParams()
-  const [news, setNews] = useState<Article[]>([])
-  const [pagination, setPagination] = useState<NewsResponse['pagination'] | null>(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
 
@@ -61,8 +84,6 @@ export function NewsList() {
         if (!response.ok) throw new Error("Failed to fetch news")
         
         const data: NewsResponse = await response.json()
-        setNews(data.articles)
-        setPagination(data.pagination)
         setError(null)
       } catch (err) {
         setError(err instanceof Error ? err.message : "An error occurred")
@@ -80,66 +101,76 @@ export function NewsList() {
 
   if (error) {
     return (
-      <Card>
-        <CardHeader>
-          <CardTitle>Error Loading News</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <p className="text-sm text-muted-foreground">{error}</p>
-        </CardContent>
-      </Card>
+      <div className="text-center text-destructive">
+        <p>Error loading news: {error}</p>
+      </div>
     )
   }
 
   if (!news?.length) {
     return (
-      <Card>
-        <CardHeader>
-          <CardTitle>No News Found</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <p className="text-sm text-muted-foreground">
-            No news articles match your search criteria. Try adjusting your filters or search query.
-          </p>
-        </CardContent>
-      </Card>
+      <div className="text-center text-muted-foreground">
+        <p>No news articles found</p>
+      </div>
     )
   }
 
   return (
-    <div className="space-y-6">
-      {news.map((article) => (
-        <Card key={article.id} className="hover:border-primary/50 transition-colors">
-          <Link href={`/news/article/${article.id}`}>
+    <div className="space-y-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {news.map((article) => (
+          <Card key={article.id} className="flex flex-col h-full hover:shadow-lg transition-shadow">
+            {article.image && (
+              <div className="relative h-48 w-full overflow-hidden rounded-t-lg">
+                <img
+                  src={article.image}
+                  alt={article.title}
+                  className="object-cover w-full h-full"
+                />
+                <div className="absolute top-2 right-2">
+                  <Badge variant="secondary">{article.category}</Badge>
+                </div>
+              </div>
+            )}
             <CardHeader>
-              <CardTitle className="text-xl hover:text-primary transition-colors">
-                {article.title}
+              <CardTitle className="line-clamp-2 hover:text-primary">
+                <Link href={article.url} target="_blank" rel="noopener noreferrer">
+                  {article.title}
+                </Link>
               </CardTitle>
-              <CardDescription>
-                {format(new Date(article.date), "MMMM dd, yyyy")} • {article.category}
+              <CardDescription className="flex items-center gap-2 text-sm">
+                <Clock className="h-4 w-4" />
+                {format(new Date(article.date), "MMM d, yyyy")}
+                <span className="text-muted-foreground">
+                  • {readingTime(article.content || article.description).text}
+                </span>
               </CardDescription>
             </CardHeader>
-            <CardContent>
-              <p className="text-muted-foreground line-clamp-3 mb-4">
+            <CardContent className="flex-grow">
+              <p className="text-muted-foreground line-clamp-3">
                 {article.description}
               </p>
-              <div className="flex justify-between items-center text-sm text-muted-foreground">
-                <div className="flex items-center">
-                  <Clock className="h-4 w-4 mr-1" />
-                  {readingTime(article.content).text}
-                </div>
-                <span>{typeof article.author === 'string' ? article.author : article.author.name}</span>
+            </CardContent>
+            <CardContent className="pt-0">
+              <div className="flex items-center justify-between">
+                <span className="text-sm text-muted-foreground">
+                  By {article.author}
+                </span>
+                <Button variant="ghost" size="sm" asChild>
+                  <Link href={article.url} target="_blank" rel="noopener noreferrer">
+                    Read More
+                  </Link>
+                </Button>
               </div>
             </CardContent>
-          </Link>
-        </Card>
-      ))}
-
-      {pagination && pagination.totalPages > 1 && (
+          </Card>
+        ))}
+      </div>
+      {pagination && (
         <NewsPagination
-          currentPage={currentPage}
+          currentPage={pagination.currentPage}
           totalPages={pagination.totalPages}
-          onPageChange={() => {}} // Handled by URL params
+          onPageChange={onPageChange}
         />
       )}
     </div>

@@ -1,429 +1,102 @@
-export const navigationConfig = {
-  mainNav: [
-    {
-      title: "Home",
-      href: "/",
-      description: "Welcome to Hubverse",
-    },
-    {
-      title: "About",
-      href: "/about",
-      description: "Learn about our company",
-    },
-    {
-      title: "Dashboard",
-      href: "/dashboard",
-      description: "Overview and analytics",
-    },
-    {
-      title: "Business",
-      href: "/business",
-      description: "Our subsidiaries and operations",
-    },
-    {
-      title: "Blueprint Platform",
-      href: "/blueprint-platform",
-      description: "Our innovative platform solution",
-    },
-    {
-      title: "Innovation Hub",
-      href: "/innovation-hub",
-      description: "Innovation programs and resources",
-    },
-    {
-      title: "The Observatory",
-      href: "/observatory",
-      description: "Experiment, build and innovate",
-    },
-    {
-      title: "News",
-      href: "/news",
-      description: "Latest updates and insights",
-    },
-    {
-      title: "Resources",
-      href: "/resources",
-      description: "Knowledge base and support",
-    },
-  ],
-  megaMenu: {
-    "/": [
+import type { NavTab } from "@/types/navigation";
+
+export const navigationTabs: NavTab[] = [
+  {
+    title: "Company",
+    columns: [
       {
-        title: "Featured",
+        title: "About Us",
         items: [
           {
-            title: "Innovation Hub",
-            href: "/innovation-hub",
-            description: "Our innovation ecosystem",
-          },
-          {
-            title: "Services",
-            href: "/services",
-            description: "What we offer",
-          },
-          {
-            title: "Latest News",
-            href: "/news/latest",
-            description: "Recent updates",
-          },
-          {
-            title: "Featured Companies",
-            href: "/business/subsidiaries",
-            description: "Our portfolio",
-          },
-        ],
-      },
-    ],
-    "/observatory": [
-      {
-        title: "Overview",
-        items: [
-          {
-            title: "Project Analytics",
-            href: "/observatory/analytics",
-            description: "Project metrics and insights",
-          },
-          {
-            title: "Company Roadmaps",
-            href: "/observatory/roadmaps",
-            description: "Strategic direction and goals",
-          },
-          {
-            title: "Project Overview",
-            href: "/observatory/projects",
-            description: "All current projects",
-          },
-          {
-            title: "Resource Management",
-            href: "/observatory/resources",
-            description: "Track and manage resources",
-          },
-        ],
-      },
-      {
-        title: "The Foundry",
-        href: "/observatory/foundry",
-        description: "Explore our innovation engine and project pipeline",
-      },
-      {
-        title: "Resources",
-        items: [
-          {
-            title: "AI & Machine Learning",
-            href: "/observatory/foundry/ai-platform",
-            description: "AI and ML development tools",
-          },
-          {
-            title: "Cloud Infrastructure",
-            href: "/observatory/foundry/cloud",
-            description: "Scalable cloud services",
-          },
-          {
-            title: "Data Analytics",
-            href: "/observatory/foundry/analytics",
-            description: "Data visualization and BI",
-          },
-          {
-            title: "Development Tools",
-            href: "/observatory/foundry/tools",
-            description: "Software development resources",
-          },
-        ],
-      },
-      {
-        title: "Projects",
-        items: [
-          {
-            title: "Smart Home Energy",
-            href: "/observatory/projects/smart-home",
-            description: "Energy management system",
-          },
-          {
-            title: "AI Learning Platform",
-            href: "/observatory/projects/ai-learning",
-            description: "Personalized learning paths",
-          },
-          {
-            title: "DeFi Platform",
-            href: "/observatory/projects/defi",
-            description: "Decentralized finance",
-          },
-          {
-            title: "Cloud Computing",
-            href: "/observatory/projects/cloud",
-            description: "Next-gen cloud platform",
-          },
-        ],
-      },
-      {
-        title: "Analytics",
-        items: [
-          {
-            title: "Project Categories",
-            href: "/observatory/analytics/categories",
-            description: "Distribution by category",
-          },
-          {
-            title: "Project Status",
-            href: "/observatory/analytics/status",
-            description: "Status distribution",
-          },
-          {
-            title: "Priority Levels",
-            href: "/observatory/analytics/priority",
-            description: "Priority distribution",
-          },
-          {
-            title: "Progress Tracking",
-            href: "/observatory/analytics/progress",
-            description: "Progress by category",
-          },
-        ],
-      },
-      {
-        title: "Management",
-        items: [
-          {
-            title: "Add Project",
-            href: "/observatory/projects/new",
-            description: "Create new project",
-          },
-          {
-            title: "Resource Allocation",
-            href: "/observatory/resources/allocate",
-            description: "Manage project resources",
-          },
-          {
-            title: "Team Management",
-            href: "/observatory/teams",
-            description: "Manage project teams",
-          },
-          {
-            title: "Project Settings",
-            href: "/observatory/settings",
-            description: "Configure project settings",
-          },
-        ],
-      },
-    ],
-    "/about": [
-      {
-        title: "Company",
-        items: [
-          {
-            title: "Overview",
+            title: "About",
             href: "/about",
-            description: "About Hubverse",
+            description: "Learn about our company and mission",
           },
           {
-            title: "Legal & Compliance",
-            href: "/legal-and-compliance",
-            description: "Our commitments",
+            title: "Team",
+            href: "/about/team",
+            description: "Meet our leadership team",
+          },
+          {
+            title: "Careers",
+            href: "/about/careers",
+            description: "Join our growing team",
+          },
+          {
+            title: "Mission",
+            href: "/about#mission",
+            description: "Our vision and values",
+          },
+        ],
+      },
+      {
+        title: "Contact & Support",
+        items: [
+          {
+            title: "Contact",
+            href: "/contact",
+            description: "Get in touch with us",
+          },
+          {
+            title: "Support",
+            href: "/contact/support",
+            description: "Get help and support",
+          },
+          {
+            title: "Media Inquiries",
+            href: "/contact/media",
+            description: "Press and media resources",
+          },
+        ],
+      },
+      {
+        title: "Legal & Compliance",
+        items: [
+          {
+            title: "Terms of Service",
+            href: "/legal/terms-of-service",
+          },
+          {
+            title: "Privacy Policy",
+            href: "/legal/privacy-policy",
+          },
+          {
+            title: "Cookie Policy",
+            href: "/legal/cookie-policy",
+          },
+          {
+            title: "Sustainability Report",
+            href: "/sustainability-report",
           },
         ],
       },
     ],
-    "/dashboard": [
+  },
+  {
+    title: "Business & Subsidiaries",
+    columns: [
       {
-        title: "Overview",
-        items: [
-          {
-            title: "Business Metrics",
-            href: "/dashboard/business",
-            description: "Key business performance indicators",
-          },
-          {
-            title: "Financial Data",
-            href: "/dashboard/financial",
-            description: "Financial metrics and analysis",
-          },
-          {
-            title: "Market Analysis",
-            href: "/dashboard/market",
-            description: "Market trends and insights",
-          },
-          {
-            title: "Team Management",
-            href: "/dashboard/team",
-            description: "Team performance and organization",
-          },
-          {
-            title: "Projects",
-            href: "/dashboard/projects",
-            description: "Project management",
-          },
-        ],
-      },
-      {
-        title: "Analytics",
-        items: [
-          {
-            title: "Performance Metrics",
-            href: "/analytics/performance",
-          },
-          {
-            title: "Market Analysis",
-            href: "/analytics/market",
-          },
-          {
-            title: "Growth Trends",
-            href: "/analytics/trends",
-          },
-          {
-            title: "Competition",
-            href: "/analytics/competition",
-          },
-        ],
-      },
-      {
-        title: "Admin",
-        items: [
-          {
-            title: "Project Management",
-            href: "/admin/projects",
-            description: "Admin project controls",
-          },
-          {
-            title: "User Management",
-            href: "/admin/users",
-            description: "Manage user access",
-          },
-        ],
-      },
-    ],
-    "/blueprint-platform": [
-      {
-        title: "Platform",
-        items: [
-          {
-            title: "Overview",
-            href: "/blueprint-platform/overview",
-            description: "Platform introduction",
-          },
-          {
-            title: "Benefits",
-            href: "/blueprint-platform/benefits",
-            description: "Value proposition",
-          },
-          {
-            title: "Implementation",
-            href: "/blueprint-platform/implementation",
-            description: "Getting started",
-          },
-        ],
-      },
-      {
-        title: "Technical",
-        items: [
-          {
-            title: "Components",
-            href: "/blueprint-platform/components",
-            description: "Platform building blocks",
-          },
-          {
-            title: "Technology Stack",
-            href: "/blueprint-platform/technology-stack",
-            description: "Technical architecture",
-          },
-          {
-            title: "Interactions",
-            href: "/blueprint-platform/interactions",
-            description: "System interactions",
-          },
-          {
-            title: "Process",
-            href: "/blueprint-platform/process",
-            description: "Implementation process",
-          },
-        ],
-      },
-      {
-        title: "Resources",
-        items: [
-          {
-            title: "Case Studies",
-            href: "/blueprint-platform/case-studies",
-          },
-          {
-            title: "FAQ",
-            href: "/blueprint-platform/faq",
-          },
-          {
-            title: "Resources",
-            href: "/blueprint-platform/resources",
-          },
-          {
-            title: "Revenue Model",
-            href: "/blueprint-platform/revenue-model",
-          },
-        ],
-      },
-    ],
-    "/business": [
-      {
-        title: "Subsidiaries",
-        items: [
-          {
-            title: "Elementalis",
-            href: "/business/subsidiaries/elementalis",
-            description: "AI and Machine Learning Solutions",
-          },
-          {
-            title: "eStore District",
-            href: "/business/subsidiaries/estore-district",
-            description: "E-commerce Platform",
-          },
-          {
-            title: "Fundex",
-            href: "/business/subsidiaries/fundex",
-            description: "Financial Technology",
-          },
-          {
-            title: "Thryvus",
-            href: "/business/subsidiaries/thryvus",
-            description: "Digital Transformation",
-          },
-          {
-            title: "Anexo",
-            href: "/business/subsidiaries/anexo",
-            description: "Data Analytics",
-          },
-          {
-            title: "Cosmo-Compass",
-            href: "/business/subsidiaries/cosmo-compass",
-            description: "Navigation Solutions",
-          },
-          {
-            title: "Exonet",
-            href: "/business/subsidiaries/exonet",
-            description: "Network Infrastructure",
-          },
-          {
-            title: "Ponce",
-            href: "/business/subsidiaries/ponce",
-            description: "Digital Marketing",
-          },
-        ],
-      },
-      {
-        title: "Planning",
+        title: "Business Overview",
         items: [
           {
             title: "Business Plan",
             href: "/business-plan",
-          },
-          {
-            title: "Future Projects",
-            href: "/future-projects",
+            description: "Our strategic roadmap",
           },
           {
             title: "Fundraising",
             href: "/fundraising",
+            description: "Investment opportunities",
           },
           {
-            title: "Lab Research",
-            href: "/lab-research",
-            description: "R&D initiatives",
+            title: "Future Projects",
+            href: "/future-projects",
+            description: "Upcoming initiatives",
+          },
+          {
+            title: "R&D Initiatives",
+            href: "/business/planning/rd-initiatives",
+            description: "Research and development",
           },
         ],
       },
@@ -431,47 +104,110 @@ export const navigationConfig = {
         title: "Investor Relations",
         items: [
           {
+            title: "Overview",
+            href: "/business/investor-relations",
+            description: "Information for investors",
+          },
+          {
             title: "Financial Reports",
-            href: "/investor-relations/reports",
+            href: "/business/investor-relations/financial-reports",
           },
           {
             title: "Presentations",
-            href: "/investor-relations/presentations",
+            href: "/business/investor-relations/presentations",
           },
           {
             title: "Stock Information",
-            href: "/investor-relations/stock",
+            href: "/business/investor-relations/stock-information",
           },
           {
             title: "Corporate Governance",
-            href: "/investor-relations/governance",
+            href: "/business/investor-relations/corporate-governance",
+          },
+        ],
+      },
+      {
+        title: "Subsidiaries",
+        items: [
+          {
+            title: "Overview",
+            href: "/business/subsidiaries",
+            description: "Our family of companies",
+          },
+          {
+            title: "Anexo",
+            href: "/business/subsidiaries/anexo",
+            description: "EdTech Solutions",
+          },
+          {
+            title: "Fundex",
+            href: "/business/subsidiaries/fundex",
+            description: "Marketing Innovation",
+          },
+          {
+            title: "Elementalis",
+            href: "/business/subsidiaries/elementalis",
+            description: "Research & Development",
+          },
+          {
+            title: "More Subsidiaries",
+            href: "/business/subsidiaries#list",
+            description: "View all our companies",
           },
         ],
       },
     ],
-    "/innovation-hub": [
+  },
+  {
+    title: "Innovation Hub",
+    columns: [
+      {
+        title: "Research & Development",
+        items: [
+          {
+            title: "The Foundry",
+            href: "/innovation-hub/foundry",
+            description: "Our innovation research and development center",
+          },
+          {
+            title: "Research Projects",
+            href: "/innovation-hub/foundry/projects",
+            description: "Explore our ongoing research initiatives",
+          },
+          {
+            title: "Publications",
+            href: "/innovation-hub/foundry/publications",
+            description: "Research papers and publications",
+          },
+          {
+            title: "Analytics",
+            href: "/innovation-hub/foundry/analytics",
+            description: "Research metrics and impact analysis",
+          },
+        ],
+      },
       {
         title: "Programs",
         items: [
           {
-            title: "Startup Incubator",
+            title: "Incubator",
             href: "/innovation-hub/programs/incubator",
-            description: "Early-stage venture support",
+            description: "Launch and grow innovative startups",
           },
           {
-            title: "Research Lab",
-            href: "/innovation-hub/programs/research-lab",
-            description: "R&D initiatives",
+            title: "The Foundry",
+            href: "/innovation-hub/programs/foundry",
+            description: "Research and development center",
           },
           {
             title: "Tech Accelerator",
             href: "/innovation-hub/programs/accelerator",
-            description: "Scale-up program",
+            description: "Accelerate tech ventures",
           },
           {
-            title: "Innovation Workshops",
+            title: "Workshops",
             href: "/innovation-hub/programs/workshops",
-            description: "Hands-on learning",
+            description: "Innovation workshops and training",
           },
         ],
       },
@@ -491,200 +227,164 @@ export const navigationConfig = {
             href: "/innovation-hub/resources/case-studies",
           },
           {
-            title: "Innovation Blog",
-            href: "/innovation-hub/resources/blog",
-          },
-        ],
-      },
-      {
-        title: "Partnerships",
-        items: [
-          {
-            title: "Corporate Partners",
-            href: "/innovation-hub/partnerships/corporate",
-          },
-          {
-            title: "Academic Partners",
-            href: "/innovation-hub/partnerships/academic",
-          },
-          {
-            title: "Startup Network",
-            href: "/innovation-hub/partnerships/startup-network",
-          },
-        ],
-      },
-    ],
-    "/news": [
-      {
-        title: "Latest News",
-        items: [
-          {
-            title: "Company News",
-            href: "/news/company",
-            description: "Updates from Hubverse",
-          },
-          {
-            title: "Industry Insights",
-            href: "/news/industry",
-            description: "Market trends and analysis",
-          },
-          {
-            title: "Press Releases",
-            href: "/news/press",
-            description: "Official announcements",
-          },
-          {
             title: "Blog",
-            href: "/news/blog",
-            description: "Thought leadership",
-          },
-        ],
-      },
-      {
-        title: "Categories",
-        items: [
-          {
-            title: "Announcements",
-            href: "/news/announcements",
-          },
-          {
-            title: "Community",
-            href: "/news/community",
-          },
-          {
-            title: "Latest",
-            href: "/news/latest",
-          },
-        ],
-      },
-    ],
-    "/resources": [
-      {
-        title: "Knowledge Base",
-        items: [
-          {
-            title: "Documentation",
-            href: "/resources/knowledge-base/docs",
-            description: "Technical guides",
-          },
-          {
-            title: "Tutorials",
-            href: "/resources/knowledge-base/tutorials",
-            description: "Step-by-step guides",
-          },
-          {
-            title: "FAQs",
-            href: "/resources/knowledge-base/faqs",
-            description: "Common questions",
-          },
-          {
-            title: "Best Practices",
-            href: "/resources/knowledge-base/best-practices",
-            description: "Recommended approaches",
-          },
-        ],
-      },
-      {
-        title: "Support",
-        items: [
-          {
-            title: "Contact Support",
-            href: "/support/contact",
-          },
-          {
-            title: "Help Center",
-            href: "/support/help",
-          },
-          {
-            title: "Community Forum",
-            href: "/support/community",
-          },
-          {
-            title: "Developer Resources",
-            href: "/support/developers",
-          },
-        ],
-      },
-      {
-        title: "Legal",
-        items: [
-          {
-            title: "Terms of Service",
-            href: "/legal/terms-of-service",
-            description: "User agreement",
-          },
-          {
-            title: "Privacy Policy",
-            href: "/legal/privacy-policy",
-            description: "Data handling practices",
-          },
-          {
-            title: "Cookie Policy",
-            href: "/legal/cookie-policy",
-            description: "Cookie usage",
-          },
-          {
-            title: "Legal & Compliance",
-            href: "/legal-and-compliance",
-            description: "Regulatory compliance",
-          },
-        ],
-      },
-    ],
-    "/auth": [
-      {
-        title: "Authentication",
-        items: [
-          {
-            title: "Sign In",
-            href: "/auth/signin",
-            description: "Access your account",
-          },
-          {
-            title: "Sign Up",
-            href: "/auth/signup",
-            description: "Create an account",
-          },
-          {
-            title: "Verify Account",
-            href: "/auth/verify",
-            description: "Verify your email",
-          },
-          {
-            title: "Reset Password",
-            href: "/auth/reset-password",
-            description: "Reset your password",
-          },
-        ],
-      },
-      {
-        title: "Account",
-        items: [
-          {
-            title: "Profile",
-            href: "/auth/profile",
-            description: "Manage your profile",
-          },
-          {
-            title: "Settings",
-            href: "/auth/settings",
-            description: "Account settings",
-          },
-          {
-            title: "Security",
-            href: "/auth/security",
-            description: "Security settings",
-          },
-          {
-            title: "Sign Out",
-            href: "/auth/signout",
-            description: "Log out",
+            href: "/innovation-hub/resources/blog",
           },
         ],
       },
     ],
   },
-}
+  {
+    title: "Blueprint Platform",
+    columns: [
+      {
+        title: "Overview & Benefits",
+        items: [
+          {
+            title: "Overview",
+            href: "/blueprint-platform/overview",
+            description: "Platform introduction",
+          },
+          {
+            title: "Benefits",
+            href: "/blueprint-platform/benefits",
+            description: "Why choose Blueprint",
+          },
+          {
+            title: "Features",
+            href: "/blueprint-platform/features",
+            description: "Platform capabilities",
+          },
+          {
+            title: "Technology Stack",
+            href: "/blueprint-platform/technology-stack",
+            description: "Technical details",
+          },
+        ],
+      },
+      {
+        title: "Using the Platform",
+        items: [
+          {
+            title: "Implementation",
+            href: "/blueprint-platform/implementation",
+            description: "Getting started guide",
+          },
+          {
+            title: "Process",
+            href: "/blueprint-platform/process",
+            description: "How it works",
+          },
+          {
+            title: "Interactions",
+            href: "/blueprint-platform/interactions",
+            description: "Platform interactions",
+          },
+          {
+            title: "Components",
+            href: "/blueprint-platform/components",
+            description: "Building blocks",
+          },
+        ],
+      },
+      {
+        title: "Resources & Support",
+        items: [
+          {
+            title: "Resources",
+            href: "/blueprint-platform/resources",
+            description: "Helpful resources",
+          },
+          {
+            title: "FAQ",
+            href: "/blueprint-platform/faq",
+            description: "Common questions",
+          },
+          {
+            title: "Case Studies",
+            href: "/blueprint-platform/case-studies",
+            description: "Success stories",
+          },
+          {
+            title: "Revenue Model",
+            href: "/blueprint-platform/revenue-model",
+            description: "Pricing and plans",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    title: "Observatory",
+    columns: [
+      {
+        title: "Overview",
+        items: [
+          {
+            title: "Dashboard",
+            href: "/observatory/dashboard",
+            description: "Real-time insights and analytics",
+          },
+          {
+            title: "Playground",
+            href: "/observatory/playground",
+            description: "Development and testing environment",
+            badge: "Dev",
+          },
+        ],
+      },
+      {
+        title: "Projects & Data",
+        items: [
+          {
+            title: "Projects",
+            href: "/observatory/projects",
+            description: "Project tracking",
+          },
+          {
+            title: "Analytics",
+            href: "/observatory/analytics",
+            description: "Data analysis",
+          },
+          {
+            title: "Resources",
+            href: "/observatory/resources",
+            description: "Data resources",
+          },
+        ],
+      },
+    ],
+  },
+];
+
+export const footerNav = [
+  {
+    title: "Company",
+    items: [
+      { title: "About", href: "/about" },
+      { title: "Careers", href: "/about/careers" },
+      { title: "Contact", href: "/contact" },
+      { title: "Press", href: "/press" },
+    ],
+  },
+  {
+    title: "Resources",
+    items: [
+      { title: "Documentation", href: "/docs" },
+      { title: "Help Center", href: "/help" },
+      { title: "Privacy", href: "/privacy" },
+      { title: "Terms", href: "/terms" },
+    ],
+  },
+  {
+    title: "Social",
+    items: [
+      { title: "Twitter", href: "https://twitter.com" },
+      { title: "LinkedIn", href: "https://linkedin.com" },
+      { title: "GitHub", href: "https://github.com" },
+    ],
+  }
+]
 
 export const mainNavigation: NavigationSection[] = [
   {
@@ -699,9 +399,9 @@ export const mainNavigation: NavigationSection[] = [
             description: "Launch and grow innovative startups",
           },
           {
-            title: "Research Lab",
-            href: "/innovation-hub/programs/research-lab",
-            description: "Cutting-edge R&D initiatives",
+            title: "The Foundry",
+            href: "/innovation-hub/programs/foundry",
+            description: "Research and development center",
           },
           {
             title: "Tech Accelerator",

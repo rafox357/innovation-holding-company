@@ -1,35 +1,11 @@
-"use client"
+import { Metadata } from "next";
+import { HomeContent } from "@/components/home-content";
 
-import { Hero } from "@/components/hero"
-import { InnovationHub } from "@/components/innovation-hub"
-import { ServicesGrid } from "@/components/services-grid"
-import { NewsSection } from "@/components/news-section"
-import { FeaturedCompanies } from "@/components/featured-companies"
-import { ContactCTA } from "@/components/contact-cta"
+export const metadata: Metadata = {
+  title: "Innovative Holding Company | Leading the Future",
+  description: "A visionary holding company pioneering innovation across multiple industries through strategic investments and technological advancement.",
+};
 
 export default function Home() {
-  return (
-    <div className="relative">
-      {/* Hero Section */}
-      <Hero />
-
-      {/* Main Content */}
-      <div className="container mx-auto px-4 space-y-20">
-        {/* Innovation Hub Section */}
-        <InnovationHub />
-
-        {/* Services Grid */}
-        <ServicesGrid />
-
-        {/* Latest News */}
-        <NewsSection />
-
-        {/* Featured Companies */}
-        <FeaturedCompanies />
-
-        {/* Contact CTA */}
-        <ContactCTA />
-      </div>
-    </div>
-  )
+  return <HomeContent />;
 }

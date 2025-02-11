@@ -165,32 +165,27 @@ const NewsSection = () => {
   )
 }
 
-export default function NewsPage() {
+const NewsContent = () => {
   return (
-    <div className="container mx-auto px-4 py-8">
-      {/* @ts-expect-error Async Server Component */}
-      <NewsHeader />
-      <div className="mb-8">
-        <NewsFilter
-          currentCategory={useSearchParams().get("category") || "all"}
-          currentQuery={useSearchParams().get("query") || ""}
-          onSearch={(query: string) => {
-            const params = new URLSearchParams(useSearchParams().toString())
-            if (query) params.set("query", query)
-            else params.delete("query")
-            params.set("page", "1")
-            useRouter().push(`/news?${params.toString()}`)
-          }}
-          onCategoryChange={(category: string) => {
-            const params = new URLSearchParams(useSearchParams().toString())
-            if (category !== "all") params.set("category", category)
-            else params.delete("category")
-            params.set("page", "1")
-            useRouter().push(`/news?${params.toString()}`)
-          }}
-        />
-      </div>
-
+    <div className="space-y-8">
+      <NewsFilter
+        currentCategory={useSearchParams().get("category") || "all"}
+        currentQuery={useSearchParams().get("query") || ""}
+        onSearch={(query: string) => {
+          const params = new URLSearchParams(useSearchParams().toString())
+          if (query) params.set("query", query)
+          else params.delete("query")
+          params.set("page", "1")
+          useRouter().push(`/news?${params.toString()}`)
+        }}
+        onCategoryChange={(category: string) => {
+          const params = new URLSearchParams(useSearchParams().toString())
+          if (category !== "all") params.set("category", category)
+          else params.delete("category")
+          params.set("page", "1")
+          useRouter().push(`/news?${params.toString()}`)
+        }}
+      />
       <ErrorBoundary>
         <Suspense 
           fallback={
@@ -205,5 +200,13 @@ export default function NewsPage() {
         </Suspense>
       </ErrorBoundary>
     </div>
+  )
+}
+
+export default function NewsPage() {
+  return (
+    <ErrorBoundary>
+      <NewsContent />
+    </ErrorBoundary>
   )
 }

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="60" height="60" rx="12" fill="url(#elementalis-gradient)" />
+  <path d="M15 20H45M15 30H45M15 40H45" stroke="white" stroke-width="4" stroke-linecap="round"/>
+  <circle cx="25" cy="20" r="4" fill="#4ADE80"/>
+  <circle cx="35" cy="30" r="4" fill="#2DD4BF"/>
+  <circle cx="30" cy="40" r="4" fill="#818CF8"/>
+  <defs>
+    <linearGradient id="elementalis-gradient" x1="0" y1="0" x2="60" y2="60" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#0EA5E9"/>
+      <stop offset="100%" stop-color="#22C55E"/>
+    </linearGradient>
+  </defs>
+</svg>
