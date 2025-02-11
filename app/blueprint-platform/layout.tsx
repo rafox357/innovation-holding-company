@@ -18,18 +18,7 @@ const blueprintNavigation = [
 
 export const metadata: Metadata = {
   title: "Blueprint Platform | Hubverse",
-  description: "A comprehensive platform for innovation and business transformation.",
-  openGraph: {
-    title: "Blueprint Platform | Hubverse",
-    description: "A comprehensive platform for innovation and business transformation.",
-    type: "website",
-    siteName: "Hubverse",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Blueprint Platform | Hubverse",
-    description: "A comprehensive platform for innovation and business transformation.",
-  },
+  description: "Explore the Blueprint Platform and its features.",
 }
 
 export default function BlueprintLayout({

@@ -7,7 +7,7 @@ import { CheckCircle, ArrowRight } from "lucide-react"
 
 export const metadata: Metadata = {
   title: "Implementation | Blueprint Platform",
-  description: "Learn how to implement the Blueprint Platform in your projects.",
+  description: "Learn how to implement the Blueprint Platform in your organization.",
 }
 
 const implementationSteps = [
@@ -94,4 +94,3 @@ export default function ImplementationPage() {
     </BlueprintLayout>
   )
 }
-
