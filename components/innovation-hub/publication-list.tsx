@@ -19,78 +19,26 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { ExternalLink, Download, ArrowUpDown } from "lucide-react";
+import { Publication } from "@/lib/data-fetcher";
 
-interface Publication {
-  id: string;
-  title: string;
-  authors: string[];
-  abstract: string;
-  journal: string;
-  date: string;
-  doi: string;
-  pdfUrl?: string;
-  tags: string[];
-  citations: number;
-  type: "paper" | "article" | "report" | "thesis" | string;
+interface PublicationListProps {
+  publications: Publication[];
 }
 
-const publications: Publication[] = [
-  {
-    id: "1",
-    title: "Quantum Algorithm Optimization for Large-Scale Computing Systems",
-    authors: ["Sarah Chen", "James Wilson", "Maria Garcia"],
-    abstract: "This paper presents novel approaches to optimizing quantum algorithms for practical implementation in large-scale computing systems.",
-    journal: "Journal of Quantum Computing",
-    date: "2024-01-15",
-    doi: "10.1234/jqc.2024.001",
-    pdfUrl: "/papers/quantum-optimization.pdf",
-    tags: ["Quantum Computing", "Algorithm Optimization", "Large-Scale Systems"],
-    citations: 12,
-    type: "paper",
-  },
-  {
-    id: "2",
-    title: "Ethical Considerations in AI Development: A Framework for Responsible Innovation",
-    authors: ["Michael Brown", "Lisa Anderson"],
-    abstract: "We propose a comprehensive framework for ensuring ethical considerations are integrated into AI development processes.",
-    journal: "AI Ethics Review",
-    date: "2024-02-01",
-    doi: "10.1234/aie.2024.002",
-    tags: ["AI Ethics", "Responsible Innovation", "Framework"],
-    citations: 8,
-    type: "article",
-  },
-  {
-    id: "3",
-    title: "Advanced Battery Technologies for Sustainable Energy Storage",
-    authors: ["Emily Taylor", "Robert Johnson", "David Lee"],
-    abstract: "An investigation into novel materials and designs for next-generation battery technologies.",
-    journal: "Sustainable Energy Research",
-    date: "2024-01-01",
-    doi: "10.1234/ser.2024.003",
-    pdfUrl: "/papers/battery-tech.pdf",
-    tags: ["Energy Storage", "Battery Technology", "Sustainability"],
-    citations: 15,
-    type: "report",
-  },
-];
-
-const allTags = Array.from(
-  new Set(publications.flatMap((pub) => pub.tags))
-);
-
-const journals = Array.from(
-  new Set(publications.map((pub) => pub.journal))
-);
-
-type SortField = "date" | "citations" | "title";
-
-export function PublicationList() {
+export function PublicationList({ publications }: PublicationListProps) {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
   const [selectedJournal, setSelectedJournal] = useState<string>("");
-  const [sortField, setSortField] = useState<SortField>("date");
+  const [sortField, setSortField] = useState<"date" | "citations" | "title">("date");
   const [sortDirection, setSortDirection] = useState<"asc" | "desc">("desc");
+
+  const allTags = Array.from(
+    new Set(publications.flatMap((pub) => pub.tags))
+  );
+
+  const journals: string[] = Array.from(
+    new Set(publications.map((pub) => pub.journal).filter((journal): journal is string => journal !== undefined))
+  );
 
   const toggleTag = (tag: string) => {
     setSelectedTags((prev) =>
@@ -100,7 +48,7 @@ export function PublicationList() {
     );
   };
 
-  const toggleSort = (field: SortField) => {
+  const toggleSort = (field: "date" | "citations" | "title") => {
     if (sortField === field) {
       setSortDirection(prev => prev === "asc" ? "desc" : "asc");
     } else {
@@ -113,7 +61,7 @@ export function PublicationList() {
     .filter((pub) => {
       const matchesSearch = 
         pub.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        pub.abstract.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        (pub.abstract || "").toLowerCase().includes(searchQuery.toLowerCase()) ||
         pub.authors.some(author => 
           author.toLowerCase().includes(searchQuery.toLowerCase())
         );

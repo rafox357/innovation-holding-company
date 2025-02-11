@@ -24,8 +24,8 @@ interface Grant {
   deadline?: string;
   startDate?: string;
   endDate?: string;
-  eligibility: string[];
-  tags: string[];
+  eligibility: readonly string[];
+  tags: readonly string[];
 }
 
 interface GrantCardProps {

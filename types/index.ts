@@ -8,6 +8,7 @@ export interface NavigationItem {
 
 export interface NavigationSection {
   title: string
+  href?: string
   items: NavigationItem[]
 }
 

@@ -102,11 +102,19 @@ export const getNews = async ({
         total: response.data.totalResults,
         totalPages: Math.ceil(response.data.totalResults / pageSize),
         currentPage: page,
-        limit: pageSize,
-      },
+        limit: pageSize
+      }
     };
   } catch (error) {
     console.error('Error fetching news:', error);
-    throw error;
+    return {
+      articles: [],
+      pagination: {
+        total: 0,
+        totalPages: 0,
+        currentPage: page,
+        limit: pageSize
+      }
+    };
   }
 };

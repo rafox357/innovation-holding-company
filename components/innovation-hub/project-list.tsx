@@ -15,78 +15,19 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { Project } from "@/lib/data-fetcher";
 
-interface Project {
-  id: string;
-  name: string;
-  description: string;
-  status: "active" | "completed" | "on-hold";
-  progress: number;
-  lead: {
-    name: string;
-    avatar: string;
-    initials: string;
-  };
-  team: number;
-  startDate: string;
-  endDate: string;
+interface ProjectListProps {
+  projects: Project[];
 }
 
-const projects: Project[] = [
-  {
-    id: "1",
-    name: "Quantum Computing Research",
-    description: "Exploring quantum algorithms for optimization problems",
-    status: "active",
-    progress: 75,
-    lead: {
-      name: "Dr. Sarah Chen",
-      avatar: "/avatars/sarah-chen.jpg",
-      initials: "SC",
-    },
-    team: 5,
-    startDate: "2024-01-15",
-    endDate: "2024-12-31",
-  },
-  {
-    id: "2",
-    name: "AI Ethics Framework",
-    description: "Developing guidelines for ethical AI development",
-    status: "active",
-    progress: 45,
-    lead: {
-      name: "Dr. Michael Brown",
-      avatar: "/avatars/michael-brown.jpg",
-      initials: "MB",
-    },
-    team: 4,
-    startDate: "2024-02-01",
-    endDate: "2024-08-31",
-  },
-  {
-    id: "3",
-    name: "Sustainable Energy Storage",
-    description: "Research on advanced battery technologies",
-    status: "on-hold",
-    progress: 30,
-    lead: {
-      name: "Dr. Emily Taylor",
-      avatar: "/avatars/emily-taylor.jpg",
-      initials: "ET",
-    },
-    team: 6,
-    startDate: "2024-01-01",
-    endDate: "2024-12-31",
-  },
-];
+export function ProjectList({ projects }: ProjectListProps) {
+  const statusColors = {
+    active: "bg-green-500/10 text-green-500 hover:bg-green-500/20",
+    completed: "bg-blue-500/10 text-blue-500 hover:bg-blue-500/20",
+    "on-hold": "bg-yellow-500/10 text-yellow-500 hover:bg-yellow-500/20",
+  };
 
-const statusColors = {
-  active: "bg-green-500/10 text-green-500 hover:bg-green-500/20",
-  completed: "bg-blue-500/10 text-blue-500 hover:bg-blue-500/20",
-  "on-hold": "bg-yellow-500/10 text-yellow-500 hover:bg-yellow-500/20",
-};
-
-export function ProjectList() {
   const columns: ColumnDef<Project>[] = [
     {
       accessorKey: "name",
@@ -182,7 +123,7 @@ export function ProjectList() {
         return (
           <div className="text-sm">
             {new Date(row.getValue("startDate")).toLocaleDateString()} -{" "}
-            {new Date(row.original.endDate).toLocaleDateString()}
+            {row.original.endDate ? new Date(row.original.endDate).toLocaleDateString() : 'N/A'}
           </div>
         );
       },

@@ -1,4 +1,5 @@
 import type { NavTab } from "@/types/navigation";
+import { NavigationSection, NavigationItem } from "@/types";
 
 export const navigationTabs: NavTab[] = [
   {
@@ -360,6 +361,7 @@ export const navigationTabs: NavTab[] = [
 export const footerNav = [
   {
     title: "Company",
+    href: "/company", // Added href
     items: [
       { title: "About", href: "/about" },
       { title: "Careers", href: "/about/careers" },
@@ -369,6 +371,7 @@ export const footerNav = [
   },
   {
     title: "Resources",
+    href: "/resources", // Added href
     items: [
       { title: "Documentation", href: "/docs" },
       { title: "Help Center", href: "/help" },
@@ -378,6 +381,7 @@ export const footerNav = [
   },
   {
     title: "Social",
+    href: "/social", // Added href
     items: [
       { title: "Twitter", href: "https://twitter.com" },
       { title: "LinkedIn", href: "https://linkedin.com" },
@@ -389,9 +393,11 @@ export const footerNav = [
 export const mainNavigation: NavigationSection[] = [
   {
     title: "Innovation Hub",
+    href: "/innovation-hub", // Added href
     items: [
       {
         title: "Programs",
+        href: "/innovation-hub/programs", // Added href
         items: [
           {
             title: "Incubator",
@@ -400,7 +406,7 @@ export const mainNavigation: NavigationSection[] = [
           },
           {
             title: "The Foundry",
-            href: "/innovation-hub/programs/foundry",
+            href: "/innovation-hub/foundry",
             description: "Research and development center",
           },
           {
@@ -417,6 +423,7 @@ export const mainNavigation: NavigationSection[] = [
       },
       {
         title: "Resources",
+        href: "/innovation-hub/resources", // Added href
         items: [
           {
             title: "Innovation Toolkit",
@@ -440,10 +447,11 @@ export const mainNavigation: NavigationSection[] = [
   },
   {
     title: "Business",
+    href: "/business", // Added href
     items: [
       {
         title: "Subsidiaries",
-        href: "/business/subsidiaries",
+        href: "/business/subsidiaries", // Added href
         items: [
           { title: "Fundex", href: "/business/subsidiaries/fundex" },
           { title: "Elementalis", href: "/business/subsidiaries/elementalis" },
@@ -457,6 +465,7 @@ export const mainNavigation: NavigationSection[] = [
       },
       {
         title: "Planning & Finance",
+        href: "/business/planning", // Added href
         items: [
           { title: "Business Plan", href: "/business-plan" },
           { title: "Future Projects", href: "/future-projects" },
@@ -468,10 +477,11 @@ export const mainNavigation: NavigationSection[] = [
   },
   {
     title: "Platform",
+    href: "/platform", // Added href
     items: [
       {
         title: "Blueprint Platform",
-        href: "/blueprint-platform",
+        href: "/blueprint-platform", // Added href
         items: [
           { title: "Overview", href: "/blueprint-platform/overview" },
           { title: "Benefits", href: "/blueprint-platform/benefits" },
@@ -486,9 +496,11 @@ export const mainNavigation: NavigationSection[] = [
   },
   {
     title: "Resources",
+    href: "/resources", // Added href
     items: [
       {
         title: "Knowledge Base",
+        href: "/resources/knowledge-base", // Added href
         items: [
           { title: "Documentation", href: "/resources/knowledge-base/docs" },
           { title: "Tutorials", href: "/resources/knowledge-base/tutorials" },
@@ -498,6 +510,7 @@ export const mainNavigation: NavigationSection[] = [
       },
       {
         title: "Support",
+        href: "/support", // Added href
         items: [
           { title: "Contact Support", href: "/support/contact" },
           { title: "Help Center", href: "/support/help" },
@@ -509,61 +522,62 @@ export const mainNavigation: NavigationSection[] = [
   },
   {
     title: "The Observatory",
-    href: "/observatory",
+    href: "/observatory", // Added href
     items: [
       {
         title: "Overview",
-        href: "/observatory",
+        href: "/observatory", // Added href
         description: "View the latest insights and data from our innovation ecosystem"
       },
       {
         title: "The Foundry",
-        href: "/observatory/foundry",
+        href: "/observatory/foundry", // Added href
         description: "Explore our innovation engine and project pipeline"
       },
       {
         title: "Resources",
-        href: "/observatory/resources",
+        href: "/observatory/resources", // Added href
         description: "Access tools, documentation, and learning materials"
       },
       {
         title: "Projects",
-        href: "/observatory/projects",
+        href: "/observatory/projects", // Added href
         description: "Browse and track ongoing projects"
       },
       {
         title: "Analytics",
-        href: "/observatory/analytics",
+        href: "/observatory/analytics", // Added href
         description: "Monitor performance metrics and trends"
       },
       {
         title: "Management",
-        href: "/observatory/management",
+        href: "/observatory/management", // Added href
         description: "Manage teams, resources, and project settings"
       }
     ]
   },
   {
     title: "About",
+    href: "/about", // Added href
     items: [
       {
         title: "Company",
-        href: "/about",
+        href: "/about", // Added href
         description: "Learn about our mission and values"
       },
       {
         title: "Team",
-        href: "/about/team",
+        href: "/about/team", // Added href
         description: "Meet our leadership and experts"
       },
       {
         title: "Careers",
-        href: "/about/careers",
+        href: "/about/careers", // Added href
         description: "Join our innovative team"
       },
       {
         title: "Contact",
-        href: "/contact",
+        href: "/contact", // Added href
         description: "Get in touch with us"
       }
     ]

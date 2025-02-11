@@ -14,47 +14,19 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import { Search } from "lucide-react";
+import { fetchGrants } from "@/lib/data-fetcher";
 
 export const metadata: Metadata = {
   title: "Grants & Funding | Innovation Hub | Hubverse",
   description: "Explore available grants and funding opportunities.",
 };
 
-// Mock data - replace with API call
-const grants = [
-  {
-    id: "grant-1",
-    title: "AI Innovation Research Grant",
-    description:
-      "Supporting groundbreaking research in artificial intelligence and machine learning.",
-    amount: 250000,
-    currency: "USD",
-    status: "open" as const,
-    type: "research" as const,
-    funder: {
-      name: "Tech Innovation Foundation",
-      website: "https://example.com",
-    },
-    deadline: "2025-06-30",
-    startDate: "2025-07-01",
-    endDate: "2026-06-30",
-    eligibility: [
-      "PhD holders in Computer Science or related fields",
-      "Minimum 5 years research experience",
-      "Track record of AI publications",
-    ],
-    tags: ["AI", "Machine Learning", "Research"],
-  },
-  // Add more grants...
-];
+// Add type definitions
+type GrantStatus = "open" | "awarded" | "closed" | "in_review";
+type GrantType = "research" | "innovation" | "collaboration" | "equipment";
 
-const stats = {
-  totalFunding: grants.reduce((sum, grant) => sum + grant.amount, 0),
-  activeGrants: grants.filter((g) => g.status === "awarded").length,
-  openOpportunities: grants.filter((g) => g.status === "open").length,
-};
-
-export default function GrantsPage() {
+export default async function GrantsPage() {
+  const grants = await fetchGrants();
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedStatus, setSelectedStatus] = useState("all");
   const [selectedType, setSelectedType] = useState("all");
@@ -71,6 +43,12 @@ export default function GrantsPage() {
     const matchesType = selectedType === "all" || grant.type === selectedType;
     return matchesSearch && matchesStatus && matchesType;
   });
+
+  const stats = {
+    totalFunding: grants.reduce((sum, grant) => sum + grant.amount, 0),
+    activeGrants: grants.filter((g) => g.status === "awarded").length,
+    openOpportunities: grants.filter((g) => g.status === "open").length,
+  };
 
   return (
     <div className="container mx-auto px-4 py-8">
