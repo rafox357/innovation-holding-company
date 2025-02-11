@@ -31,6 +31,7 @@ interface Publication {
   pdfUrl?: string;
   tags: string[];
   citations: number;
+  type: "paper" | "article" | "report" | "thesis" | string;
 }
 
 const publications: Publication[] = [
@@ -45,6 +46,7 @@ const publications: Publication[] = [
     pdfUrl: "/papers/quantum-optimization.pdf",
     tags: ["Quantum Computing", "Algorithm Optimization", "Large-Scale Systems"],
     citations: 12,
+    type: "paper",
   },
   {
     id: "2",
@@ -56,6 +58,7 @@ const publications: Publication[] = [
     doi: "10.1234/aie.2024.002",
     tags: ["AI Ethics", "Responsible Innovation", "Framework"],
     citations: 8,
+    type: "article",
   },
   {
     id: "3",
@@ -68,6 +71,7 @@ const publications: Publication[] = [
     pdfUrl: "/papers/battery-tech.pdf",
     tags: ["Energy Storage", "Battery Technology", "Sustainability"],
     citations: 15,
+    type: "report",
   },
 ];
 

@@ -1,6 +1,9 @@
-"use client";
-
 import { Metadata } from "next";
+export const metadata: Metadata = {
+  title: "Publications | The Foundry | Hubverse",
+  description: "Research and development publications and papers",
+};
+
 import { useState } from "react";
 import { PublicationCard } from "@/components/innovation-hub/publication-card";
 import { Input } from "@/components/ui/input";
@@ -14,31 +17,73 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { Search } from "lucide-react";
 
-export const metadata: Metadata = {
-  title: "Publications | The Foundry | Hubverse",
-  description: "Research and development publications and papers",
-};
-
 // Mock data - replace with API call
-const publications = [
+type PublicationType = "paper" | "article" | "report" | "thesis";
+
+const isValidPublicationType = (type: string): type is PublicationType => 
+  ["paper", "article", "report", "thesis"].includes(type);
+
+const publications: {
+  id: string;
+  title: string;
+  abstract: string;
+  authors: { name: string; role: string; }[];
+  date: string;
+  type: PublicationType;
+  topics: string[];
+  doi: string;
+  url: string;
+  citations: number;
+  projectId: string;
+}[] = [
   {
     id: "pub-1",
     title: "Novel Approaches to AI Decision Making",
-    abstract:
-      "This paper presents innovative approaches to decision-making in artificial intelligence systems, focusing on explainability and ethical considerations.",
+    abstract: "This paper presents innovative approaches to decision-making in artificial intelligence systems, focusing on explainability and ethical considerations.",
     authors: [
       { name: "Dr. Jane Smith", role: "Lead Researcher" },
       { name: "John Doe", role: "AI Engineer" },
     ],
     date: "2024-12-01",
-    type: "paper" as const,
+    type: "paper",
     topics: ["AI", "Decision Making", "Ethics"],
     doi: "10.1234/hubverse.2024.001",
     url: "/publications/ai-decision-making",
     citations: 15,
     projectId: "proj-1",
   },
-  // Add more publications...
+  {
+    id: "pub-2",
+    title: "Blockchain in Healthcare: A Comprehensive Review",
+    abstract: "An in-depth analysis of blockchain technology applications in healthcare, exploring potential benefits and challenges.",
+    authors: [
+      { name: "Dr. Emily Chen", role: "Senior Researcher" },
+      { name: "Michael Wong", role: "Technology Analyst" },
+    ],
+    date: "2024-11-15",
+    type: "article",
+    topics: ["Blockchain", "Healthcare", "Technology"],
+    doi: "10.1234/hubverse.2024.002",
+    url: "/publications/blockchain-healthcare",
+    citations: 8,
+    projectId: "proj-2",
+  },
+  {
+    id: "pub-3",
+    title: "Ethical Considerations in Machine Learning",
+    abstract: "A critical examination of ethical challenges and proposed frameworks for responsible machine learning development.",
+    authors: [
+      { name: "Prof. Alex Rodriguez", role: "Ethics Director" },
+      { name: "Sarah Kim", role: "AI Ethics Researcher" },
+    ],
+    date: "2024-10-30",
+    type: "report",
+    topics: ["AI", "Ethics", "Machine Learning"],
+    doi: "10.1234/hubverse.2024.003",
+    url: "/publications/ml-ethics",
+    citations: 12,
+    projectId: "proj-3",
+  },
 ];
 
 const topics = [
@@ -64,34 +109,43 @@ export default function PublicationsPage() {
   const [selectedTopic, setSelectedTopic] = useState("All Topics");
   const [sortBy, setSortBy] = useState("date-desc");
 
-  const filteredPublications = publications
-    .filter((pub) => {
-      const matchesSearch =
-        pub.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        pub.abstract.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        pub.authors.some((author) =>
-          author.name.toLowerCase().includes(searchQuery.toLowerCase())
-        );
-      const matchesType = selectedType === "all" || pub.type === selectedType;
-      const matchesTopic =
-        selectedTopic === "All Topics" ||
-        pub.topics.includes(selectedTopic);
-      return matchesSearch && matchesType && matchesTopic;
-    })
-    .sort((a, b) => {
-      switch (sortBy) {
-        case "date-desc":
-          return new Date(b.date).getTime() - new Date(a.date).getTime();
-        case "date-asc":
-          return new Date(a.date).getTime() - new Date(b.date).getTime();
-        case "citations-desc":
-          return (b.citations || 0) - (a.citations || 0);
-        case "citations-asc":
-          return (a.citations || 0) - (b.citations || 0);
-        default:
-          return 0;
-      }
-    });
+  const filteredPublications = publications.filter((publication) => {
+    // Ensure type is valid
+    if (!isValidPublicationType(publication.type)) {
+      console.warn(`Invalid publication type for publication: ${publication.id}`);
+      return false;
+    }
+
+    // Existing search and type filtering logic
+    const matchesSearch = publication.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      publication.abstract.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      publication.authors.some((author) => 
+        author.name.toLowerCase().includes(searchQuery.toLowerCase())
+      );
+
+    const matchesType = selectedType === "all" || 
+      publication.type.toLowerCase() === selectedType.toLowerCase();
+
+    const matchesTopic =
+      selectedTopic === "All Topics" ||
+      publication.topics.includes(selectedTopic);
+
+    return matchesSearch && matchesType && matchesTopic;
+  })
+  .sort((a, b) => {
+    switch (sortBy) {
+      case "date-desc":
+        return new Date(b.date).getTime() - new Date(a.date).getTime();
+      case "date-asc":
+        return new Date(a.date).getTime() - new Date(b.date).getTime();
+      case "citations-desc":
+        return (b.citations || 0) - (a.citations || 0);
+      case "citations-asc":
+        return (a.citations || 0) - (b.citations || 0);
+      default:
+        return 0;
+    }
+  });
 
   const stats = {
     total: publications.length,
