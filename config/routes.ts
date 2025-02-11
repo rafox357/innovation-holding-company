@@ -28,6 +28,43 @@ export const mainRoutes: RouteCategory[] = [
     ],
   },
   {
+    category: "Innovation Hub",
+    items: [
+      {
+        name: "Innovation Programs",
+        href: "/innovation-hub/programs",
+        description: "Explore our innovation programs and initiatives",
+        children: [
+          { name: "Startup Incubator", href: "/innovation-hub/programs/incubator" },
+          { name: "Research Lab", href: "/innovation-hub/programs/research-lab" },
+          { name: "Tech Accelerator", href: "/innovation-hub/programs/accelerator" },
+          { name: "Innovation Workshops", href: "/innovation-hub/programs/workshops" },
+        ]
+      },
+      {
+        name: "Resources",
+        href: "/innovation-hub/resources",
+        description: "Access innovation tools and resources",
+        children: [
+          { name: "Innovation Toolkit", href: "/innovation-hub/resources/toolkit" },
+          { name: "Best Practices", href: "/innovation-hub/resources/best-practices" },
+          { name: "Case Studies", href: "/innovation-hub/resources/case-studies" },
+          { name: "Innovation Blog", href: "/innovation-hub/resources/blog" },
+        ]
+      },
+      {
+        name: "Partnerships",
+        href: "/innovation-hub/partnerships",
+        description: "Discover partnership opportunities",
+        children: [
+          { name: "Corporate Partners", href: "/innovation-hub/partnerships/corporate" },
+          { name: "Academic Partners", href: "/innovation-hub/partnerships/academic" },
+          { name: "Startup Network", href: "/innovation-hub/partnerships/startup-network" },
+        ]
+      },
+    ],
+  },
+  {
     category: "Business",
     items: [
       { 
@@ -68,83 +105,62 @@ export const mainRoutes: RouteCategory[] = [
       { 
         name: "Investor Relations", 
         href: "/investor-relations",
-        description: "Access financial reports and investor resources"
+        description: "Access financial reports and investor resources",
+        children: [
+          { name: "Financial Reports", href: "/investor-relations/reports" },
+          { name: "Investor Presentations", href: "/investor-relations/presentations" },
+          { name: "Stock Information", href: "/investor-relations/stock" },
+          { name: "Corporate Governance", href: "/investor-relations/governance" },
+        ]
       },
       { 
         name: "Analytics", 
         href: "/analytics",
-        description: "Dive deep into data-driven insights and metrics"
+        description: "Dive deep into data-driven insights and metrics",
+        children: [
+          { name: "Performance Metrics", href: "/analytics/performance" },
+          { name: "Market Analysis", href: "/analytics/market" },
+          { name: "Growth Trends", href: "/analytics/trends" },
+          { name: "Competitive Analysis", href: "/analytics/competition" },
+        ]
       },
     ],
   },
   {
-    category: "Platform",
+    category: "Resources",
     items: [
       {
-        name: "Blueprint Platform",
-        href: "/blueprint-platform",
-        description: "Explore our innovative technology platform",
+        name: "Knowledge Base",
+        href: "/resources/knowledge-base",
+        description: "Access our comprehensive knowledge repository",
         children: [
-          { name: "Overview", href: "/blueprint-platform/overview" },
-          { name: "Components", href: "/blueprint-platform/components" },
-          { name: "Technology Stack", href: "/blueprint-platform/technology-stack" },
-          { name: "Implementation", href: "/blueprint-platform/implementation" },
-          { name: "Benefits", href: "/blueprint-platform/benefits" },
-          { name: "Case Studies", href: "/blueprint-platform/case-studies" },
-          { name: "FAQ", href: "/blueprint-platform/faq" },
-          { name: "Resources", href: "/blueprint-platform/resources" },
+          { name: "Documentation", href: "/resources/knowledge-base/docs" },
+          { name: "Tutorials", href: "/resources/knowledge-base/tutorials" },
+          { name: "FAQs", href: "/resources/knowledge-base/faqs" },
+          { name: "Best Practices", href: "/resources/knowledge-base/best-practices" },
         ]
-      }
-    ]
-  },
-  {
-    category: "News & Updates",
-    items: [
-      { 
-        name: "News", 
+      },
+      {
+        name: "News & Updates",
         href: "/news",
-        description: "Stay updated with our latest news and announcements",
+        description: "Stay informed with the latest news and updates",
         children: [
-          { name: "Latest", href: "/news/latest" },
-          { name: "Announcements", href: "/news/announcements" },
-          { name: "Insights", href: "/news/insights" },
-          { name: "Community", href: "/news/community" },
+          { name: "Company News", href: "/news/company" },
+          { name: "Industry Insights", href: "/news/industry" },
+          { name: "Press Releases", href: "/news/press" },
+          { name: "Blog", href: "/news/blog" },
         ]
       },
-    ],
-  },
-  {
-    category: "Legal & Sustainability",
-    items: [
-      { 
-        name: "Legal & Compliance", 
-        href: "/legal-and-compliance",
-        description: "Access legal documents and compliance information"
-      },
-      { 
-        name: "Privacy Policy", 
-        href: "/legal/privacy-policy",
-        description: "Read our privacy policy"
-      },
-      { 
-        name: "Terms of Service", 
-        href: "/legal/terms-of-service",
-        description: "View our terms of service"
-      },
-      { 
-        name: "Cookie Policy", 
-        href: "/legal/cookie-policy",
-        description: "Learn about our cookie policy"
-      },
-    ],
-  },
-  {
-    category: "Contact",
-    items: [
-      { 
-        name: "Contact", 
-        href: "/contact",
-        description: "Get in touch with our team"
+      {
+        name: "Support",
+        href: "/support",
+        description: "Get help and support when you need it",
+        children: [
+          { name: "Contact Support", href: "/support/contact" },
+          { name: "Help Center", href: "/support/help" },
+          { name: "Community Forum", href: "/support/community" },
+          { name: "Developer Resources", href: "/support/developers" },
+        ]
       },
     ],
   },

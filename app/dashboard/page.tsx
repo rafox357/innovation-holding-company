@@ -122,13 +122,16 @@ const FinancialSection = () => {
           <CardTitle>Revenue Growth</CardTitle>
         </CardHeader>
         <CardContent>
-          <KPIChart data={[
-            { name: "Q1 2024", value: 250000 },
-            { name: "Q2 2024", value: 420000 },
-            { name: "Q3 2024", value: 680000 },
-            { name: "Q4 2024", value: 980000 },
-            { name: "Q1 2025", value: 1450000 },
-          ]} />
+          <KPIChart
+            title="Revenue Growth"
+            data={[
+              { name: "Q1 2024", value: 250000 },
+              { name: "Q2 2024", value: 420000 },
+              { name: "Q3 2024", value: 680000 },
+              { name: "Q4 2024", value: 980000 },
+              { name: "Q1 2025", value: 1450000 },
+            ]}
+          />
         </CardContent>
       </Card>
 
@@ -137,13 +140,16 @@ const FinancialSection = () => {
           <CardTitle>Market Expansion</CardTitle>
         </CardHeader>
         <CardContent>
-          <KPIChart data={[
-            { name: "2023", value: 5.2 },
-            { name: "2024", value: 7.8 },
-            { name: "2025", value: 12.4 },
-            { name: "2026", value: 18.9 },
-            { name: "2027", value: 28.5 },
-          ]} />
+          <KPIChart
+            title="Market Expansion"
+            data={[
+              { name: "2023", value: 5.2 },
+              { name: "2024", value: 7.8 },
+              { name: "2025", value: 12.4 },
+              { name: "2026", value: 18.9 },
+              { name: "2027", value: 28.5 },
+            ]}
+          />
         </CardContent>
       </Card>
     </div>
@@ -173,13 +179,16 @@ const MarketSection = () => {
           <CardTitle>Market Growth</CardTitle>
         </CardHeader>
         <CardContent>
-          <KPIChart data={[
-            { name: "2023", value: 5.2 },
-            { name: "2024", value: 7.8 },
-            { name: "2025", value: 12.4 },
-            { name: "2026", value: 18.9 },
-            { name: "2027", value: 28.5 },
-          ]} />
+          <KPIChart
+            title="Market Growth"
+            data={[
+              { name: "2023", value: 5.2 },
+              { name: "2024", value: 7.8 },
+              { name: "2025", value: 12.4 },
+              { name: "2026", value: 18.9 },
+              { name: "2027", value: 28.5 },
+            ]}
+          />
         </CardContent>
       </Card>
 
@@ -188,13 +197,16 @@ const MarketSection = () => {
           <CardTitle>Market Share</CardTitle>
         </CardHeader>
         <CardContent>
-          <KPIChart data={[
-            { name: "2023", value: 5.2 },
-            { name: "2024", value: 7.8 },
-            { name: "2025", value: 12.4 },
-            { name: "2026", value: 18.9 },
-            { name: "2027", value: 28.5 },
-          ]} />
+          <KPIChart
+            title="Market Share"
+            data={[
+              { name: "2023", value: 5.2 },
+              { name: "2024", value: 7.8 },
+              { name: "2025", value: 12.4 },
+              { name: "2026", value: 18.9 },
+              { name: "2027", value: 28.5 },
+            ]}
+          />
         </CardContent>
       </Card>
     </div>
@@ -224,13 +236,16 @@ const ProjectsSection = () => {
           <CardTitle>Project Growth</CardTitle>
         </CardHeader>
         <CardContent>
-          <KPIChart data={[
-            { name: "2023", value: 5.2 },
-            { name: "2024", value: 7.8 },
-            { name: "2025", value: 12.4 },
-            { name: "2026", value: 18.9 },
-            { name: "2027", value: 28.5 },
-          ]} />
+          <KPIChart
+            title="Project Growth"
+            data={[
+              { name: "2023", value: 5.2 },
+              { name: "2024", value: 7.8 },
+              { name: "2025", value: 12.4 },
+              { name: "2026", value: 18.9 },
+              { name: "2027", value: 28.5 },
+            ]}
+          />
         </CardContent>
       </Card>
 
@@ -239,13 +254,16 @@ const ProjectsSection = () => {
           <CardTitle>Project Completion</CardTitle>
         </CardHeader>
         <CardContent>
-          <KPIChart data={[
-            { name: "2023", value: 5.2 },
-            { name: "2024", value: 7.8 },
-            { name: "2025", value: 12.4 },
-            { name: "2026", value: 18.9 },
-            { name: "2027", value: 28.5 },
-          ]} />
+          <KPIChart
+            title="Project Completion"
+            data={[
+              { name: "2023", value: 5.2 },
+              { name: "2024", value: 7.8 },
+              { name: "2025", value: 12.4 },
+              { name: "2026", value: 18.9 },
+              { name: "2027", value: 28.5 },
+            ]}
+          />
         </CardContent>
       </Card>
     </div>

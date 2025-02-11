@@ -13,7 +13,7 @@ import { format } from "date-fns"
 import { Clock, AlertTriangle } from "lucide-react"
 import readingTime from "reading-time"
 import { Skeleton } from "@/components/ui/skeleton"
-import ErrorBoundary from "@/components/error-boundary"
+import { ErrorBoundary } from "@/components/error-boundary"
 
 // Loading components
 const NewsCardSkeleton = () => (

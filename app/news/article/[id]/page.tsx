@@ -5,6 +5,13 @@ import { ArticleContent } from "@/components/news/article-content"
 import { ErrorBoundary } from "@/components/error-boundary"
 import { api } from "@/lib/api-client"
 
+interface ArticleData {
+  title: string
+  description: string
+  date: string
+  author: string
+}
+
 interface ArticlePageProps {
   params: {
     id: string
@@ -13,7 +20,8 @@ interface ArticlePageProps {
 
 export async function generateMetadata({ params }: ArticlePageProps): Promise<Metadata> {
   try {
-    const article = await api.news.getById(params.id)
+    const response = await api.news.getById(params.id)
+    const article: ArticleData = response.data
     return {
       title: article.title,
       description: article.description,

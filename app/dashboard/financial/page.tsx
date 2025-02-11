@@ -105,7 +105,11 @@ export default function FinancialDashboard() {
               <CardTitle>Revenue Trend</CardTitle>
             </CardHeader>
             <CardContent>
-              <KPIChart data={revenueData} type="line" />
+              <KPIChart
+                title="Revenue Growth"
+                data={revenueData}
+                type="line"
+              />
             </CardContent>
           </Card>
 
@@ -114,7 +118,11 @@ export default function FinancialDashboard() {
               <CardTitle>Profit Growth</CardTitle>
             </CardHeader>
             <CardContent>
-              <KPIChart data={profitData} type="bar" />
+              <KPIChart
+                title="Expense Distribution"
+                data={profitData}
+                type="bar"
+              />
             </CardContent>
           </Card>
         </div>

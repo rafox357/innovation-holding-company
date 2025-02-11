@@ -141,6 +141,7 @@ export function Footer() {
             </form>
           </div>
         </div>
+
         <div className="border-t border-gray-200 dark:border-gray-700 pt-8 mt-8">
           <h3 className="text-lg font-semibold mb-4 cosmic-text">Hubverse Showcase</h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -156,8 +157,8 @@ export function Footer() {
                     item.status === "Active"
                       ? "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200"
                       : item.status === "In Development"
-                        ? "bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200"
-                        : "bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200"
+                      ? "bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200"
+                      : "bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200"
                   }`}
                 >
                   {item.status}
@@ -168,7 +169,7 @@ export function Footer() {
         </div>
         <div className="border-t border-gray-200 dark:border-gray-700 pt-8 mt-8 text-center">
           <p className="text-sm text-gray-600 dark:text-gray-400">
-            {new Date().getFullYear()} Hubverse. All rights reserved.
+            &copy; {new Date().getFullYear()} Hubverse. All rights reserved.
           </p>
         </div>
       </div>

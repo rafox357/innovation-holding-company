@@ -1,19 +1,49 @@
-import type { Metadata } from "next"
 import { Poppins } from "next/font/google"
+import { ClientLayout } from "@/components/client-layout"
 import "./globals.css"
-import { Providers } from "@/components/providers"
-import { Navbar } from "@/components/navbar"
-import { Footer } from "@/components/footer"
 
 const poppins = Poppins({ 
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
   variable: "--font-poppins",
 })
 
-export const metadata: Metadata = {
-  title: "Hubverse - Empowering Entrepreneurs and Driving Innovation",
-  description: "Hubverse is a comprehensive ecosystem of services and solutions for entrepreneurs and businesses across multiple sectors.",
+export const metadata = {
+  title: {
+    default: "Hubverse - Innovation Holding Company",
+    template: "%s | Hubverse"
+  },
+  description: "A pioneering holding company at the intersection of innovation and entrepreneurship.",
+  keywords: [
+    "Innovation",
+    "Technology",
+    "Entrepreneurship",
+    "Business",
+    "Startups",
+    "Digital Transformation",
+    "Investment",
+    "Venture Capital",
+    "Tech Solutions",
+    "Business Growth"
+  ],
+  authors: [{ name: "Hubverse" }],
+  creator: "Hubverse",
+  publisher: "Hubverse",
+  robots: "index, follow",
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "https://hubverse.com",
+    title: "Hubverse - Innovation Holding Company",
+    description: "A pioneering holding company at the intersection of innovation and entrepreneurship.",
+    siteName: "Hubverse"
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Hubverse - Innovation Holding Company",
+    description: "A pioneering holding company at the intersection of innovation and entrepreneurship.",
+    creator: "@hubverse"
+  }
 }
 
 export default function RootLayout({
@@ -23,14 +53,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head />
       <body className={poppins.className}>
-        <Providers>
-          <div className="relative flex min-h-screen flex-col bg-background font-sans antialiased">
-            <Navbar />
-            <main className="flex-1">{children}</main>
-            <Footer />
-          </div>
-        </Providers>
+        <ClientLayout>{children}</ClientLayout>
       </body>
     </html>
   )
