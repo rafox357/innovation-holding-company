@@ -1,12 +1,8 @@
-import { Metadata } from "next";
+"use client";
+
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-
-export const metadata: Metadata = {
-  title: "Resources | Observatory | Hubverse",
-  description: "Access project management resources and tools.",
-};
 
 const resources = [
   {
