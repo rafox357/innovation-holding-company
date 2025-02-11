@@ -63,6 +63,86 @@ export const metadata: Metadata = {
   },
 }
 
+export const eventsMetadata: Metadata = {
+  title: "Innovation Hub Events",
+  description: "Explore upcoming events and opportunities in our Innovation Hub",
+  openGraph: {
+    title: "Innovation Hub Events",
+    description: "Explore upcoming events and opportunities in our Innovation Hub",
+    type: "website",
+    siteName: "Hubverse",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Innovation Hub Events",
+    description: "Explore upcoming events and opportunities in our Innovation Hub",
+  },
+}
+
+export const partnershipsMetadata: Metadata = {
+  title: "Innovation Hub Partnerships",
+  description: "Explore strategic partnerships and collaborative opportunities",
+  openGraph: {
+    title: "Innovation Hub Partnerships",
+    description: "Explore strategic partnerships and collaborative opportunities",
+    type: "website",
+    siteName: "Hubverse",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Innovation Hub Partnerships",
+    description: "Explore strategic partnerships and collaborative opportunities",
+  },
+}
+
+export const programsMetadata: Metadata = {
+  title: "Innovation Hub Programs",
+  description: "Discover our innovative programs and initiatives",
+  openGraph: {
+    title: "Innovation Hub Programs",
+    description: "Discover our innovative programs and initiatives",
+    type: "website",
+    siteName: "Hubverse",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Innovation Hub Programs",
+    description: "Discover our innovative programs and initiatives",
+  },
+}
+
+export const resourcesMetadata: Metadata = {
+  title: "Innovation Hub Resources",
+  description: "Access valuable resources for innovation and entrepreneurship",
+  openGraph: {
+    title: "Innovation Hub Resources",
+    description: "Access valuable resources for innovation and entrepreneurship",
+    type: "website",
+    siteName: "Hubverse",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Innovation Hub Resources",
+    description: "Access valuable resources for innovation and entrepreneurship",
+  },
+}
+
+export const grantsMetadata: Metadata = {
+  title: "Innovation Hub Grants",
+  description: "Explore funding opportunities for innovative projects",
+  openGraph: {
+    title: "Innovation Hub Grants",
+    description: "Explore funding opportunities for innovative projects",
+    type: "website",
+    siteName: "Hubverse",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Innovation Hub Grants",
+    description: "Explore funding opportunities for innovative projects",
+  },
+}
+
 export default function InnovationHubLayout({
   children,
 }: {

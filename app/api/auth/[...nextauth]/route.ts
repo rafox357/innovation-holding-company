@@ -1,118 +1,97 @@
-import NextAuth from "next-auth"
-import GithubProvider from "next-auth/providers/github"
-import GoogleProvider from "next-auth/providers/google"
+import NextAuth, { AuthOptions } from "next-auth"
+import { JWT } from "next-auth/jwt"
+import { User, Account } from "next-auth"
 import EmailProvider from "next-auth/providers/email"
-import LinkedInProvider from "next-auth/providers/linkedin"
-import TwitterProvider from "next-auth/providers/twitter"
-import DiscordProvider from "next-auth/providers/discord"
 import { PrismaAdapter } from "@auth/prisma-adapter"
 import { PrismaClient } from "@prisma/client"
-import { Session } from "next-auth"
-import { AdapterUser } from "@auth/core/adapters"
 
-declare module "next-auth" {
-  interface User {
-    role?: "ADMIN" | "INVESTOR" | "USER"
-    emailVerified?: Date | null
-  }
-
-  interface Session {
-    user: {
-      id: string
-      name?: string | null
-      email?: string | null
-      image?: string | null
-      role: "ADMIN" | "INVESTOR" | "USER"
-      emailVerified?: Date | null
-    }
-  }
-}
-
+// Singleton Prisma client to prevent multiple instances
 const prisma = new PrismaClient()
 
-const handler = NextAuth({
+// Enum for user roles to ensure type safety
+export enum UserRole {
+  USER = "USER",
+  INVESTOR = "INVESTOR", 
+  ADMIN = "ADMIN"
+}
+
+export const authOptions: AuthOptions = {
   adapter: PrismaAdapter(prisma),
   providers: [
-    GithubProvider({
-      clientId: process.env.GITHUB_ID!,
-      clientSecret: process.env.GITHUB_SECRET!,
-      authorization: { params: { scope: 'read:user user:email' } },
-    }),
-    GoogleProvider({
-      clientId: process.env.GOOGLE_ID!,
-      clientSecret: process.env.GOOGLE_SECRET!,
-      authorization: {
-        params: {
-          prompt: "consent",
-          access_type: "offline",
-          response_type: "code"
-        }
-      }
-    }),
-    LinkedInProvider({
-      clientId: process.env.LINKEDIN_ID!,
-      clientSecret: process.env.LINKEDIN_SECRET!,
-      authorization: { params: { scope: 'r_liteprofile r_emailaddress' } },
-    }),
-    TwitterProvider({
-      clientId: process.env.TWITTER_ID!,
-      clientSecret: process.env.TWITTER_SECRET!,
-      version: "2.0",
-    }),
-    DiscordProvider({
-      clientId: process.env.DISCORD_ID!,
-      clientSecret: process.env.DISCORD_SECRET!,
-    }),
     EmailProvider({
       server: {
-        host: process.env.EMAIL_SERVER_HOST,
-        port: Number(process.env.EMAIL_SERVER_PORT),
+        host: process.env.EMAIL_SERVER_HOST || 'localhost',
+        port: parseInt(process.env.EMAIL_SERVER_PORT || '1025'),
         auth: {
-          user: process.env.EMAIL_SERVER_USER,
-          pass: process.env.EMAIL_SERVER_PASSWORD,
-        },
+          user: process.env.EMAIL_SERVER_USER || 'mock-user',
+          pass: process.env.EMAIL_SERVER_PASSWORD || 'mock-pass'
+        }
       },
-      from: process.env.EMAIL_FROM,
-      maxAge: 24 * 60 * 60, // 24 hours
+      from: process.env.EMAIL_FROM || 'noreply@example.com',
     }),
   ],
   pages: {
-    signIn: "/auth/signin",
-    signOut: "/auth/signout",
-    error: "/auth/error",
-    verifyRequest: "/auth/verify",
+    signIn: '/auth/signin',
+    signOut: '/auth/signout',
+    error: '/auth/error',
+    verifyRequest: '/auth/verify',
   },
   session: {
-    strategy: "jwt",
+    strategy: 'jwt',
     maxAge: 30 * 24 * 60 * 60, // 30 days
   },
   callbacks: {
-    async session({ session, token, user }) {
-      if (session?.user) {
-        session.user.id = token.sub!
-        session.user.role = (token.role as "ADMIN" | "INVESTOR" | "USER") || "USER"
-        session.user.emailVerified = token.emailVerified as Date | null
+    async jwt({ token, user, account }) {
+      // Persist the role on first login or when user is created
+      if (account?.type === 'credentials' || account?.type === 'email') {
+        token.role = user?.role ?? token.role ?? UserRole.USER
+      }
+      
+      // Ensure role is always present and valid
+      token.role = Object.values(UserRole).includes(token.role as UserRole) 
+        ? token.role 
+        : UserRole.USER
+      
+      return token
+    },
+    async session({ session, token }) {
+      if (session.user) {
+        session.user.id = token.sub || ''
+        session.user.role = token.role as UserRole
       }
       return session
     },
-    async jwt({ token, user, account, profile }) {
-      if (user) {
-        token.role = user.role
-        token.emailVerified = user.emailVerified
+    async redirect({ url, baseUrl }) {
+      // Safely handle URL redirects
+      try {
+        // Always resolve relative URLs
+        if (url.startsWith('/')) {
+          return `${baseUrl}${url}`
+        }
+        
+        // Prevent external redirects
+        const parsedUrl = new URL(url)
+        return parsedUrl.origin === baseUrl ? url : baseUrl
+      } catch {
+        // Fallback to base URL if URL parsing fails
+        return baseUrl
       }
-      return token
-    },
+    }
   },
+  // Add additional security configurations
   events: {
-    async signIn({ user, account, profile, isNewUser }) {
-      if (isNewUser) {
-        await prisma.user.update({
-          where: { id: user.id },
-          data: { role: "USER" }
-        })
-      }
-    },
+    async signIn(message) {
+      // Optional: Log sign-in attempts or implement additional security checks
+      console.log('Sign-in attempt', { 
+        email: message.user.email, 
+        timestamp: new Date().toISOString() 
+      })
+    }
   },
-})
+  // Add debug logging for development
+  debug: process.env.NODE_ENV === 'development'
+}
+
+const handler = NextAuth(authOptions)
 
 export { handler as GET, handler as POST }

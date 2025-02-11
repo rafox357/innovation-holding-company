@@ -8,6 +8,22 @@ export const metadata: Metadata = {
   description: "Learn about Hubverse, our mission, values, and team",
 }
 
+export const teamMetadata: Metadata = {
+  title: "Our Team | About Us",
+  description: "Meet the innovative minds behind our organization",
+  openGraph: {
+    title: "Our Team | About Us",
+    description: "Meet the innovative minds behind our organization",
+    type: "website",
+    siteName: "Hubverse",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Our Team | About Us",
+    description: "Meet the innovative minds behind our organization",
+  },
+}
+
 const teamMembers = [
   {
     name: "John Doe",
@@ -97,4 +113,3 @@ export default function AboutPage() {
     </div>
   )
 }
-

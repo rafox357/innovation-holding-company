@@ -6,11 +6,6 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 
-export const metadata: Metadata = {
-  title: "Partnerships | Innovation Hub | Hubverse",
-  description: "Explore partnership opportunities with Hubverse.",
-};
-
 const breadcrumbItems = [
   { title: "Innovation Hub", href: "/innovation-hub" },
   { title: "Partnerships", href: "/innovation-hub/partnerships" },

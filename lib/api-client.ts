@@ -47,8 +47,7 @@ class ApiClient {
     }
   }
 
-  @cache
-  public async get<T>(endpoint: string, params?: Record<string, string>): Promise<T> {
+  public get = cache(async <T>(endpoint: string, params?: Record<string, string>): Promise<T> => {
     const queryString = params 
       ? `?${new URLSearchParams(params).toString()}` 
       : '';
@@ -57,7 +56,7 @@ class ApiClient {
       `${endpoint}${queryString}`,
       { method: 'GET' }
     );
-  }
+  });
 
   public async post<T, B>(endpoint: string, body: B): Promise<T> {
     return this.fetchWithErrorHandling<T>(

@@ -1,6 +1,5 @@
 "use client";
 
-import { Metadata } from "next";
 import { useState } from "react";
 import { ProgramCard } from "@/components/innovation-hub/program-card";
 import { Input } from "@/components/ui/input";
@@ -14,13 +13,23 @@ import {
 import { Card } from "@/components/ui/card";
 import { Search } from "lucide-react";
 
-export const metadata: Metadata = {
-  title: "Programs | Innovation Hub | Hubverse",
-  description: "Explore our innovation and research programs.",
-};
-
 // Mock data - replace with API call
-const programs = [
+type ProgramStatus = "active" | "upcoming" | "completed";
+
+interface Program {
+  id: string;
+  title: string;
+  description: string;
+  duration: string;
+  benefits: string[];
+  requirements: string[];
+  startDate: string;
+  endDate: string;
+  capacity: number;
+  status: ProgramStatus;
+}
+
+const programs: Program[] = [
   {
     id: "prog-1",
     title: "AI Research Fellowship",

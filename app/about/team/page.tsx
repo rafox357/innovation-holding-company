@@ -1,13 +1,10 @@
+"use client";
+
 import type { Metadata } from "next"
 import Image from "next/image"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-
-export const metadata: Metadata = {
-  title: "Our Team",
-  description: "Meet the talented individuals behind Hubverse's success",
-}
 
 const executiveTeam = [
   {

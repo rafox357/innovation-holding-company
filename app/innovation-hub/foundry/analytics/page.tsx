@@ -1,3 +1,5 @@
+"use client";
+
 import { Metadata } from "next";
 import { Card } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -8,11 +10,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-
-export const metadata: Metadata = {
-  title: "Analytics | The Foundry | Hubverse",
-  description: "Explore our analytics and insights",
-};
 
 // Mock data - replace with API call
 const analytics = {
@@ -72,7 +69,7 @@ const analytics = {
   },
 };
 
-export default function AnalyticsPage() {
+export default function FoundryAnalyticsPage() {
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="flex justify-between items-center mb-8">
