@@ -3,8 +3,8 @@ import { BlueprintLayout } from "@/components/blueprint-layout"
 import { AccordionList } from "@/components/accordion-list"
 
 export const metadata: Metadata = {
-  title: "FAQ | Blueprint Platform",
-  description: "Frequently asked questions about the Blueprint Platform.",
+  title: "Frequently Asked Questions | Blueprint Platform",
+  description: "Answers to common questions about the Blueprint Platform.",
 }
 
 const faqItems = [
@@ -76,4 +76,3 @@ export default function FAQPage() {
     </BlueprintLayout>
   )
 }
-

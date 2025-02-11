@@ -5,40 +5,48 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ProjectManagementCard } from "@/components/observatory/project-management-card";
 import { Search, TrendingUp, AlertTriangle, Clock } from "lucide-react";
-import type { Project } from "@/components/observatory/project-management-card";
+import type { Project } from "@/types/project";
 
 const projects: Project[] = [
   {
-    id: "1",
+    id: 1,
     name: "Quantum Computing Research",
-    status: "In Progress",
-    priority: "High",
-    dueDate: "2025-03-15",
+    description: "Advanced quantum computing research initiative",
+    status: "In Development",
     progress: 65,
-  },
-  {
-    id: "2",
-    name: "AI Ethics Framework",
-    status: "Planning",
-    priority: "Medium",
-    dueDate: "2025-04-01",
-    progress: 25,
-  },
-  {
-    id: "3",
-    name: "Energy Storage Solutions",
-    status: "Review",
+    category: "Technology",
+    team: ["Research Team"],
     priority: "High",
-    dueDate: "2025-02-28",
-    progress: 90,
   },
   {
-    id: "4",
-    name: "Biotech Innovation Study",
-    status: "In Progress",
+    id: 2,
+    name: "AI Ethics Framework",
+    description: "Developing comprehensive AI ethics guidelines",
+    status: "Planning",
+    progress: 25,
+    category: "Ethics",
+    team: ["Ethics Committee"],
     priority: "Medium",
-    dueDate: "2025-03-30",
+  },
+  {
+    id: 3,
+    name: "Energy Storage Solutions",
+    description: "Innovative energy storage technology development",
+    status: "Testing",
+    progress: 90,
+    category: "Sustainability",
+    team: ["Engineering Team"],
+    priority: "High",
+  },
+  {
+    id: 4,
+    name: "Biotech Innovation Study",
+    description: "Exploring cutting-edge biotechnology applications",
+    status: "In Development",
     progress: 45,
+    category: "Healthcare",
+    team: ["Biotech Research"],
+    priority: "Medium",
   },
 ];
 

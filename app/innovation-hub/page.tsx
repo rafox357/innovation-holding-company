@@ -1,5 +1,3 @@
-"use client";
-
 import { Metadata } from "next";
 import { InnovationHubOverview } from "@/components/innovation-hub/innovation-hub";
 
