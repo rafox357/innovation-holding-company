@@ -5,6 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Progress } from "@/components/ui/progress"
 import { Atom, Brain, Microscope } from 'lucide-react';
+import Chip from '@/components/ui/chip';
 
 const researchAreas = [
   {
@@ -90,7 +91,7 @@ export default function LabResearchPage() {
           </Card>
           <Card>
             <CardHeader className="flex flex-row items-center space-x-4">
-              <Chip className="h-6 w-6 text-primary" />
+              <Chip className="h-6 w-6 text-primary" label="Patents" />
               <CardTitle>Patents</CardTitle>
             </CardHeader>
             <CardContent>

@@ -3,11 +3,13 @@
 
 generator client {
   provider = "prisma-client-js"
+  previewFeatures = ["driverAdapters"]
 }
 
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
+  directUrl = env("DATABASE_URL")
 }
 
 enum UserRole {
@@ -16,19 +18,35 @@ enum UserRole {
   USER
 }
 
+model User {
+  id            String    @id @default(cuid())
+  name          String?
+  email         String?   @unique
+  emailVerified DateTime?
+  image         String?
+  role          UserRole  @default(USER)
+  lastLogin     DateTime?
+  accounts      Account[]
+  sessions      Session[]
+  profile       Profile?
+  passwordHash  String?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+}
+
 model Account {
-  id                String  @id @default(cuid())
-  userId            String
-  type              String
-  provider          String
-  providerAccountId String
-  refresh_token     String? @db.Text
-  access_token      String? @db.Text
-  expires_at        Int?
-  token_type        String?
-  scope             String?
-  id_token          String? @db.Text
-  session_state     String?
+  id                 String  @id @default(cuid())
+  userId             String
+  type               String
+  provider           String
+  providerAccountId  String
+  refresh_token      String? @db.Text
+  access_token       String? @db.Text
+  expires_at         Int?
+  token_type         String?
+  scope              String?
+  id_token           String? @db.Text
+  session_state      String?
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
@@ -41,18 +59,6 @@ model Session {
   userId       String
   expires      DateTime
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-}
-
-model User {
-  id            String    @id @default(cuid())
-  name          String?
-  email         String?   @unique
-  emailVerified DateTime?
-  image         String?
-  role          UserRole  @default(USER)
-  accounts      Account[]
-  sessions      Session[]
-  profile       Profile?
 }
 
 model Profile {
@@ -74,4 +80,84 @@ model VerificationToken {
   expires    DateTime
 
   @@unique([identifier, token])
+}
+
+model Grant {
+  id          String   @id @default(cuid())
+  title       String
+  description String
+  amount      Float
+  currency    String
+  status      String
+  type        String
+  funder      Funder   @relation(fields: [funderId], references: [id])
+  funderId    String
+  deadline    DateTime?
+  startDate   DateTime?
+  endDate     DateTime?
+  eligibility String[]
+  tags        String[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Funder {
+  id          String   @id @default(cuid())
+  name        String
+  description String?
+  website     String?
+  logo        String?
+  grants      Grant[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Project {
+  id          String   @id @default(cuid())
+  name        String
+  title       String
+  description String
+  status      String
+  team        TeamMember[]
+  startDate   DateTime
+  progress    Int      @default(0)
+  lead        TeamMember @relation("ProjectLead", fields: [leadId], references: [id])
+  leadId      String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model TeamMember {
+  id           String    @id @default(cuid())
+  name         String
+  avatar       String?
+  initials     String
+  projects     Project[]
+  ledProjects  Project[] @relation("ProjectLead")
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+}
+
+model Publication {
+  id              String   @id @default(cuid())
+  title           String
+  authors         Author[]
+  journal         String?
+  publicationDate DateTime
+  doi            String?
+  abstract       String?
+  pdfUrl         String?
+  tags           String[]
+  citations      Int      @default(0)
+  type           String
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+}
+
+model Author {
+  id            String        @id @default(cuid())
+  name          String
+  publications  Publication[]
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
 }

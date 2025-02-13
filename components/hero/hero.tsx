@@ -3,8 +3,9 @@
 import { motion } from "framer-motion"
 import { ArrowRight } from "lucide-react"
 import Link from "next/link"
+import { memo } from "react"
 
-export function Hero() {
+const Hero = memo(() => {
   return (
     <section className="relative py-20 overflow-hidden">
       {/* Background Effects */}
@@ -49,32 +50,36 @@ export function Hero() {
             <p className="text-lg mb-8">
               Through our unique ecosystem, we combine technological advancement with sustainable business practices,
               fostering an environment where visionary entrepreneurs can transform their ideas into impactful
-              enterprises.
+              ventures.
             </p>
           </motion.div>
 
-          {/* CTA Buttons */}
+          {/* Call to Action */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
-            className="flex justify-center gap-4"
+            className="flex justify-center space-x-4"
           >
             <Link
-              href="/about"
-              className="cosmic-button px-8 py-4 text-lg rounded-lg inline-flex items-center"
+              href="/explore"
+              className="inline-flex items-center px-6 py-3 text-lg font-semibold text-white bg-primary rounded-lg hover:bg-primary-dark transition-colors"
             >
-              Learn More <ArrowRight className="ml-2 h-5 w-5" />
+              Explore Opportunities
+              <ArrowRight className="ml-2 h-5 w-5" />
             </Link>
             <Link
-              href="/contact"
-              className="px-8 py-4 text-lg rounded-lg inline-flex items-center border border-primary/50 hover:bg-primary/10 transition-colors"
+              href="/about"
+              className="inline-flex items-center px-6 py-3 text-lg font-semibold text-primary bg-primary/10 rounded-lg hover:bg-primary/20 transition-colors"
             >
-              Get in Touch <ArrowRight className="ml-2 h-5 w-5" />
+              Learn More
             </Link>
           </motion.div>
         </motion.div>
       </div>
     </section>
   )
-}
+})
+
+Hero.displayName = 'Hero'
+export default Hero

@@ -1,108 +1,123 @@
-"use client"
+"use client";
 
-import { signIn } from "next-auth/react"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Github, Mail, Globe } from "lucide-react"
-import Image from "next/image"
-import { Input } from "@/components/ui/input"
-import { useState } from "react"
-import { Alert, AlertDescription } from "@/components/ui/alert"
-import { useSearchParams, useRouter } from "next/navigation"
+import { signIn } from "next-auth/react";
+import { useRouter, useSearchParams } from "next/navigation";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import * as z from "zod";
 
-export default function SignIn() {
-  const [email, setEmail] = useState("")
-  const [isLoading, setIsLoading] = useState(false)
-  const [error, setError] = useState<string | null>(null)
-  const searchParams = useSearchParams()
-  const router = useRouter()
-  const callbackUrl = searchParams.get("callbackUrl") || "/dashboard"
+import { Button } from "@/components/ui/button";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { toast } from "@/components/ui/use-toast";
+import { Icons } from "@/components/ui/icons";
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { Separator } from "@/components/ui/separator";
 
-  const handleEmailSignIn = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setIsLoading(true)
-    setError(null)
+const formSchema = z.object({
+  email: z.string().email({
+    message: "Please enter a valid email address.",
+  }),
+});
 
+export default function SignInPage() {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const callbackUrl = searchParams.get("callbackUrl") || "/";
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      email: "",
+    },
+  });
+
+  async function onSubmit(values: z.infer<typeof formSchema>) {
     try {
+      setIsLoading(true);
+      setError(null);
+
       const result = await signIn("email", {
-        email,
-        callbackUrl,
+        email: values.email,
         redirect: false,
-      })
+        callbackUrl,
+      });
 
-      if (result?.error) {
-        setError("Failed to send verification email. Please try again.")
-      } else {
-        router.push("/auth/verify")
+      if (!result?.ok) {
+        throw new Error("Something went wrong");
       }
-    } catch (error) {
-      setError("An unexpected error occurred. Please try again.")
-    } finally {
-      setIsLoading(false)
-    }
-  }
 
-  const handleOAuthSignIn = async (provider: string) => {
-    try {
-      await signIn(provider, { callbackUrl })
+      toast({
+        title: "Check your email",
+        description: "We sent you a login link. Be sure to check your spam too.",
+      });
+
     } catch (error) {
-      setError("Failed to connect with provider. Please try again.")
+      setError("Something went wrong. Please try again.");
+      toast({
+        title: "Error",
+        description: "Something went wrong. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsLoading(false);
     }
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-background to-secondary/10 flex items-center justify-center p-4">
-      <Card className="w-full max-w-md">
-        <CardHeader className="text-center space-y-6">
-          <div className="flex justify-center">
-            <Image
-              src="/logo.svg"
-              alt="Hubverse Logo"
-              width={60}
-              height={60}
-              className="rounded-lg"
-              priority
-            />
-          </div>
-          <div>
-            <CardTitle className="text-3xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-              Welcome to Hubverse
-            </CardTitle>
-            <CardDescription className="text-lg mt-2">
-              Sign in to access your dashboard
-            </CardDescription>
-          </div>
+    <div className="container flex h-screen w-screen flex-col items-center justify-center">
+      <Card className="w-full max-w-[400px]">
+        <CardHeader className="space-y-1">
+          <CardTitle className="text-2xl font-bold">Sign in</CardTitle>
+          <CardDescription>
+            Choose your preferred sign in method
+          </CardDescription>
         </CardHeader>
-        <CardContent className="space-y-4">
-          {error && (
-            <Alert variant="destructive">
-              <AlertDescription>{error}</AlertDescription>
-            </Alert>
-          )}
-          <form onSubmit={handleEmailSignIn} className="space-y-4">
-            <div className="space-y-2">
-              <Input
-                type="email"
-                placeholder="name@example.com"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-                disabled={isLoading}
-                className="w-full"
+        <CardContent className="grid gap-4">
+          <Form {...form}>
+            <form onSubmit={form.handleSubmit(onSubmit)} className="grid gap-4">
+              <FormField
+                control={form.control}
+                name="email"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Email</FormLabel>
+                    <FormControl>
+                      <Input
+                        placeholder="name@example.com"
+                        type="email"
+                        autoCapitalize="none"
+                        autoComplete="email"
+                        autoCorrect="off"
+                        disabled={isLoading}
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
               />
-            </div>
-            <Button
-              type="submit"
-              className="w-full"
-              disabled={isLoading}
-            >
-              {isLoading ? "Sending link..." : "Sign in with Email"}
-            </Button>
-          </form>
-
+              <Button type="submit" disabled={isLoading}>
+                {isLoading && (
+                  <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
+                )}
+                Sign in with Email
+              </Button>
+            </form>
+          </Form>
           <div className="relative">
             <div className="absolute inset-0 flex items-center">
-              <span className="w-full border-t" />
+              <Separator />
             </div>
             <div className="relative flex justify-center text-xs uppercase">
               <span className="bg-background px-2 text-muted-foreground">
@@ -110,27 +125,18 @@ export default function SignIn() {
               </span>
             </div>
           </div>
-
           <div className="grid grid-cols-2 gap-4">
-            <Button
-              variant="outline"
-              onClick={() => handleOAuthSignIn("github")}
-              disabled={isLoading}
-            >
-              <Github className="mr-2 h-4 w-4" />
+            <Button variant="outline" onClick={() => signIn("github", { callbackUrl })} disabled={isLoading}>
+              <Icons.gitHub className="mr-2 h-4 w-4" />
               GitHub
             </Button>
-            <Button
-              variant="outline"
-              onClick={() => handleOAuthSignIn("google")}
-              disabled={isLoading}
-            >
-              <Globe className="mr-2 h-4 w-4" />
+            <Button variant="outline" onClick={() => signIn("google", { callbackUrl })} disabled={isLoading}>
+              <Icons.google className="mr-2 h-4 w-4" />
               Google
             </Button>
           </div>
         </CardContent>
       </Card>
     </div>
-  )
+  );
 }

@@ -1,33 +1,50 @@
 import NextAuth, { AuthOptions } from "next-auth"
-import { JWT } from "next-auth/jwt"
-import { User, Account } from "next-auth"
 import EmailProvider from "next-auth/providers/email"
+import GithubProvider from "next-auth/providers/github"
+import GoogleProvider from "next-auth/providers/google"
+import LinkedInProvider from "next-auth/providers/linkedin"
+import TwitterProvider from "next-auth/providers/twitter"
+import DiscordProvider from "next-auth/providers/discord"
 import { PrismaAdapter } from "@auth/prisma-adapter"
 import { PrismaClient } from "@prisma/client"
+import { UserRole } from "@/types/user"
 
 // Singleton Prisma client to prevent multiple instances
 const prisma = new PrismaClient()
-
-// Move UserRole enum and authentication configuration here
-enum UserRole {
-  USER,
-  ADMIN,
-  // Add more roles as needed
-}
 
 export const authOptions: AuthOptions = {
   adapter: PrismaAdapter(prisma),
   providers: [
     EmailProvider({
       server: {
-        host: process.env.EMAIL_SERVER_HOST || 'localhost',
-        port: parseInt(process.env.EMAIL_SERVER_PORT || '1025'),
+        host: process.env.EMAIL_SERVER_HOST,
+        port: Number(process.env.EMAIL_SERVER_PORT),
         auth: {
-          user: process.env.EMAIL_SERVER_USER || 'mock-user',
-          pass: process.env.EMAIL_SERVER_PASSWORD || 'mock-pass'
-        }
+          user: process.env.EMAIL_SERVER_USER,
+          pass: process.env.EMAIL_SERVER_PASSWORD,
+        },
       },
-      from: process.env.EMAIL_FROM || 'noreply@example.com',
+      from: process.env.EMAIL_FROM,
+    }),
+    GithubProvider({
+      clientId: process.env.GITHUB_ID as string,
+      clientSecret: process.env.GITHUB_SECRET as string,
+    }),
+    GoogleProvider({
+      clientId: process.env.GOOGLE_ID as string,
+      clientSecret: process.env.GOOGLE_SECRET as string,
+    }),
+    LinkedInProvider({
+      clientId: process.env.LINKEDIN_ID as string,
+      clientSecret: process.env.LINKEDIN_SECRET as string,
+    }),
+    TwitterProvider({
+      clientId: process.env.TWITTER_ID as string,
+      clientSecret: process.env.TWITTER_SECRET as string,
+    }),
+    DiscordProvider({
+      clientId: process.env.DISCORD_ID as string,
+      clientSecret: process.env.DISCORD_SECRET as string,
     }),
   ],
   pages: {
@@ -42,41 +59,40 @@ export const authOptions: AuthOptions = {
   },
   callbacks: {
     async jwt({ token, user, account }) {
-      // Persist the role on first login or when user is created
-      if (account?.type === 'credentials' || account?.type === 'email') {
-        token.role = user?.role ?? token.role ?? UserRole.USER
+      if (user) {
+        token.id = user.id
+        token.role = user.role || UserRole.USER
+        token.email = user.email
       }
-      
-      // Ensure role is always present and valid
-      token.role = Object.values(UserRole).includes(token.role as UserRole) 
-        ? token.role 
-        : UserRole.USER
-      
       return token
     },
     async session({ session, token }) {
-      session.user.role = token.role as UserRole
+      if (session.user) {
+        session.user.id = token.id as string
+        session.user.role = token.role as UserRole
+        session.user.email = token.email as string
+      }
       return session
     },
+    async signIn({ user, account, profile }) {
+      return true // Allow all sign-ins
+    },
     async redirect({ url, baseUrl }) {
-      // Allow relative redirects
-      if (url.startsWith('/')) return `${baseUrl}${url}`
-      
-      // Allow whitelisted domains
-      const parsedUrl = new URL(url)
-      if (parsedUrl.origin === baseUrl) return url
-      
+      if (url.startsWith(baseUrl)) return url
+      else if (url.startsWith("/")) return `${baseUrl}${url}`
       return baseUrl
-    }
+    },
   },
-  // Add additional security configurations
   events: {
-    async signIn(message) {
-      // Optional: Log sign-in events
-      console.log('User signed in:', message.user.email)
-    }
+    async signIn({ user }) {
+      if (user.id) {
+        await prisma.user.update({
+          where: { id: user.id },
+          data: { lastLogin: new Date() },
+        })
+      }
+    },
   },
-  // Add debug logging for development
   debug: process.env.NODE_ENV === 'development'
 }
 

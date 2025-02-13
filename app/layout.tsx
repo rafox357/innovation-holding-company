@@ -1,6 +1,6 @@
 import type { Metadata } from "next"
-import { Poppins } from "next/font/google"
-
+import { Inter, Poppins } from "next/font/google"
+import { SessionProvider } from "@/components/auth/session-provider"
 import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
 import { ThemeProvider } from "@/components/theme-provider"
@@ -18,25 +18,29 @@ const poppins = Poppins({
   fallback: ["system-ui", "sans-serif"],
 })
 
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+})
+
 const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 
   (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "http://localhost:3000")
 
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
   title: {
-    default: "Hubverse",
+    default: "Innovative Holding Company | Leading the Future",
     template: "%s | Hubverse",
   },
-  description: "Where groundbreaking ideas meet cutting-edge technology.",
+  description: "A visionary holding company pioneering innovation across multiple industries through strategic investments and technological advancement.",
   keywords: [
     "innovation",
     "technology",
-    "startup",
-    "digital transformation",
+    "investment",
+    "research",
+    "development",
     "future",
-    "technology hub",
-    "collaboration",
-    "innovation platform"
+    "holding company",
   ],
   authors: [
     {
@@ -49,8 +53,8 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: baseUrl,
-    title: "Hubverse",
-    description: "Where groundbreaking ideas meet cutting-edge technology.",
+    title: "Innovative Holding Company | Leading the Future",
+    description: "A visionary holding company pioneering innovation across multiple industries through strategic investments and technological advancement.",
     siteName: "Hubverse",
     images: [
       {
@@ -96,10 +100,10 @@ interface RootLayoutProps {
 
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
-    <html lang="en" suppressHydrationWarning className={poppins.variable}>
+    <html lang="en" suppressHydrationWarning className={cn(poppins.variable, inter.variable)}>
       <head>
         <meta charSet="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
         <meta name="theme-color" content="#ffffff" />
         <link rel="canonical" href={baseUrl} />
         <link
@@ -108,9 +112,10 @@ export default function RootLayout({ children }: RootLayoutProps) {
           crossOrigin="anonymous"
         />
       </head>
-      <body className={cn(
+      <body suppressHydrationWarning className={cn(
         poppins.className,
-        "min-h-screen bg-background font-sans antialiased"
+        inter.variable,
+        "min-h-screen bg-background font-sans antialiased overflow-x-hidden"
       )}>
         <ThemeProvider
           attribute="class"
@@ -118,12 +123,14 @@ export default function RootLayout({ children }: RootLayoutProps) {
           enableSystem
           disableTransitionOnChange
         >
-          <div className="relative flex min-h-screen flex-col">
-            <Navbar />
-            <main className="flex-1">{children}</main>
-            <Footer />
-          </div>
-          <Toaster />
+          <SessionProvider>
+            <div className="relative flex min-h-screen flex-col">
+              <Navbar />
+              <main className="flex-1 container mx-auto px-4 sm:px-6 lg:px-8">{children}</main>
+              <Footer />
+            </div>
+            <Toaster />
+          </SessionProvider>
         </ThemeProvider>
       </body>
     </html>

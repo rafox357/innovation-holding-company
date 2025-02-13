@@ -1,100 +1,124 @@
 "use client"
 
+import { signIn } from "next-auth/react"
+import { useRouter, useSearchParams } from "next/navigation"
 import { useState } from "react"
-import Link from "next/link"
-import Image from "next/image"
-import { Github, Mail, Globe } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
+import { useForm } from "react-hook-form"
+import { zodResolver } from "@hookform/resolvers/zod"
+import * as z from "zod"
 
-export default function SignUp() {
+import { Button } from "@/components/ui/button"
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form"
+import { Input } from "@/components/ui/input"
+import { toast } from "@/components/ui/use-toast"
+import { Icons } from "@/components/ui/icons"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Separator } from "@/components/ui/separator"
+
+const formSchema = z.object({
+  email: z.string().email({
+    message: "Please enter a valid email address.",
+  }),
+})
+
+export default function SignUpPage() {
+  const router = useRouter()
+  const searchParams = useSearchParams()
+  const callbackUrl = searchParams.get("callbackUrl") || "/"
   const [isLoading, setIsLoading] = useState(false)
-  const [formData, setFormData] = useState({
-    email: "",
-    password: "",
-    confirmPassword: "",
+
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      email: "",
+    },
   })
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setIsLoading(true)
+  async function onSubmit(values: z.infer<typeof formSchema>) {
     try {
-      // TODO: Implement signup logic
-      console.log("Sign up with:", formData)
+      setIsLoading(true)
+
+      const result = await signIn("email", {
+        email: values.email,
+        redirect: true,
+        callbackUrl: "/onboarding", // Redirect to onboarding after email verification
+      })
+
+      if (!result?.ok) {
+        throw new Error("Something went wrong")
+      }
+
+      // Show success toast
+      toast({
+        title: "Check your email",
+        description: "We sent you a login link. Be sure to check your spam too.",
+      })
+
+      // Redirect to verify-request page
+      router.push("/auth/verify-request")
+
     } catch (error) {
-      console.error("Error signing up:", error)
+      toast({
+        title: "Error",
+        description: "Something went wrong. Please try again.",
+        variant: "destructive",
+      })
+    } finally {
+      setIsLoading(false)
     }
-    setIsLoading(false)
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-background to-secondary/10 flex items-center justify-center p-4">
-      <Card className="w-full max-w-md">
-        <CardHeader className="text-center space-y-6">
-          <div className="flex justify-center">
-            <Image
-              src="/logo.png"
-              alt="Hubverse Logo"
-              width={60}
-              height={60}
-              className="rounded-lg"
-            />
-          </div>
-          <div>
-            <CardTitle className="text-3xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-              Create an Account
-            </CardTitle>
-            <CardDescription className="text-lg mt-2">
-              Join Hubverse and start innovating
-            </CardDescription>
-          </div>
+    <div className="container flex h-screen w-screen flex-col items-center justify-center">
+      <Card className="w-full max-w-[400px]">
+        <CardHeader className="space-y-1">
+          <CardTitle className="text-2xl font-bold">Create an account</CardTitle>
+          <CardDescription>
+            Choose your preferred sign up method
+          </CardDescription>
         </CardHeader>
-        <CardContent className="space-y-4">
-          <form onSubmit={handleSubmit} className="space-y-4">
-            <div className="space-y-2">
-              <Label htmlFor="email">Email</Label>
-              <Input
-                id="email"
-                type="email"
-                placeholder="Enter your email"
-                value={formData.email}
-                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                className="w-full"
+        <CardContent className="grid gap-4">
+          <Form {...form}>
+            <form onSubmit={form.handleSubmit(onSubmit)} className="grid gap-4">
+              <FormField
+                control={form.control}
+                name="email"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Email</FormLabel>
+                    <FormControl>
+                      <Input
+                        placeholder="name@example.com"
+                        type="email"
+                        autoCapitalize="none"
+                        autoComplete="email"
+                        autoCorrect="off"
+                        disabled={isLoading}
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
               />
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="password">Password</Label>
-              <Input
-                id="password"
-                type="password"
-                placeholder="Create a password"
-                value={formData.password}
-                onChange={(e) => setFormData({ ...formData, password: e.target.value })}
-                className="w-full"
-              />
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="confirmPassword">Confirm Password</Label>
-              <Input
-                id="confirmPassword"
-                type="password"
-                placeholder="Confirm your password"
-                value={formData.confirmPassword}
-                onChange={(e) => setFormData({ ...formData, confirmPassword: e.target.value })}
-                className="w-full"
-              />
-            </div>
-            <Button type="submit" className="w-full" disabled={isLoading}>
-              <Mail className="mr-2 h-4 w-4" />
-              {isLoading ? "Creating Account..." : "Create Account"}
-            </Button>
-          </form>
-
+              <Button type="submit" disabled={isLoading}>
+                {isLoading && (
+                  <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
+                )}
+                Sign up with Email
+              </Button>
+            </form>
+          </Form>
           <div className="relative">
             <div className="absolute inset-0 flex items-center">
-              <div className="w-full border-t border-muted" />
+              <Separator />
             </div>
             <div className="relative flex justify-center text-xs uppercase">
               <span className="bg-background px-2 text-muted-foreground">
@@ -102,23 +126,15 @@ export default function SignUp() {
               </span>
             </div>
           </div>
-
-          <div className="grid gap-2">
-            <Button variant="outline">
-              <Github className="mr-2 h-4 w-4" />
+          <div className="grid grid-cols-2 gap-4">
+            <Button variant="outline" onClick={() => signIn("github", { callbackUrl })} disabled={isLoading}>
+              <Icons.gitHub className="mr-2 h-4 w-4" />
               GitHub
             </Button>
-            <Button variant="outline">
-              <Globe className="mr-2 h-4 w-4" />
+            <Button variant="outline" onClick={() => signIn("google", { callbackUrl })} disabled={isLoading}>
+              <Icons.google className="mr-2 h-4 w-4" />
               Google
             </Button>
-          </div>
-
-          <div className="text-center text-sm">
-            Already have an account?{" "}
-            <Link href="/auth/signin" className="text-primary hover:underline">
-              Sign in
-            </Link>
           </div>
         </CardContent>
       </Card>

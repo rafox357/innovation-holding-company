@@ -29,11 +29,11 @@ const config: Config = {
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         primary: {
-          DEFAULT: "hsl(var(--primary))",
+          DEFAULT: "hsl(217 91% 60%)", // Blue
           foreground: "hsl(var(--primary-foreground))",
         },
         secondary: {
-          DEFAULT: "hsl(var(--secondary))",
+          DEFAULT: "hsl(45 93% 47%)", // Yellow
           foreground: "hsl(var(--secondary-foreground))",
         },
         destructive: {
@@ -56,16 +56,31 @@ const config: Config = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        cosmic: {
-          100: "#E6F6FF",
-          200: "#BAE3FF",
-          300: "#7CC4FA",
-          400: "#47A3F3",
-          500: "#2186EB",
-          600: "#0967D2",
-          700: "#0552B5",
-          800: "#03449E",
-          900: "#01337D",
+        blue: {
+          DEFAULT: "hsl(217 91% 60%)",
+          50: "hsl(217 91% 95%)",
+          100: "hsl(217 91% 90%)",
+          200: "hsl(217 91% 80%)",
+          300: "hsl(217 91% 70%)",
+          400: "hsl(217 91% 60%)",
+          500: "hsl(217 91% 50%)",
+          600: "hsl(217 91% 40%)",
+          700: "hsl(217 91% 30%)",
+          800: "hsl(217 91% 20%)",
+          900: "hsl(217 91% 10%)",
+        },
+        yellow: {
+          DEFAULT: "hsl(45 93% 47%)",
+          50: "hsl(45 93% 95%)",
+          100: "hsl(45 93% 90%)",
+          200: "hsl(45 93% 80%)",
+          300: "hsl(45 93% 70%)",
+          400: "hsl(45 93% 60%)",
+          500: "hsl(45 93% 50%)",
+          600: "hsl(45 93% 40%)",
+          700: "hsl(45 93% 30%)",
+          800: "hsl(45 93% 20%)",
+          900: "hsl(45 93% 10%)",
         },
         sidebar: {
           DEFAULT: 'hsl(var(--sidebar-background))',
@@ -83,6 +98,17 @@ const config: Config = {
           '3': 'hsl(var(--chart-3))',
           '4': 'hsl(var(--chart-4))',
           '5': 'hsl(var(--chart-5))'
+        },
+        cosmic: {
+          100: "#E6F6FF",
+          200: "#BAE3FF",
+          300: "#7CC4FA",
+          400: "#47A3F3",
+          500: "#2186EB",
+          600: "#0967D2",
+          700: "#0552B5",
+          800: "#03449E",
+          900: "#01337D",
         },
       },
       borderRadius: {

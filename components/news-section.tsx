@@ -3,7 +3,7 @@
 import { Newspaper, Megaphone, Users } from "lucide-react"
 import Link from "next/link"
 
-export function NewsSection() {
+export default function NewsSection() {
   return (
     <section className="py-20">
       <div className="flex justify-between items-center mb-12">

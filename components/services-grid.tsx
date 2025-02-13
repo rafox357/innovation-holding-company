@@ -2,7 +2,7 @@
 
 import { Globe, Lightbulb, BarChart } from "lucide-react"
 
-export function ServicesGrid() {
+export default function ServicesGrid() {
   return (
     <section className="py-20">
       <h2 className="text-3xl font-bold mb-12 text-center cosmic-title">Our Services</h2>

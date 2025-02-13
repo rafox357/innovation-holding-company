@@ -4,3 +4,6 @@ export enum UserRole {
   INVESTOR = "INVESTOR", 
   ADMIN = "ADMIN"
 }
+
+// Type for user roles to support both enum and string
+export type UserRoleType = UserRole | string

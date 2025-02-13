@@ -27,7 +27,7 @@ const innovationFeatures = [
   },
 ]
 
-export function InnovationHub() {
+export default function InnovationHub() {
   return (
     <section className="py-16 space-y-12">
       <div className="text-center space-y-4">

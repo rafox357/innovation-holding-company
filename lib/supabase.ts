@@ -1,21 +1,45 @@
 import { createClient } from '@supabase/supabase-js';
 
-// Ensure these are set in your .env.local
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
-const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
+// Memoize Supabase client to prevent multiple instantiations
+let memoizedSupabaseClient: ReturnType<typeof createClient> | null = null;
 
-export const supabase = createClient(supabaseUrl, supabaseAnonKey, {
-  auth: {
-    persistSession: true,
-  },
-});
+export const supabase = () => {
+  if (!memoizedSupabaseClient) {
+    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+    const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
-// Server-side Supabase client
+    if (!supabaseUrl || !supabaseAnonKey) {
+      throw new Error('Missing Supabase configuration');
+    }
+
+    memoizedSupabaseClient = createClient(supabaseUrl, supabaseAnonKey, {
+      auth: {
+        persistSession: false,
+        autoRefreshToken: true,
+        detectSessionInUrl: false,
+      },
+      global: {
+        headers: { 'x-my-custom-header': 'my-app-name' },
+      },
+    });
+  }
+  return memoizedSupabaseClient;
+};
+
 export const createServerSupabaseClient = () => {
-  // You might want to use a service role key for server-side operations
-  return createClient(supabaseUrl, process.env.SUPABASE_SERVICE_ROLE_KEY!, {
+  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const serviceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+
+  if (!supabaseUrl || !serviceRoleKey) {
+    throw new Error('Missing Supabase server configuration');
+  }
+
+  return createClient(supabaseUrl, serviceRoleKey, {
     auth: {
       persistSession: false,
+    },
+    global: {
+      headers: { 'x-my-custom-header': 'my-app-name-server' },
     },
   });
 };
