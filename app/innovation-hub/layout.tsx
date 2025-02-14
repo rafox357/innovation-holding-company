@@ -49,21 +49,10 @@ const innovationNavigation = [
 
 export const metadata: Metadata = {
   title: "Innovation Hub | Hubverse",
-  description: "Explore our innovation programs, resources, and initiatives.",
-  openGraph: {
-    title: "Innovation Hub | Hubverse",
-    description: "Explore our innovation programs, resources, and initiatives.",
-    type: "website",
-    siteName: "Hubverse",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Innovation Hub | Hubverse",
-    description: "Explore our innovation programs, resources, and initiatives.",
-  },
+  description: "Explore our innovation programs and resources",
 }
 
-export const eventsMetadata: Metadata = {
+const eventsMetadata: Metadata = {
   title: "Innovation Hub Events",
   description: "Explore upcoming events and opportunities in our Innovation Hub",
   openGraph: {
@@ -79,7 +68,7 @@ export const eventsMetadata: Metadata = {
   },
 }
 
-export const partnershipsMetadata: Metadata = {
+const partnershipsMetadata: Metadata = {
   title: "Innovation Hub Partnerships",
   description: "Explore strategic partnerships and collaborative opportunities",
   openGraph: {
@@ -95,7 +84,7 @@ export const partnershipsMetadata: Metadata = {
   },
 }
 
-export const programsMetadata: Metadata = {
+const programsMetadata: Metadata = {
   title: "Innovation Hub Programs",
   description: "Discover our innovative programs and initiatives",
   openGraph: {
@@ -111,7 +100,7 @@ export const programsMetadata: Metadata = {
   },
 }
 
-export const resourcesMetadata: Metadata = {
+const resourcesMetadata: Metadata = {
   title: "Innovation Hub Resources",
   description: "Access valuable resources for innovation and entrepreneurship",
   openGraph: {
@@ -127,7 +116,7 @@ export const resourcesMetadata: Metadata = {
   },
 }
 
-export const grantsMetadata: Metadata = {
+const grantsMetadata: Metadata = {
   title: "Innovation Hub Grants",
   description: "Explore funding opportunities for innovative projects",
   openGraph: {

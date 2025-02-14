@@ -11,16 +11,18 @@
     }
   ],
   "env": {
-    "NEXT_PUBLIC_BASE_URL": "@next_public_base_url",
-    "NEXTAUTH_SECRET": "@nextauth_secret",
-    "DATABASE_URL": "@database_url",
-    "NEXT_PUBLIC_SUPABASE_URL": "@next_public_supabase_url",
-    "NEXT_PUBLIC_SUPABASE_ANON_KEY": "@next_public_supabase_anon_key"
+    "NEXT_PUBLIC_APP_URL": "https://innovation-holding-company-git-main-rafox357s-projects.vercel.app",
+    "NEXT_PUBLIC_API_URL": "https://innovation-holding-company-git-main-rafox357s-projects.vercel.app/api",
+    "NEXTAUTH_SECRET": "GRPiNQhCElJFJTXUgluu5l0ek+qqLa0vzsRLyAvSnv4=",
+    "NEXTAUTH_URL": "https://innovation-holding-company-git-main-rafox357s-projects.vercel.app",
+    "DATABASE_URL": "postgresql://postgres:aNvf0eCWovdGfTiD@db.vtpgxgrfqhxjptyydpao.supabase.co:5432/postgres",
+    "NEXT_PUBLIC_SUPABASE_URL": "https://vtpgxgrfqhxjptyydpao.supabase.co",
+    "NEXT_PUBLIC_SUPABASE_ANON_KEY": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZ0cGd4Z3JmcWh4anB0eXlkcGFvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzQ0MDczMzcsImV4cCI6MjA0OTk4MzMzN30.gxCwDizn2Owjmq8MlmIwIV-kmsVH73idYfgER2GSGWI",
+    "SUPABASE_SERVICE_ROLE_KEY": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZ0cGd4Z3JmcWh4anB0eXlkcGFvIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTczNDQwNzMzNywiZXhwIjoyMDQ5OTgzMzM3fQ.l89p3180t9kHfYl5VRtqKctnPkxqJkgy2Ep6DXvPNqw",
+    "RESEND_API_KEY": "re_FHzgw6ek_BqagRVQPYJP5z7cbwdwNFuyr"
   },
   "regions": ["dub1"],
   "github": {
-    "enabled": true,
-    "autoDeploy": true,
-    "branches": ["main"]
+    "silent": true
   }
 }

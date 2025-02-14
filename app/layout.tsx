@@ -14,16 +14,18 @@ const poppins = Poppins({
   weight: ["400", "500", "600", "700"],
   display: "swap",
   variable: "--font-poppins",
-  preload: true,
+  preload: false,
   fallback: ["system-ui", "sans-serif"],
 })
 
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
+  display: "swap",
+  preload: false,
 })
 
-const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 
+const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 
   (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "http://localhost:3000")
 
 export const metadata: Metadata = {

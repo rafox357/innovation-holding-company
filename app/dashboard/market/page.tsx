@@ -103,7 +103,11 @@ export default function MarketDashboard() {
               <CardTitle>Market Share Trend</CardTitle>
             </CardHeader>
             <CardContent>
-              <KPIChart data={marketShareData} type="line" />
+              <KPIChart 
+                data={marketShareData} 
+                type="line" 
+                title="Market Share Trend"
+              />
             </CardContent>
           </Card>
 
@@ -112,7 +116,11 @@ export default function MarketDashboard() {
               <CardTitle>Quarterly Growth</CardTitle>
             </CardHeader>
             <CardContent>
-              <KPIChart data={growthData} type="bar" />
+              <KPIChart 
+                data={growthData} 
+                type="bar" 
+                title="Quarterly Growth"
+              />
             </CardContent>
           </Card>
         </div>

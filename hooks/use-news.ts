@@ -4,7 +4,16 @@ import { useState } from 'react';
 import { getNews } from '@/lib/news-api';
 import { useQuery } from '@tanstack/react-query';
 
-export const useNews = (initialParams = {}) => {
+export interface UseNewsReturn {
+  data: any;
+  isLoading: boolean;
+  error: any;
+  setCategory: (category: string) => void;
+  setSearch: (query: string) => void;
+  setPage: (page: number) => void;
+}
+
+export const useNews = (initialParams = {}): UseNewsReturn => {
   const [params, setParams] = useState({
     category: '',
     query: '',
@@ -31,14 +40,5 @@ export const useNews = (initialParams = {}) => {
     setParams(prev => ({ ...prev, page }));
   };
 
-  return {
-    news: data?.articles || [],
-    pagination: data?.pagination,
-    isLoading,
-    error,
-    setCategory,
-    setSearch,
-    setPage,
-    params,
-  };
-};
+  return { data, isLoading, error, setCategory, setSearch, setPage };
+}

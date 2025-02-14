@@ -16,8 +16,8 @@ export default NextAuth({
 
         try {
           const user = await fetchUserByEmail(credentials.email);
-          if (!user) {
-            console.error('User not found');
+          if (!user || !user.passwordHash) {
+            console.error('User not found or missing password hash');
             return null;
           }
 

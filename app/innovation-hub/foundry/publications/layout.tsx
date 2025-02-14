@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   description: "Research and development publications and papers",
 };
 
-export const foundryPublicationsMetadata: Metadata = {
+const foundryPublicationsMetadata: Metadata = {
   title: "Foundry Publications | Innovation Hub",
   description: "Research publications and scholarly works from our innovation foundry",
   openGraph: {

@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import { InnovationHub } from "@/components/innovation-hub/innovation-hub";
+import InnovationHub from "@/components/innovation-hub/innovation-hub";
 
 export const metadata: Metadata = {
   title: "Innovation Hub | Hubverse",

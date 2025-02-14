@@ -4,7 +4,7 @@ import { Suspense } from "react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
-import { useNews } from "@/hooks/use-news"
+import { useNews, UseNewsReturn } from "@/hooks/use-news"
 import { NewsFilter } from "@/components/news/news-filter"
 import { NewsPagination } from "@/components/news/news-pagination"
 import { useSearchParams, useRouter } from "next/navigation"
@@ -35,7 +35,7 @@ const NewsCardSkeleton = () => (
 const NewsSection = () => {
   const router = useRouter()
   const searchParams = useSearchParams()
-  const { news, pagination, isLoading, error, fetchNews } = useNews()
+  const { news, pagination, isLoading, error, fetchNews } = useNews() as UseNewsReturn;
 
   const currentCategory = searchParams.get("category") || "all"
   const currentQuery = searchParams.get("query") || ""
@@ -47,7 +47,7 @@ const NewsSection = () => {
       query: currentQuery,
       page: currentPage,
     })
-  }, [fetchNews, currentCategory, currentQuery, currentPage])
+  }, [currentCategory, currentQuery, currentPage])
 
   const handleSearch = (query: string) => {
     const params = new URLSearchParams(searchParams.toString())

@@ -52,13 +52,11 @@ export default function BusinessModel() {
           title="Revenue Streams Distribution"
           data={revenueStreamData}
           type="bar"
-          dataKey="value"
         />
         <KPIChart
           title="Growth Trajectory"
           data={growthData}
           type="line"
-          dataKey="value"
         />
       </div>
 
