@@ -5,7 +5,15 @@ import { getNews } from '@/lib/news-api';
 import { useQuery } from '@tanstack/react-query';
 
 export interface UseNewsReturn {
-  data: any;
+  data: {
+    articles: any[];
+    pagination: {
+      total: number;
+      totalPages: number;
+      currentPage: number;
+      limit: number;
+    };
+  };
   isLoading: boolean;
   error: any;
   setCategory: (category: string) => void;
@@ -22,7 +30,7 @@ export const useNews = (initialParams = {}): UseNewsReturn => {
     ...initialParams,
   });
 
-  const { data, isLoading, error } = useQuery({
+  const { data = { articles: [], pagination: { total: 0, totalPages: 0, currentPage: 1, limit: 10 } }, isLoading, error } = useQuery({
     queryKey: ['news', params],
     queryFn: () => getNews(params),
     staleTime: 1000 * 60 * 5, // Cache for 5 minutes

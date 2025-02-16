@@ -1,11 +1,13 @@
 import { Suspense, useState } from "react"
 import { NewsFilter } from "@/components/news/news-filter"
 import { NewsList } from "@/components/news/news-list"
-import { getNews } from "../../lib/api/news"
+import { useNews } from '@/hooks/use-news';
 
-export default async function NewsContent() {
-  const newsResponse = await getNews()
-  const news = newsResponse.articles // Assuming articles is the array of news articles
+export default function NewsContent() {
+  const { data, isLoading, error } = useNews();
+
+  if (isLoading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error}</div>;
 
   // Define state variables
   const [searchQuery, setSearchQuery] = useState('')
@@ -32,12 +34,12 @@ export default async function NewsContent() {
       </div>
       <Suspense fallback={<NewsList.Skeleton />}> 
         <NewsList 
-          news={news}
+          news={data}
           pagination={{
-            total: newsResponse.pagination.total,
-            totalPages: newsResponse.pagination.totalPages,
-            currentPage: newsResponse.pagination.currentPage,
-            limit: newsResponse.pagination.limit,
+            total: data.length,
+            totalPages: 1,
+            currentPage: 1,
+            limit: data.length,
           }}
           onPageChange={(page) => console.log('Page changed to:', page)}
         />

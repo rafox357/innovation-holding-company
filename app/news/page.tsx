@@ -35,7 +35,7 @@ const NewsCardSkeleton = () => (
 const NewsSection = () => {
   const router = useRouter()
   const searchParams = useSearchParams()
-  const { news, pagination, isLoading, error, fetchNews } = useNews() as UseNewsReturn;
+  const { data, pagination, isLoading, error, fetchNews } = useNews() as UseNewsReturn;
 
   const currentCategory = searchParams.get("category") || "all"
   const currentQuery = searchParams.get("query") || ""
@@ -110,24 +110,19 @@ const NewsSection = () => {
     )
   }
 
-  if (!news?.length) {
+  if (!data?.length) {
     return (
       <Card>
         <CardHeader>
-          <CardTitle>No News Found</CardTitle>
+          <h2>No news articles found.</h2>
         </CardHeader>
-        <CardContent>
-          <p className="text-sm text-muted-foreground">
-            No news articles match your search criteria. Try adjusting your filters or search query.
-          </p>
-        </CardContent>
       </Card>
     )
   }
 
   return (
     <div className="space-y-6">
-      {news.map((article) => (
+      {data.map((article) => (
         <Card key={article.id} className="hover:border-primary/50 transition-colors">
           <Link href={`/news/article/${article.id}`}>
             <CardHeader>

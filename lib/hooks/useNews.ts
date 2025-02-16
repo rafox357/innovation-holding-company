@@ -22,6 +22,7 @@ export function useNews(): UseNewsReturn {
   const [error, setError] = useState<string | null>(null);
 
   const fetchNews = async () => {
+    setIsLoading(true);
     try {
       const newsResponse = await getNews();
       setNews(newsResponse.articles);
