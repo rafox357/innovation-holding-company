@@ -2,29 +2,31 @@ import { useEffect, useState } from 'react';
 import { getNews } from '@/lib/api/news';
 import { Article } from '@/types/news';
 
+interface Pagination {
+  total: number;
+  totalPages: number;
+  currentPage: number;
+  limit: number;
+}
+
 interface UseNewsReturn {
   news: Article[];
-  pagination: {
-    total: number;
-    totalPages: number;
-    currentPage: number;
-    limit: number;
-  } | undefined;
+  pagination: Pagination | undefined;
   isLoading: boolean;
   error: string | null;
-  fetchNews: () => Promise<void>;
+  fetchNews: (params?: { category?: string; query?: string; page?: number }) => Promise<void>;
 }
 
 export function useNews(): UseNewsReturn {
   const [news, setNews] = useState<Article[]>([]);
-  const [pagination, setPagination] = useState<{ total: number; totalPages: number; currentPage: number; limit: number } | undefined>(undefined);
+  const [pagination, setPagination] = useState<Pagination | undefined>(undefined);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  const fetchNews = async () => {
+  const fetchNews = async (params?: { category?: string; query?: string; page?: number }) => {
     setIsLoading(true);
     try {
-      const newsResponse = await getNews();
+      const newsResponse = await getNews(params || { page: 1, pageSize: 10 }); // Use params or default
       setNews(newsResponse.articles);
       setPagination(newsResponse.pagination);
       setIsLoading(false);
@@ -38,5 +40,5 @@ export function useNews(): UseNewsReturn {
     fetchNews();
   }, []);
 
-  return { news, pagination, isLoading, error, fetchNews };
+  return { news, pagination, isLoading, error, fetchNews }; // Return the object directly
 }

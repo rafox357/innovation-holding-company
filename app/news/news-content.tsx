@@ -34,12 +34,12 @@ export default function NewsContent() {
       </div>
       <Suspense fallback={<NewsList.Skeleton />}> 
         <NewsList 
-          news={data}
+          news={data.articles}
           pagination={{
-            total: data.length,
-            totalPages: 1,
-            currentPage: 1,
-            limit: data.length,
+            total: data.pagination.total,
+            totalPages: data.pagination.totalPages,
+            currentPage: data.pagination.currentPage,
+            limit: data.pagination.limit,
           }}
           onPageChange={(page) => console.log('Page changed to:', page)}
         />
