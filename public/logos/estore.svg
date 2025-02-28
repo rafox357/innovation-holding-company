@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="60" height="60" rx="12" fill="url(#estore-gradient)" />
+  <path d="M20 25H40L37 35H23L20 25Z" fill="white" fill-opacity="0.9"/>
+  <path d="M25 35V40H35V35" stroke="white" stroke-width="2"/>
+  <path d="M25 20L30 15L35 20H25Z" fill="white" fill-opacity="0.9"/>
+  <defs>
+    <linearGradient id="estore-gradient" x1="0" y1="0" x2="60" y2="60" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#10B981"/>
+      <stop offset="100%" stop-color="#3B82F6"/>
+    </linearGradient>
+  </defs>
+</svg>

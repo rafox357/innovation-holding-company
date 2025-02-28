@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="60" height="60" rx="12" fill="url(#quantum-gradient)" />
+  <path d="M30 15v30" stroke="white" stroke-width="2" opacity="0.6">
+    <animateTransform
+      attributeName="transform"
+      attributeType="XML"
+      type="rotate"
+      from="0 30 30"
+      to="360 30 30"
+      dur="8s"
+      repeatCount="indefinite"
+    />
+  </path>
+  <path d="M30 15v30" stroke="white" stroke-width="2" opacity="0.6">
+    <animateTransform
+      attributeName="transform"
+      attributeType="XML"
+      type="rotate"
+      from="120 30 30"
+      to="480 30 30"
+      dur="8s"
+      repeatCount="indefinite"
+    />
+  </path>
+  <path d="M30 15v30" stroke="white" stroke-width="2" opacity="0.6">
+    <animateTransform
+      attributeName="transform"
+      attributeType="XML"
+      type="rotate"
+      from="240 30 30"
+      to="600 30 30"
+      dur="8s"
+      repeatCount="indefinite"
+    />
+  </path>
+  <circle cx="30" cy="30" r="4" fill="white"/>
+  <defs>
+    <linearGradient id="quantum-gradient" x1="0" y1="0" x2="60" y2="60" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#7C3AED"/>
+      <stop offset="100%" stop-color="#DB2777"/>
+    </linearGradient>
+  </defs>
+</svg>

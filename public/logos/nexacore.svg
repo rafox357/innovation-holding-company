@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="60" height="60" rx="12" fill="url(#nexacore-gradient)" />
+  <path d="M20 20L30 30M30 30L40 20M30 30L20 40M30 30L40 40" stroke="white" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="30" cy="30" r="5" fill="white"/>
+  <defs>
+    <linearGradient id="nexacore-gradient" x1="0" y1="0" x2="60" y2="60" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#14B8A6"/>
+      <stop offset="100%" stop-color="#6366F1"/>
+    </linearGradient>
+  </defs>
+</svg>

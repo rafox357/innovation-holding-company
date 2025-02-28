@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1920" height="1080" viewBox="0 0 1920 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="anexo-bg" x1="0" y1="0" x2="1920" y2="1080" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#8B5CF6"/>
+      <stop offset="100%" stop-color="#EC4899"/>
+    </linearGradient>
+    <pattern id="connections" width="200" height="200" patternUnits="userSpaceOnUse">
+      <circle cx="100" cy="100" r="2" fill="white" opacity="0.3"/>
+      <path d="M100 100 L200 100 M100 100 L100 200 M100 100 L200 200" stroke="white" stroke-width="0.5" opacity="0.1"/>
+    </pattern>
+  </defs>
+  <rect width="1920" height="1080" fill="url(#anexo-bg)"/>
+  <rect width="1920" height="1080" fill="url(#connections)"/>
+  <g opacity="0.2">
+    <path d="M760 440 L960 340 L1160 440 L1160 640 L960 740 L760 640 Z" stroke="white" stroke-width="2" fill="none"/>
+    <path d="M810 490 L960 415 L1110 490 L1110 590 L960 665 L810 590 Z" stroke="white" stroke-width="2" fill="none"/>
+  </g>
+</svg>

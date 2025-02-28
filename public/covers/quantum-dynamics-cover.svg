@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1920" height="1080" viewBox="0 0 1920 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="quantum-bg" x1="0" y1="0" x2="1920" y2="1080" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#7C3AED"/>
+      <stop offset="100%" stop-color="#DB2777"/>
+    </linearGradient>
+    <pattern id="quantum-grid" width="60" height="60" patternUnits="userSpaceOnUse">
+      <circle cx="30" cy="30" r="1" fill="white" opacity="0.2"/>
+    </pattern>
+  </defs>
+  <rect width="1920" height="1080" fill="url(#quantum-bg)"/>
+  <rect width="1920" height="1080" fill="url(#quantum-grid)"/>
+  <g opacity="0.2">
+    <circle cx="960" cy="540" r="200" stroke="white" stroke-width="2" fill="none"/>
+    <circle cx="960" cy="540" r="150" stroke="white" stroke-width="2" fill="none"/>
+    <circle cx="960" cy="540" r="100" stroke="white" stroke-width="2" fill="none"/>
+    <path d="M760 540h400M960 340v400" stroke="white" stroke-width="2"/>
+    <path d="M795 375l330 330M795 705l330-330" stroke="white" stroke-width="2"/>
+  </g>
+</svg>

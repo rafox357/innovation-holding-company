@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1920" height="1080" viewBox="0 0 1920 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="elementalis-bg" x1="0" y1="0" x2="1920" y2="1080" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#0EA5E9"/>
+      <stop offset="100%" stop-color="#22C55E"/>
+    </linearGradient>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="white" stroke-width="0.5" opacity="0.1"/>
+    </pattern>
+  </defs>
+  <rect width="1920" height="1080" fill="url(#elementalis-bg)"/>
+  <rect width="1920" height="1080" fill="url(#grid)"/>
+  <g opacity="0.2">
+    <circle cx="960" cy="540" r="400" stroke="white" stroke-width="2" fill="none"/>
+    <circle cx="960" cy="540" r="300" stroke="white" stroke-width="2" fill="none"/>
+    <circle cx="960" cy="540" r="200" stroke="white" stroke-width="2" fill="none"/>
+  </g>
+</svg>
