@@ -11,7 +11,11 @@ const nextConfig = {
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
   },
   env: {
+<<<<<<< HEAD
     NEXT_PUBLIC_BASE_URL: process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000',
+=======
+    NEXT_PUBLIC_APP_URL: process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000',
+>>>>>>> cfaf810171f5166d6b16a21fd62cd93c54e52702
   },
   webpack: (config, { isServer }) => {
     if (!isServer) {

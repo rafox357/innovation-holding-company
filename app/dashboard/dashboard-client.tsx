@@ -1,14 +1,10 @@
 'use client';
 
-import { Session } from "next-auth"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { KPIChart } from "@/components/dashboard/KPIChart"
 import { Breadcrumb } from "@/components/breadcrumb"
 import { Skeleton } from "@/components/ui/skeleton"
-import { api } from "@/lib/api-client"
-import { useQuery } from "@tanstack/react-query"
-import SignOutButton from "@/components/auth/sign-out-button"
 
 // Existing dashboard components (copied from original page)
 const ChartSkeleton = () => (
@@ -31,15 +27,13 @@ const MetricSkeleton = () => (
   </Card>
 );
 
-export default function DashboardClient({ session }: { session: Session }) {
+export default function DashboardClient() {
   return (
     <div className="container mx-auto px-4 py-8">
       <Breadcrumb items={[{ label: "Dashboard", href: "/dashboard" }]} />
       
       <div className="mb-4">
-        <h1 className="text-2xl font-bold">Welcome, {session.user?.email}</h1>
-        <p>Role: {session.user?.role}</p>
-        <SignOutButton />
+        <h1 className="text-2xl font-bold">Welcome to Dashboard</h1>
       </div>
 
       {/* Rest of your existing dashboard components */}

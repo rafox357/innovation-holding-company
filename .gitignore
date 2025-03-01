@@ -24,4 +24,11 @@ yarn-error.log*
 
 # typescript
 *.tsbuildinfo
+<<<<<<< HEAD
 next-env.d.ts
+=======
+next-env.d.ts
+
+# windsurf rules
+.windsurfrules
+>>>>>>> cfaf810171f5166d6b16a21fd62cd93c54e52702

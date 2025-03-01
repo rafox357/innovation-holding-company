@@ -1,5 +1,9 @@
 import { Metadata } from "next";
+<<<<<<< HEAD
 import { InnovationHub } from "@/components/innovation-hub/innovation-hub";
+=======
+import InnovationHub from "@/components/innovation-hub/innovation-hub";
+>>>>>>> cfaf810171f5166d6b16a21fd62cd93c54e52702
 
 export const metadata: Metadata = {
   title: "Innovation Hub | Hubverse",

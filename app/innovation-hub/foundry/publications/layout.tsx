@@ -5,7 +5,11 @@ export const metadata: Metadata = {
   description: "Research and development publications and papers",
 };
 
+<<<<<<< HEAD
 export const foundryPublicationsMetadata: Metadata = {
+=======
+const foundryPublicationsMetadata: Metadata = {
+>>>>>>> cfaf810171f5166d6b16a21fd62cd93c54e52702
   title: "Foundry Publications | Innovation Hub",
   description: "Research publications and scholarly works from our innovation foundry",
   openGraph: {

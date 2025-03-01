@@ -1,10 +1,5 @@
 'use client';
 
-import { getServerSession } from "next-auth/next"
-import { redirect } from "next/navigation"
-import { authOptions } from "@/auth.config"
-import DashboardClient from "./dashboard-client"
-
 import { Suspense } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
@@ -13,8 +8,6 @@ import { Breadcrumb } from "@/components/breadcrumb"
 import { ArrowUpRight, ArrowDownRight, BarChart3, PieChart, LineChart, Activity } from "lucide-react"
 import { Skeleton } from "@/components/ui/skeleton"
 import { ErrorBoundary } from "@/components/error-boundary"
-import { api } from "@/lib/api-client"
-import { useQuery } from "@tanstack/react-query"
 
 // Loading components
 const ChartSkeleton = () => (
@@ -39,21 +32,6 @@ const MetricSkeleton = () => (
 
 // Dashboard sections
 const OverviewSection = () => {
-  const { data: overview, isLoading } = useQuery({
-    queryKey: ['dashboard', 'overview'],
-    queryFn: () => api.dashboard.getOverview(),
-  });
-
-  if (isLoading) {
-    return (
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-        {Array(4).fill(0).map((_, i) => (
-          <MetricSkeleton key={i} />
-        ))}
-      </div>
-    );
-  }
-
   return (
     <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
       {/* Overview metrics */}
@@ -105,20 +83,6 @@ const OverviewSection = () => {
 };
 
 const FinancialSection = () => {
-  const { data: financial, isLoading } = useQuery({
-    queryKey: ['dashboard', 'financial'],
-    queryFn: () => api.dashboard.getFinancial(),
-  });
-
-  if (isLoading) {
-    return (
-      <div className="grid gap-4 md:grid-cols-2">
-        <ChartSkeleton />
-        <ChartSkeleton />
-      </div>
-    );
-  }
-
   return (
     <div className="grid gap-4 md:grid-cols-2">
       {/* Financial charts */}
@@ -162,20 +126,6 @@ const FinancialSection = () => {
 };
 
 const MarketSection = () => {
-  const { data: market, isLoading } = useQuery({
-    queryKey: ['dashboard', 'market'],
-    queryFn: () => api.dashboard.getMarket(),
-  });
-
-  if (isLoading) {
-    return (
-      <div className="grid gap-4 md:grid-cols-2">
-        <ChartSkeleton />
-        <ChartSkeleton />
-      </div>
-    );
-  }
-
   return (
     <div className="grid gap-4 md:grid-cols-2">
       {/* Market charts */}
@@ -205,11 +155,11 @@ const MarketSection = () => {
           <KPIChart
             title="Market Share"
             data={[
-              { name: "2023", value: 5.2 },
-              { name: "2024", value: 7.8 },
-              { name: "2025", value: 12.4 },
-              { name: "2026", value: 18.9 },
-              { name: "2027", value: 28.5 },
+              { name: "2023", value: 12 },
+              { name: "2024", value: 18 },
+              { name: "2025", value: 25 },
+              { name: "2026", value: 32 },
+              { name: "2027", value: 40 },
             ]}
           />
         </CardContent>
@@ -219,36 +169,21 @@ const MarketSection = () => {
 };
 
 const ProjectsSection = () => {
-  const { data: projects, isLoading } = useQuery({
-    queryKey: ['dashboard', 'projects'],
-    queryFn: () => api.dashboard.getProjects(),
-  });
-
-  if (isLoading) {
-    return (
-      <div className="grid gap-4 md:grid-cols-2">
-        <ChartSkeleton />
-        <ChartSkeleton />
-      </div>
-    );
-  }
-
   return (
     <div className="grid gap-4 md:grid-cols-2">
       {/* Projects charts */}
       <Card className="cosmic-card">
         <CardHeader>
-          <CardTitle>Project Growth</CardTitle>
+          <CardTitle>Project Status</CardTitle>
         </CardHeader>
         <CardContent>
           <KPIChart
-            title="Project Growth"
+            title="Project Status"
             data={[
-              { name: "2023", value: 5.2 },
-              { name: "2024", value: 7.8 },
-              { name: "2025", value: 12.4 },
-              { name: "2026", value: 18.9 },
-              { name: "2027", value: 28.5 },
+              { name: "Planning", value: 8 },
+              { name: "In Progress", value: 12 },
+              { name: "Review", value: 4 },
+              { name: "Completed", value: 6 },
             ]}
           />
         </CardContent>
@@ -256,17 +191,16 @@ const ProjectsSection = () => {
 
       <Card className="cosmic-card">
         <CardHeader>
-          <CardTitle>Project Completion</CardTitle>
+          <CardTitle>Project Timeline</CardTitle>
         </CardHeader>
         <CardContent>
           <KPIChart
-            title="Project Completion"
+            title="Project Timeline"
             data={[
-              { name: "2023", value: 5.2 },
-              { name: "2024", value: 7.8 },
-              { name: "2025", value: 12.4 },
-              { name: "2026", value: 18.9 },
-              { name: "2027", value: 28.5 },
+              { name: "Q1", value: 5 },
+              { name: "Q2", value: 8 },
+              { name: "Q3", value: 12 },
+              { name: "Q4", value: 15 },
             ]}
           />
         </CardContent>
@@ -275,13 +209,7 @@ const ProjectsSection = () => {
   );
 };
 
-export default async function DashboardPage() {
-  const session = await getServerSession(authOptions)
-
-  if (!session) {
-    return redirect("/auth/signin")
-  }
-
+export default function DashboardPage() {
   return (
     <div className="container mx-auto px-4 py-8">
       <Breadcrumb items={[{ label: "Dashboard", href: "/dashboard" }]} />
@@ -294,54 +222,29 @@ export default async function DashboardPage() {
       </div>
 
       <ErrorBoundary>
-        <Tabs defaultValue="overview" className="space-y-8">
-          <TabsList className="cosmic-card inline-flex h-9 items-center justify-center rounded-lg p-1">
-            <TabsTrigger value="overview" className="cosmic-tab">
-              <Activity className="mr-2 h-4 w-4" />
-              Overview
-            </TabsTrigger>
-            <TabsTrigger value="financial" className="cosmic-tab">
-              <LineChart className="mr-2 h-4 w-4" />
-              Financial
-            </TabsTrigger>
-            <TabsTrigger value="market" className="cosmic-tab">
-              <BarChart3 className="mr-2 h-4 w-4" />
-              Market
-            </TabsTrigger>
-            <TabsTrigger value="projects" className="cosmic-tab">
-              <PieChart className="mr-2 h-4 w-4" />
-              Projects
-            </TabsTrigger>
-          </TabsList>
-
-          <TabsContent value="overview" className="space-y-4">
-            <Suspense fallback={<div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">{Array(4).fill(0).map((_, i) => <MetricSkeleton key={i} />)}</div>}>
+        <Suspense fallback={<div>Loading...</div>}>
+          <Tabs defaultValue="overview" className="space-y-4">
+            <TabsList>
+              <TabsTrigger value="overview">Overview</TabsTrigger>
+              <TabsTrigger value="financial">Financial</TabsTrigger>
+              <TabsTrigger value="market">Market</TabsTrigger>
+              <TabsTrigger value="projects">Projects</TabsTrigger>
+            </TabsList>
+            <TabsContent value="overview" className="space-y-4">
               <OverviewSection />
-            </Suspense>
-          </TabsContent>
-
-          <TabsContent value="financial" className="space-y-4">
-            <Suspense fallback={<div className="grid gap-4 md:grid-cols-2"><ChartSkeleton /><ChartSkeleton /></div>}>
+            </TabsContent>
+            <TabsContent value="financial" className="space-y-4">
               <FinancialSection />
-            </Suspense>
-          </TabsContent>
-
-          <TabsContent value="market" className="space-y-4">
-            <Suspense fallback={<div className="grid gap-4 md:grid-cols-2"><ChartSkeleton /><ChartSkeleton /></div>}>
+            </TabsContent>
+            <TabsContent value="market" className="space-y-4">
               <MarketSection />
-            </Suspense>
-          </TabsContent>
-
-          <TabsContent value="projects" className="space-y-4">
-            <Suspense fallback={<div className="grid gap-4 md:grid-cols-2"><ChartSkeleton /><ChartSkeleton /></div>}>
+            </TabsContent>
+            <TabsContent value="projects" className="space-y-4">
               <ProjectsSection />
-            </Suspense>
-          </TabsContent>
-        </Tabs>
+            </TabsContent>
+          </Tabs>
+        </Suspense>
       </ErrorBoundary>
-      <p>Welcome, {session.user?.email}!</p>
-      <p>Your role: {session.user?.role}</p>
-      <DashboardClient session={session} />
     </div>
   );
 }

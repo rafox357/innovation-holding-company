@@ -27,7 +27,11 @@ const innovationFeatures = [
   },
 ]
 
+<<<<<<< HEAD
 export function InnovationHub() {
+=======
+function InnovationHub() {
+>>>>>>> cfaf810171f5166d6b16a21fd62cd93c54e52702
   return (
     <section className="py-16 space-y-12">
       <div className="text-center space-y-4">
@@ -80,3 +84,8 @@ export function InnovationHub() {
     </section>
   )
 }
+<<<<<<< HEAD
+=======
+
+export default InnovationHub
+>>>>>>> cfaf810171f5166d6b16a21fd62cd93c54e52702

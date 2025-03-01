@@ -49,6 +49,7 @@ const innovationNavigation = [
 
 export const metadata: Metadata = {
   title: "Innovation Hub | Hubverse",
+<<<<<<< HEAD
   description: "Explore our innovation programs, resources, and initiatives.",
   openGraph: {
     title: "Innovation Hub | Hubverse",
@@ -64,6 +65,12 @@ export const metadata: Metadata = {
 }
 
 export const eventsMetadata: Metadata = {
+=======
+  description: "Explore our innovation programs and resources",
+}
+
+const eventsMetadata: Metadata = {
+>>>>>>> cfaf810171f5166d6b16a21fd62cd93c54e52702
   title: "Innovation Hub Events",
   description: "Explore upcoming events and opportunities in our Innovation Hub",
   openGraph: {
@@ -79,7 +86,11 @@ export const eventsMetadata: Metadata = {
   },
 }
 
+<<<<<<< HEAD
 export const partnershipsMetadata: Metadata = {
+=======
+const partnershipsMetadata: Metadata = {
+>>>>>>> cfaf810171f5166d6b16a21fd62cd93c54e52702
   title: "Innovation Hub Partnerships",
   description: "Explore strategic partnerships and collaborative opportunities",
   openGraph: {
@@ -95,7 +106,11 @@ export const partnershipsMetadata: Metadata = {
   },
 }
 
+<<<<<<< HEAD
 export const programsMetadata: Metadata = {
+=======
+const programsMetadata: Metadata = {
+>>>>>>> cfaf810171f5166d6b16a21fd62cd93c54e52702
   title: "Innovation Hub Programs",
   description: "Discover our innovative programs and initiatives",
   openGraph: {
@@ -111,7 +126,11 @@ export const programsMetadata: Metadata = {
   },
 }
 
+<<<<<<< HEAD
 export const resourcesMetadata: Metadata = {
+=======
+const resourcesMetadata: Metadata = {
+>>>>>>> cfaf810171f5166d6b16a21fd62cd93c54e52702
   title: "Innovation Hub Resources",
   description: "Access valuable resources for innovation and entrepreneurship",
   openGraph: {
@@ -127,7 +146,11 @@ export const resourcesMetadata: Metadata = {
   },
 }
 
+<<<<<<< HEAD
 export const grantsMetadata: Metadata = {
+=======
+const grantsMetadata: Metadata = {
+>>>>>>> cfaf810171f5166d6b16a21fd62cd93c54e52702
   title: "Innovation Hub Grants",
   description: "Explore funding opportunities for innovative projects",
   openGraph: {

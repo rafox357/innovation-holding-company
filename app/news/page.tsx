@@ -1,5 +1,6 @@
 "use client"
 
+<<<<<<< HEAD
 import { Suspense } from "react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
@@ -14,6 +15,32 @@ import { Clock, AlertTriangle } from "lucide-react"
 import readingTime from "reading-time"
 import { Skeleton } from "@/components/ui/skeleton"
 import { ErrorBoundary } from "@/components/error-boundary"
+=======
+import { Suspense } from "react";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
+import { useNews, UseNewsReturn } from "@/hooks/use-news";
+import { NewsFilter } from "@/components/news/news-filter";
+import { NewsPagination } from "@/components/news/news-pagination";
+import { useSearchParams, useRouter } from "next/navigation";
+import { useEffect } from "react";
+import { format } from "date-fns";
+import { Clock, AlertTriangle } from "lucide-react";
+import readingTime from "reading-time";
+import { Skeleton } from "@/components/ui/skeleton";
+import { ErrorBoundary } from "@/components/error-boundary";
+
+interface Article {
+  id: string;
+  title: string;
+  date: string;
+  category: string;
+  excerpt: string;
+  content: string;
+  author: string;
+}
+>>>>>>> cfaf810171f5166d6b16a21fd62cd93c54e52702
 
 // Loading components
 const NewsCardSkeleton = () => (
@@ -33,6 +60,7 @@ const NewsCardSkeleton = () => (
 );
 
 const NewsSection = () => {
+<<<<<<< HEAD
   const router = useRouter()
   const searchParams = useSearchParams()
   const { news, pagination, isLoading, error, fetchNews } = useNews()
@@ -40,12 +68,22 @@ const NewsSection = () => {
   const currentCategory = searchParams.get("category") || "all"
   const currentQuery = searchParams.get("query") || ""
   const currentPage = parseInt(searchParams.get("page") || "1")
+=======
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const { news, pagination, isLoading, error, fetchNews } = useNews() as UseNewsReturn;
+
+  const currentCategory = searchParams.get("category") || "all";
+  const currentQuery = searchParams.get("query") || "";
+  const currentPage = parseInt(searchParams.get("page") || "1");
+>>>>>>> cfaf810171f5166d6b16a21fd62cd93c54e52702
 
   useEffect(() => {
     fetchNews({
       category: currentCategory === "all" ? undefined : currentCategory,
       query: currentQuery,
       page: currentPage,
+<<<<<<< HEAD
     })
   }, [fetchNews, currentCategory, currentQuery, currentPage])
 
@@ -70,6 +108,32 @@ const NewsSection = () => {
     params.set("page", page.toString())
     router.push(`/news?${params.toString()}`)
   }
+=======
+    });
+  }, [currentCategory, currentQuery, currentPage]);
+
+  const handleSearch = (query: string) => {
+    const params = new URLSearchParams(searchParams.toString());
+    if (query) params.set("query", query);
+    else params.delete("query");
+    params.set("page", "1");
+    router.push(`/news?${params.toString()}`);
+  };
+
+  const handleCategoryChange = (category: string) => {
+    const params = new URLSearchParams(searchParams.toString());
+    if (category !== "all") params.set("category", category);
+    else params.delete("category");
+    params.set("page", "1");
+    router.push(`/news?${params.toString()}`);
+  };
+
+  const handlePageChange = (page: number) => {
+    const params = new URLSearchParams(searchParams.toString());
+    params.set("page", page.toString());
+    router.push(`/news?${params.toString()}`);
+  };
+>>>>>>> cfaf810171f5166d6b16a21fd62cd93c54e52702
 
   if (error) {
     return (
@@ -97,7 +161,11 @@ const NewsSection = () => {
           </Button>
         </CardContent>
       </Card>
+<<<<<<< HEAD
     )
+=======
+    );
+>>>>>>> cfaf810171f5166d6b16a21fd62cd93c54e52702
   }
 
   if (isLoading) {
@@ -107,13 +175,18 @@ const NewsSection = () => {
           <NewsCardSkeleton key={i} />
         ))}
       </div>
+<<<<<<< HEAD
     )
+=======
+    );
+>>>>>>> cfaf810171f5166d6b16a21fd62cd93c54e52702
   }
 
   if (!news?.length) {
     return (
       <Card>
         <CardHeader>
+<<<<<<< HEAD
           <CardTitle>No News Found</CardTitle>
         </CardHeader>
         <CardContent>
@@ -123,11 +196,21 @@ const NewsSection = () => {
         </CardContent>
       </Card>
     )
+=======
+          <h2>No news articles found.</h2>
+        </CardHeader>
+      </Card>
+    );
+>>>>>>> cfaf810171f5166d6b16a21fd62cd93c54e52702
   }
 
   return (
     <div className="space-y-6">
+<<<<<<< HEAD
       {news.map((article) => (
+=======
+      {news.map((article: Article) => (
+>>>>>>> cfaf810171f5166d6b16a21fd62cd93c54e52702
         <Card key={article.id} className="hover:border-primary/50 transition-colors">
           <Link href={`/news/article/${article.id}`}>
             <CardHeader>
@@ -162,13 +245,19 @@ const NewsSection = () => {
         />
       )}
     </div>
+<<<<<<< HEAD
   )
 }
+=======
+  );
+};
+>>>>>>> cfaf810171f5166d6b16a21fd62cd93c54e52702
 
 const NewsContent = () => {
   return (
     <div className="space-y-8">
       <NewsFilter
+<<<<<<< HEAD
         currentCategory={useSearchParams().get("category") || "all"}
         currentQuery={useSearchParams().get("query") || ""}
         onSearch={(query: string) => {
@@ -184,6 +273,23 @@ const NewsContent = () => {
           else params.delete("category")
           params.set("page", "1")
           useRouter().push(`/news?${params.toString()}`)
+=======
+        searchQuery={useSearchParams().get("query") || ""}
+        category={useSearchParams().get("category") || "all"}
+        onSearch={(query: string) => {
+          const params = new URLSearchParams(useSearchParams().toString());
+          if (query) params.set("query", query);
+          else params.delete("query");
+          params.set("page", "1");
+          useRouter().push(`/news?${params.toString()}`);
+        }}
+        onCategoryChange={(category: string) => {
+          const params = new URLSearchParams(useSearchParams().toString());
+          if (category !== "all") params.set("category", category);
+          else params.delete("category");
+          params.set("page", "1");
+          useRouter().push(`/news?${params.toString()}`);
+>>>>>>> cfaf810171f5166d6b16a21fd62cd93c54e52702
         }}
       />
       <ErrorBoundary>
@@ -200,13 +306,23 @@ const NewsContent = () => {
         </Suspense>
       </ErrorBoundary>
     </div>
+<<<<<<< HEAD
   )
 }
+=======
+  );
+};
+>>>>>>> cfaf810171f5166d6b16a21fd62cd93c54e52702
 
 export default function NewsPage() {
   return (
     <ErrorBoundary>
       <NewsContent />
     </ErrorBoundary>
+<<<<<<< HEAD
   )
 }
+=======
+  );
+}
+>>>>>>> cfaf810171f5166d6b16a21fd62cd93c54e52702

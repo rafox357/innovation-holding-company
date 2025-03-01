@@ -150,7 +150,15 @@ export default function ThryvusPage() {
             <CardTitle>AI Performance Growth</CardTitle>
           </CardHeader>
           <CardContent>
+<<<<<<< HEAD
             <KPIChart data={performanceData} type="line" />
+=======
+            <KPIChart 
+              data={performanceData} 
+              type="line" 
+              title="Performance Growth"
+            />
+>>>>>>> cfaf810171f5166d6b16a21fd62cd93c54e52702
           </CardContent>
         </Card>
 
@@ -159,7 +167,15 @@ export default function ThryvusPage() {
             <CardTitle>New AI Models Deployed</CardTitle>
           </CardHeader>
           <CardContent>
+<<<<<<< HEAD
             <KPIChart data={aiModelsData} type="bar" />
+=======
+            <KPIChart 
+              data={aiModelsData} 
+              type="bar" 
+              title="AI Models Growth"
+            />
+>>>>>>> cfaf810171f5166d6b16a21fd62cd93c54e52702
           </CardContent>
         </Card>
       </div>

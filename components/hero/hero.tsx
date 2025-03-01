@@ -3,8 +3,14 @@
 import { motion } from "framer-motion"
 import { ArrowRight } from "lucide-react"
 import Link from "next/link"
+<<<<<<< HEAD
 
 export function Hero() {
+=======
+import { memo } from "react"
+
+const Hero = memo(() => {
+>>>>>>> cfaf810171f5166d6b16a21fd62cd93c54e52702
   return (
     <section className="relative py-20 overflow-hidden">
       {/* Background Effects */}
@@ -49,15 +55,24 @@ export function Hero() {
             <p className="text-lg mb-8">
               Through our unique ecosystem, we combine technological advancement with sustainable business practices,
               fostering an environment where visionary entrepreneurs can transform their ideas into impactful
+<<<<<<< HEAD
               enterprises.
             </p>
           </motion.div>
 
           {/* CTA Buttons */}
+=======
+              ventures.
+            </p>
+          </motion.div>
+
+          {/* Call to Action */}
+>>>>>>> cfaf810171f5166d6b16a21fd62cd93c54e52702
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
+<<<<<<< HEAD
             className="flex justify-center gap-4"
           >
             <Link
@@ -71,10 +86,33 @@ export function Hero() {
               className="px-8 py-4 text-lg rounded-lg inline-flex items-center border border-primary/50 hover:bg-primary/10 transition-colors"
             >
               Get in Touch <ArrowRight className="ml-2 h-5 w-5" />
+=======
+            className="flex justify-center space-x-4"
+          >
+            <Link
+              href="/explore"
+              className="inline-flex items-center px-6 py-3 text-lg font-semibold text-white bg-primary rounded-lg hover:bg-primary-dark transition-colors"
+            >
+              Explore Opportunities
+              <ArrowRight className="ml-2 h-5 w-5" />
+            </Link>
+            <Link
+              href="/about"
+              className="inline-flex items-center px-6 py-3 text-lg font-semibold text-primary bg-primary/10 rounded-lg hover:bg-primary/20 transition-colors"
+            >
+              Learn More
+>>>>>>> cfaf810171f5166d6b16a21fd62cd93c54e52702
             </Link>
           </motion.div>
         </motion.div>
       </div>
     </section>
   )
+<<<<<<< HEAD
 }
+=======
+})
+
+Hero.displayName = 'Hero'
+export default Hero
+>>>>>>> cfaf810171f5166d6b16a21fd62cd93c54e52702

@@ -16,12 +16,20 @@ const blueprintNavigation = [
   { title: "Technology Stack", href: "/blueprint-platform/technology-stack" },
 ]
 
+<<<<<<< HEAD
 export const metadata: Metadata = {
+=======
+const metadata: Metadata = {
+>>>>>>> cfaf810171f5166d6b16a21fd62cd93c54e52702
   title: "Blueprint Platform | Hubverse",
   description: "Explore the Blueprint Platform and its features.",
 }
 
+<<<<<<< HEAD
 export const implementationMetadata: Metadata = {
+=======
+const implementationMetadata: Metadata = {
+>>>>>>> cfaf810171f5166d6b16a21fd62cd93c54e52702
   title: "Implementation | Blueprint Platform",
   description: "Strategies and methodologies for effective project implementation",
   openGraph: {
