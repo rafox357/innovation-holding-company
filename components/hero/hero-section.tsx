@@ -27,12 +27,12 @@ export function HeroSection() {
                 We invest in groundbreaking technologies and visionary companies that shape tomorrow's innovations.
               </p>
             </div>
-            <div className="flex flex-col gap-4 sm:flex-row">
-              <Button asChild size="lg" className="w-full sm:w-auto">
-                <Link href="/auth/signup">Get Started</Link>
+            <div className="mt-8 flex flex-col sm:flex-row gap-4">
+              <Button size="lg" asChild>
+                <Link href="/innovation-hub">Explore Innovation Hub</Link>
               </Button>
-              <Button asChild variant="outline" size="lg" className="w-full sm:w-auto">
-                <Link href="#contact">Contact Us</Link>
+              <Button size="lg" variant="outline" asChild>
+                <Link href="/observatory">Visit Observatory</Link>
               </Button>
             </div>
           </motion.div>

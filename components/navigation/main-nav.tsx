@@ -32,12 +32,11 @@ export function MainNav() {
           </div>
 
           <div className="ml-auto flex items-center space-x-4">
-            <Button variant="ghost" asChild>
-              <Link href="/auth/signin">Sign In</Link>
-            </Button>
-            <Button asChild>
-              <Link href="/auth/signup">Sign Up</Link>
-            </Button>
+            <Link href="/">Home</Link>
+            <Link href="/innovation-hub">Innovation Hub</Link>
+            <Link href="/observatory">Observatory</Link>
+            <Link href="/news">News</Link>
+            <Link href="/contact">Contact</Link>
           </div>
         </div>
       </div>

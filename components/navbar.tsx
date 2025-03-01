@@ -83,12 +83,11 @@ export function Navbar() {
 
             <div className="flex items-center space-x-4">
               <ThemeToggle />
-              <Button variant="ghost" asChild>
-                <Link href="/auth/signin">Sign In</Link>
-              </Button>
-              <Button asChild>
-                <Link href="/auth/signup">Sign Up</Link>
-              </Button>
+              <Link href="/">Home</Link>
+              <Link href="/innovation-hub">Innovation Hub</Link>
+              <Link href="/observatory">Observatory</Link>
+              <Link href="/news">News</Link>
+              <Link href="/contact">Contact</Link>
             </div>
           </div>
         </div>
